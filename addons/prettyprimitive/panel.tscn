@@ -1,0 +1,358 @@
+[gd_scene load_steps=2 format=3 uid="uid://x82uh2fok3i7"]
+
+[ext_resource type="Script" path="res://addons/prettyprimitive/primitivecontroller.gd" id="1"]
+
+[node name="Primitives" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource("1")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_right = 1024.0
+offset_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+offset_right = 348.0
+offset_bottom = 353.0
+size_flags_horizontal = 3
+
+[node name="AddType" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+size_flags_horizontal = 3
+
+[node name="Make" type="Button" parent="ScrollContainer/VBoxContainer/AddType"]
+text = "Add"
+
+[node name="MeshType" type="OptionButton" parent="ScrollContainer/VBoxContainer/AddType"]
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/VBoxContainer"]
+visible = false
+size_flags_horizontal = 3
+
+[node name="Boxes" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_right = 1024.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="MakeCube" type="Button" parent="ScrollContainer/VBoxContainer/Boxes"]
+offset_right = 83.0
+offset_bottom = 31.0
+hint_tooltip = "Add a cube. Check v3 to specify each XYZ size."
+text = "Add Cube"
+
+[node name="Size" type="SpinBox" parent="ScrollContainer/VBoxContainer/Boxes"]
+offset_left = 87.0
+offset_right = 974.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.01
+value = 1.0
+prefix = "Size:"
+
+[node name="Y" type="SpinBox" parent="ScrollContainer/VBoxContainer/Boxes"]
+visible = false
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.01
+value = 1.0
+prefix = "Y:"
+
+[node name="Z" type="SpinBox" parent="ScrollContainer/VBoxContainer/Boxes"]
+visible = false
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.01
+value = 1.0
+prefix = "Z:"
+
+[node name="XYZ" type="CheckBox" parent="ScrollContainer/VBoxContainer/Boxes"]
+offset_left = 978.0
+offset_right = 1024.0
+offset_bottom = 31.0
+text = "v3"
+
+[node name="Spheres" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 35.0
+offset_right = 1024.0
+offset_bottom = 66.0
+
+[node name="MakeSphere" type="Button" parent="ScrollContainer/VBoxContainer/Spheres"]
+offset_right = 97.0
+offset_bottom = 31.0
+text = "Add Sphere"
+
+[node name="Size" type="SpinBox" parent="ScrollContainer/VBoxContainer/Spheres"]
+offset_left = 101.0
+offset_right = 1024.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Radius:"
+
+[node name="Capsule" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 70.0
+offset_right = 1024.0
+offset_bottom = 101.0
+
+[node name="MakeCapsule" type="Button" parent="ScrollContainer/VBoxContainer/Capsule"]
+offset_right = 104.0
+offset_bottom = 31.0
+text = "Add Capsule"
+
+[node name="Height" type="SpinBox" parent="ScrollContainer/VBoxContainer/Capsule"]
+offset_left = 108.0
+offset_right = 564.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+hint_tooltip = "Capsule will have this total height."
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Height:"
+
+[node name="Radius" type="SpinBox" parent="ScrollContainer/VBoxContainer/Capsule"]
+offset_left = 568.0
+offset_right = 1024.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 0.25
+prefix = "Radius:"
+
+[node name="Cylinder" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 105.0
+offset_right = 1024.0
+offset_bottom = 136.0
+
+[node name="MakeCylinder" type="Button" parent="ScrollContainer/VBoxContainer/Cylinder"]
+offset_right = 107.0
+offset_bottom = 31.0
+text = "Add Cylinder"
+
+[node name="Height" type="SpinBox" parent="ScrollContainer/VBoxContainer/Cylinder"]
+offset_left = 111.0
+offset_right = 565.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Height:"
+
+[node name="Radius" type="SpinBox" parent="ScrollContainer/VBoxContainer/Cylinder"]
+offset_left = 569.0
+offset_right = 1024.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Radius:"
+
+[node name="Cone" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 140.0
+offset_right = 1024.0
+offset_bottom = 171.0
+
+[node name="MakeCone" type="Button" parent="ScrollContainer/VBoxContainer/Cone"]
+offset_right = 87.0
+offset_bottom = 31.0
+hint_tooltip = " If CSG, only uses r1. r2 will be 0."
+text = "Add Cone."
+
+[node name="Height" type="SpinBox" parent="ScrollContainer/VBoxContainer/Cone"]
+offset_left = 91.0
+offset_right = 399.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Height:"
+
+[node name="RadiusBottom" type="SpinBox" parent="ScrollContainer/VBoxContainer/Cone"]
+offset_left = 403.0
+offset_right = 711.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "r1:"
+
+[node name="RadiusTop" type="SpinBox" parent="ScrollContainer/VBoxContainer/Cone"]
+offset_left = 715.0
+offset_right = 1024.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+hint_tooltip = "If CSG, this will always be 0."
+max_value = 1000.0
+step = 0.0
+prefix = "r2:"
+
+[node name="Plane" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 175.0
+offset_right = 1024.0
+offset_bottom = 206.0
+
+[node name="MakePlane" type="Button" parent="ScrollContainer/VBoxContainer/Plane"]
+offset_right = 86.0
+offset_bottom = 31.0
+hint_tooltip = "Check v2 to enter XY size individually."
+text = "Add Plane"
+
+[node name="Size" type="SpinBox" parent="ScrollContainer/VBoxContainer/Plane"]
+offset_left = 90.0
+offset_right = 974.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.0
+value = 1.0
+prefix = "Size:"
+
+[node name="Y" type="SpinBox" parent="ScrollContainer/VBoxContainer/Plane"]
+visible = false
+size_flags_horizontal = 3
+max_value = 1000.0
+step = 0.01
+value = 1.0
+prefix = "Y:"
+
+[node name="XY" type="CheckBox" parent="ScrollContainer/VBoxContainer/Plane"]
+offset_left = 978.0
+offset_right = 1024.0
+offset_bottom = 31.0
+text = "v2"
+
+[node name="VSeparator2" type="VSeparator" parent="ScrollContainer/VBoxContainer"]
+offset_top = 210.0
+offset_right = 1024.0
+offset_bottom = 213.0
+size_flags_horizontal = 3
+
+[node name="Options" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 217.0
+offset_right = 1024.0
+offset_bottom = 248.0
+
+[node name="ParentOptions" type="OptionButton" parent="ScrollContainer/VBoxContainer/Options"]
+offset_right = 122.0
+offset_bottom = 31.0
+hint_tooltip = "Select the kind of new parent for the object."
+item_count = 5
+selected = 0
+popup/item_0/text = "No Parent"
+popup/item_0/id = 0
+popup/item_1/text = "Rigid Body"
+popup/item_1/id = 1
+popup/item_2/text = "Static Body"
+popup/item_2/id = 2
+popup/item_3/text = "Area"
+popup/item_3/id = 3
+popup/item_4/text = "Node3D"
+popup/item_4/id = 4
+
+[node name="Mesh" type="CheckBox" parent="ScrollContainer/VBoxContainer/Options"]
+offset_left = 126.0
+offset_right = 196.0
+offset_bottom = 31.0
+hint_tooltip = "Include a mesh"
+button_pressed = true
+text = "Mesh"
+
+[node name="Collider" type="CheckBox" parent="ScrollContainer/VBoxContainer/Options"]
+offset_left = 200.0
+offset_right = 253.0
+offset_bottom = 31.0
+hint_tooltip = "Include a collider"
+text = "Col"
+
+[node name="AsCSG" type="CheckBox" parent="ScrollContainer/VBoxContainer/Options"]
+offset_left = 257.0
+offset_right = 316.0
+offset_bottom = 31.0
+hint_tooltip = "Build mesh and collider with CSG nodes"
+text = "CSG"
+
+[node name="Alignment" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 252.0
+offset_right = 1024.0
+offset_bottom = 283.0
+
+[node name="Axis" type="Label" parent="ScrollContainer/VBoxContainer/Alignment"]
+offset_top = 2.0
+offset_right = 90.0
+offset_bottom = 28.0
+hint_tooltip = "Major axis for Capsule, Cylinder, Cone, Plane"
+mouse_filter = 1
+text = "  Align with:"
+
+[node name="AxisOptions" type="OptionButton" parent="ScrollContainer/VBoxContainer/Alignment"]
+offset_left = 94.0
+offset_right = 182.0
+offset_bottom = 31.0
+hint_tooltip = "Major axis for Capsule, Cylinder, Cone, Plane"
+item_count = 3
+selected = 0
+popup/item_0/text = "X axis"
+popup/item_0/id = 0
+popup/item_1/text = "Y axis"
+popup/item_1/id = 1
+popup/item_2/text = "Z axis"
+popup/item_2/id = 2
+
+[node name="Material" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 287.0
+offset_right = 1024.0
+offset_bottom = 351.0
+
+[node name="WithMat" type="CheckBox" parent="ScrollContainer/VBoxContainer/Material"]
+offset_right = 93.0
+offset_bottom = 64.0
+text = "Material"
+
+[node name="Unique" type="CheckBox" parent="ScrollContainer/VBoxContainer/Material"]
+visible = false
+offset_left = 97.0
+offset_right = 181.0
+offset_bottom = 31.0
+text = "Unique"
+
+[node name="ColorMat" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 355.0
+offset_right = 1024.0
+offset_bottom = 386.0
+
+[node name="WithColor" type="CheckBox" parent="ScrollContainer/VBoxContainer/ColorMat"]
+offset_right = 70.0
+offset_bottom = 31.0
+text = "Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ScrollContainer/VBoxContainer/ColorMat"]
+custom_minimum_size = Vector2(50, 0)
+offset_left = 74.0
+offset_right = 124.0
+offset_bottom = 31.0
+color = Color(1, 1, 1, 1)
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Boxes/MakeCube" to="." method="_on_MakeCube_pressed"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/Boxes/XYZ" to="." method="_on_XYZ_toggled"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Spheres/MakeSphere" to="." method="_on_MakeSphere_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Capsule/MakeCapsule" to="." method="_on_MakeCapsule_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Cylinder/MakeCylinder" to="." method="_on_MakeCylinder_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Cone/MakeCone" to="." method="_on_MakeCone_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Plane/MakePlane" to="." method="_on_MakePlane_pressed"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/Plane/XY" to="." method="_on_XY_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/Options/AsCSG" to="." method="_on_as_csg_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/Material/WithMat" to="." method="_on_with_mat_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/ColorMat/WithColor" to="." method="_on_with_color_toggled"]
+[connection signal="color_changed" from="ScrollContainer/VBoxContainer/ColorMat/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

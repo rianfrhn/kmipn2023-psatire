@@ -1,3 +1,57 @@
-[gd_scene format=3 uid="uid://c8qweb4x71xav"]
+[gd_scene load_steps=7 format=3 uid="uid://c8qweb4x71xav"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6fxh"]
+albedo_color = Color(0.823529, 0.745098, 0.611765, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pm45n"]
+material = SubResource("StandardMaterial3D_p6fxh")
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n2uf6"]
+size = Vector3(20, 0.01, 20)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_svbl8"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_84x2y"]
+margin = 0.0
+radius = 0.25
+height = 1.0
+
+[sub_resource type="Environment" id="Environment_1gycc"]
+background_mode = 1
+background_color = Color(0.623529, 0.694118, 1, 1)
+ambient_light_color = Color(0.541176, 0.588235, 0.541176, 1)
 
 [node name="MainScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 8, 4)
+current = true
+
+[node name="Place" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Place"]
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="Place/StaticBody3D"]
+mesh = SubResource("PlaneMesh_pm45n")
+
+[node name="PlaneShape" type="CollisionShape3D" parent="Place/StaticBody3D"]
+shape = SubResource("BoxShape3D_n2uf6")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_svbl8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_84x2y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1gycc")
