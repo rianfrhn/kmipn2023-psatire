@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://hgvm6mx18vyl"]
+
+[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_tu3x8"]
+[ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="2_6ebr6"]
+[ext_resource type="PackedScene" uid="uid://ctwk8utsk125g" path="res://Scenes/User Interface/Apps/farroz_mart.tscn" id="3_4b882"]
+
+[node name="Phone" type="NinePatchRect"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -294.0
+offset_top = -436.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_tu3x8")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sun, 1 Jan 2023"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Top"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "7.00"
+fit_content = true
+scroll_active = false
+text_direction = 2
+
+[node name="Middle" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Apps" type="ItemList" parent="VBoxContainer/Middle"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_height = true
+item_count = 3
+max_columns = 3
+icon_mode = 0
+item_0/text = "FarrozMart"
+item_0/icon = ExtResource("2_6ebr6")
+item_1/text = "LinkedOut"
+item_1/icon = ExtResource("2_6ebr6")
+item_2/text = "IKEyAMart"
+item_2/icon = ExtResource("2_6ebr6")
+
+[node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+layout_mode = 1
+
+[node name="Bottom" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/Bottom"]
+layout_mode = 2
+text = "Back"
+
+[editable path="VBoxContainer/Middle/FarrozMart"]
