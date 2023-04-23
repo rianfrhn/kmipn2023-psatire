@@ -23,3 +23,7 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/prettyprimitive/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
