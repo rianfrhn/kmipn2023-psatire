@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmbbe6c5d243w"]
+
+[ext_resource type="PackedScene" uid="uid://c4lupscq5t4cf" path="res://Assets/3d models/Albob.glb" id="1_l031j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pvlo7"]
+radius = 0.55
+height = 2.75
+
+[node name="Albob" instance=ExtResource("1_l031j")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/5/rotation = Quaternion(0.04319, 0.0020798, 0.0478745, 0.997917)
+bones/6/rotation = Quaternion(-0.0267128, 1.40417e-07, -0.000643647, 0.999643)
+bones/10/rotation = Quaternion(-0.0212423, 0.428997, 0.0608778, 0.901002)
+bones/11/rotation = Quaternion(0.0267128, 3.5074e-07, 0.000643656, 0.999643)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37955, 0)
+shape = SubResource("CapsuleShape3D_pvlo7")
