@@ -53,7 +53,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Apps" type="ItemList" parent="VBoxContainer/Middle"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,10 +67,11 @@ item_0/text = "FarrozMart"
 item_0/icon = ExtResource("2_6ebr6")
 item_1/text = "LinkedOut"
 item_1/icon = ExtResource("2_6ebr6")
-item_2/text = "IKEyAMart"
+item_2/text = "IKEyA"
 item_2/icon = ExtResource("2_6ebr6")
 
 [node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+visible = false
 layout_mode = 1
 
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer"]

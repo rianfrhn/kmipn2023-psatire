@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctwk8utsk125g"]
+[gd_scene load_steps=3 format=3 uid="uid://ctwk8utsk125g"]
 
 [ext_resource type="PackedScene" uid="uid://m0732e0vw8hc" path="res://Scenes/User Interface/Apps/farroz_item_display.tscn" id="1_mhtxy"]
+[ext_resource type="Resource" uid="uid://ca3l0228p8aor" path="res://Resources/Stocks/TestStock2.tres" id="2_t8af5"]
 
 [node name="FarrozMart" type="Control"]
 layout_mode = 3
@@ -56,8 +57,16 @@ scroll_active = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FarrozItem" parent="FarrozMartBuy/FarrozItems" instance=ExtResource("1_mhtxy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FarrozItem" parent="FarrozMartBuy/FarrozItems/VBoxContainer" instance=ExtResource("1_mhtxy")]
+layout_mode = 2
+
+[node name="FarrozItem2" parent="FarrozMartBuy/FarrozItems/VBoxContainer" instance=ExtResource("1_mhtxy")]
+layout_mode = 2
+stock_resource = ExtResource("2_t8af5")
 
 [node name="BuyBottom" type="VBoxContainer" parent="FarrozMartBuy"]
 layout_mode = 2

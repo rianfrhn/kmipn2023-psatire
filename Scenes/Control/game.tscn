@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://h2kxekg3iis3"]
+
+[ext_resource type="Script" path="res://Scenes/Control/game.gd" id="1_043sg"]
+
+[node name="game" type="Node"]
+script = ExtResource("1_043sg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.667
+autostart = true
+
+[node name="OnScreen" type="CanvasLayer" parent="."]

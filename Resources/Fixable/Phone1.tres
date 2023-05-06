@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FixableResource" load_steps=2 format=3 uid="uid://cfquc3j0b7kmy"]
+
+[ext_resource type="Script" path="res://Resources/Fixable/FixableResource.gd" id="1_kobfq"]
+
+[resource]
+script = ExtResource("1_kobfq")
+id = 0
+name = ""
+required_components = Array[Resource("res://Resources/Stocks/StockResource.gd")]([])
+slotted_components = Array[Resource("res://Resources/Stocks/StockResource.gd")]([])
+due_date = 0
+component_type = 0

@@ -14,9 +14,9 @@ size_flags_horizontal = 3
 script = ExtResource("1_1g8eu")
 stock_resource = ExtResource("2_403bu")
 
-[node name="Name" type="RichTextLabel" parent="."]
+[node name="NameDisplay" type="RichTextLabel" parent="."]
 layout_mode = 2
-text = "Item Name"
+text = "Albob"
 fit_content = true
 scroll_active = false
 
@@ -39,9 +39,9 @@ size_flags_stretch_ratio = 2.0
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Description for item
-Harga: X
-Waktu Pengiriman: X"
+text = "Desk
+Harga:1000
+Waktu Pengiriman: 1"
 fit_content = true
 scroll_active = false
 
@@ -57,7 +57,7 @@ clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]0"
+text = "[center]1"
 fit_content = true
 scroll_active = false
 

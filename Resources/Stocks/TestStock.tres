@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("1_kkt18")
-stock_name = "Albob"
+stock_name = "LCD"
 stock_desc = "Desk"
 stock_cost = 1000
 arrival_days = 1
 display_picture = ExtResource("1_vdrc5")
+is_broken = false
