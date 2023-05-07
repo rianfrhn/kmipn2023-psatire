@@ -12,6 +12,8 @@ var week = 1
 var date = 1
 var month = 1
 
+var money = 100000
+
 var player_object
 ########################
 # REQUEST TABLE
@@ -57,10 +59,7 @@ func add_operation(fixable: FixableResource):
 	on_operation = fixable
 	operation_added.emit()
 
-func add_component(fixable: FixableResource, component: StockResource, duration:float = 10):
-	var required = fixable.required_components
-	var slotted = fixable.slotted_components
-	if required.size() <= slotted.size(): return
+func add_component(fixable: FixableResource, component: COMPONENTS, slot: int, duration:float = 10):
 	working.emit()
 	work_timer.wait_time = duration
 	work_timer.start()
@@ -68,23 +67,22 @@ func add_component(fixable: FixableResource, component: StockResource, duration:
 	await work_timer.timeout
 	not_working.emit()
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
-	slotted.add(component)
+	fixable.slotted_components[slot] = component
 	operation_updated.emit()
 	
-func remove_component(fixable: FixableResource, component: StockResource, duration:float = 10):
-	var required = fixable.required_components
-	var slotted = fixable.slotted_components
-	if slotted.size()==0: return
-	if slotted.has(component):
-		working.emit()
-		player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
-		work_timer.wait_time = duration
-		work_timer.start()
-		await work_timer.timeout
-		player_object.change_move_state(Player.MOVE_STATE.IDLE)
-		not_working.emit()
-		slotted.erase(component)
-		operation_updated.emit()
+func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
+	working.emit()
+	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
+	work_timer.wait_time = duration
+	work_timer.start()
+	await work_timer.timeout
+	player_object.change_move_state(Player.MOVE_STATE.IDLE)
+	not_working.emit()
+	fixable.slotted_components[slot] = COMPONENTS.EMPTY
+	fixable.defects[slot] = 0
+	operation_updated.emit()
+func component_tostring(component : COMPONENTS)->String:
+	return COMPONENTS.keys()[component]
 
 func remove_operation(fixable: FixableResource):
 	on_operation = null
@@ -93,22 +91,18 @@ func remove_operation(fixable: FixableResource):
 ##############################
 ##########################
 # STORAGE
+enum COMPONENTS{EMPTY, LCD, BATTERY}
 
-
-var on_storage : Dictionary = Dictionary()
+var on_storage : Array = [0,1,0]
 signal storage_changed
 
-func add_storage(stock : StockResource, count: int):
-	if !on_storage.has(stock):
-		on_storage[stock] = 0
-	on_storage[stock] += count
+func add_storage(component : COMPONENTS, count: int):
+	on_storage[component] += count
 	storage_changed.emit()
 	
-func remove_storage(stock: StockResource, count:int) -> bool:
-	if !on_storage.has(stock):
-		on_storage[stock] = 0
-	if on_storage[stock] - count <= 0: return false
-	on_storage[stock] -= count
+func remove_storage(component: COMPONENTS, count:int) -> bool:
+	if on_storage[component] - count <= 0: return false
+	on_storage[component] -= count
 	storage_changed.emit()
 	return true
 	
@@ -150,11 +144,7 @@ func create_new_fixable(type : String) -> FixableResource:
 	match type:
 		"Phone":
 			var comp1 = LCD_Resource.new(false)
-			
-			var components : Array[StockResource] = [
-				comp1
-			]
-			new_fixable.generate_new(FixableResource.TYPE.Phone, components)
+			new_fixable.generate_new(FixableResource.TYPE.Phone)
 	return new_fixable
 
 # Called when the node enters the scene tree for the first time.
@@ -167,14 +157,13 @@ func _ready():
 	var test_fixable2 = create_new_fixable("Phone")
 	add_queue(test_fixable2)
 	
+	add_storage(COMPONENTS.LCD, 3)
+	add_storage(COMPONENTS.BATTERY, 2)
 	
 	
 	pass # Replace with function body.
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 

@@ -6,7 +6,6 @@ extends HBoxContainer
 @onready var parts_display = $VBoxContainer/VBoxContainer/PartName
 @onready var take_button = $VBoxContainer/HBoxContainer/ButtonAmbil
 @onready var option_button = $VBoxContainer/HBoxContainer/ButtonAtur
-var components:Array[StockResource]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,17 +18,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update_view():
 	if fixable == null: return
-	components = fixable.slotted_components
 	product_name_display.text = "Nama Produk: "+ str(fixable.name)
 	kendala_display.text = "Kendala: "+fixable.get_kendala()
 	for n in fixable.required_components.size():
-		var comp
-		if n >= fixable.slotted_components.size():
-			comp = null
-		else:
-			comp = components[n]
 		var item = ResourceLoader.load("res://Scenes/User Interface/OperationTable/fixable_item_operation_part.tscn").instantiate()
-		item.set_component(comp)
+		item.set_slot(n)
 		parts_display.add_child(item)
 func set_fixable(item : FixableResource):
 	fixable = item

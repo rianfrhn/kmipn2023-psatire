@@ -1,16 +1,18 @@
 extends Control
 
 var component
-
-func set_component(stock : StockResource):
+var slot
+func set_slot(n):
 	var componentname = $RichTextLabel
 	var button = $Button
-	if stock == null:
+	var fixable : FixableResource = Game.on_operation
+	slot = n
+	component = fixable.slotted_components[slot]
+	if component == Game.COMPONENTS.EMPTY:
 		button.text = "+"
 		button.pressed.connect(_on_add_component)
 	else:
-		component = stock
-		componentname.text = str(stock.stock_name)
+		componentname.text = Game.component_tostring(component)
 		button.pressed.connect(_on_remove_component)
 		
 # Called when the node enters the scene tree for the first time.
@@ -21,5 +23,5 @@ func _on_add_component():
 	pass
 func _on_remove_component():
 	print("Removing Component")
-	Game.remove_component(Game.on_operation, component)
+	Game.remove_component(Game.on_operation, slot)
 	Game.operation_updated.emit()
