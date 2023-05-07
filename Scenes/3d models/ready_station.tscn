@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://prsa0vwgbdx6"]
+
+[ext_resource type="PackedScene" uid="uid://dvnk8yopp22md" path="res://Assets/3d models/Ready Station.glb" id="1_mfeyy"]
+
+[node name="Ready Station" instance=ExtResource("1_mfeyy")]
+
+[node name="Ready Station2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d35h8qvclcmvx"
-path.s3tc="res://.godot/imported/Queue_tables_and_storage.png-e744a9b321d0a4cffc0db8ef58bce163.s3tc.ctex"
+uid="uid://bvpd2reo66enr"
+path.s3tc="res://.godot/imported/tables_and_storage.png-bb0a8d2721474e88e294d8dbf233d9e3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Assets/3d models/Queue_tables_and_storage.png"
-dest_files=["res://.godot/imported/Queue_tables_and_storage.png-e744a9b321d0a4cffc0db8ef58bce163.s3tc.ctex"]
+source_file="res://Assets/3d models/tables_and_storage.png"
+dest_files=["res://.godot/imported/tables_and_storage.png-bb0a8d2721474e88e294d8dbf233d9e3.s3tc.ctex"]
 
 [params]
 

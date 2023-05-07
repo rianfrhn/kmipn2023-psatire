@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1xvfbdpwewv6"]
+
+[ext_resource type="PackedScene" uid="uid://2bwrcqurx6o3" path="res://Assets/3d models/Albob.glb" id="1_uladv"]
+
+[node name="Albob" instance=ExtResource("1_uladv")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/2/rotation = Quaternion(0.13895, 7.17503e-15, 3.31282e-08, 0.990299)
+bones/3/rotation = Quaternion(-0.0333665, 1.19143e-07, -1.19328e-08, 0.999443)
+bones/6/rotation = Quaternion(0.0604881, 1.44274e-07, 0.00145751, 0.998168)
+bones/11/rotation = Quaternion(-0.0604882, 3.53564e-07, -0.00145747, 0.998168)
+bones/14/rotation = Quaternion(0.70617, 0.0367462, 0.70705, -0.0073731)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bss2tvbs7cmid"]
+
+[ext_resource type="PackedScene" uid="uid://dud78axwydl7d" path="res://Assets/3d models/Cash Register.glb" id="1_uov27"]
+
+[node name="Cash Register" instance=ExtResource("1_uov27")]
