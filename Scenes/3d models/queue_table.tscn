@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kaybtir40bv2"]
+
+[ext_resource type="PackedScene" uid="uid://x4cxg5rvo6lh" path="res://Assets/3d models/Queue.glb" id="1_cfarn"]
+
+[node name="Queue" instance=ExtResource("1_cfarn")]
+
+[node name="Queue2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
