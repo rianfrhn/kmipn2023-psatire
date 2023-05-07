@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PhoneBattery_Resource" load_steps=3 format=3 uid="uid://pt886dqaj4ug"]
+
+[ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="1_10810"]
+[ext_resource type="Script" path="res://Resources/Stocks/PhoneBattery_Resource.gd" id="1_cf6xu"]
+
+[resource]
+script = ExtResource("1_cf6xu")
+stock_name = "Baterai Smartphone"
+stock_desc = "Baterai 4000 mAh yang cocok digunakan untuk hp lama"
+stock_cost = 90000
+arrival_days = 4
+display_picture = ExtResource("1_10810")
+is_broken = false

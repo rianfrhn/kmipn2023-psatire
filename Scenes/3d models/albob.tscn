@@ -5,8 +5,15 @@
 [node name="Albob" instance=ExtResource("1_uladv")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/2/rotation = Quaternion(0.13895, 7.17503e-15, 3.31282e-08, 0.990299)
-bones/3/rotation = Quaternion(-0.0333665, 1.19143e-07, -1.19328e-08, 0.999443)
-bones/6/rotation = Quaternion(0.0604881, 1.44274e-07, 0.00145751, 0.998168)
+bones/0/rotation = Quaternion(0.0139134, 1.19198e-07, -1.6586e-09, 0.999903)
+bones/1/rotation = Quaternion(-0.0784957, 3.66063e-10, -1.0006e-08, 0.996913)
+bones/2/rotation = Quaternion(0.162827, 8.00128e-10, 3.31185e-08, 0.986655)
+bones/3/rotation = Quaternion(-0.0333665, 1.17313e-07, -1.1332e-08, 0.999443)
+bones/5/rotation = Quaternion(0.484424, 0.0240813, 0.054124, 0.872825)
+bones/6/rotation = Quaternion(0.0604883, -9.635e-05, 0.00145794, 0.998168)
+bones/10/rotation = Quaternion(-0.425518, 0.355141, 0.237762, 0.79767)
 bones/11/rotation = Quaternion(-0.0604882, 3.53564e-07, -0.00145747, 0.998168)
 bones/14/rotation = Quaternion(0.70617, 0.0367462, 0.70705, -0.0073731)
+
+[node name="Hand" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129724, 1.17717, 0.414385)

@@ -5,7 +5,7 @@ albedo_color = Color(0.321569, 0.368627, 0.368627, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y62aj"]
 material = SubResource("StandardMaterial3D_a4rgi")
-size = Vector3(0.25, 0.25, 0.5)
+size = Vector3(0.4, 0.25, 0.8)
 
 [node name="Phone" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.24815, 0.708493, 0.158031)

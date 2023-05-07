@@ -1,18 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://m0732e0vw8hc"]
+[gd_scene load_steps=3 format=3 uid="uid://m0732e0vw8hc"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_item_display.gd" id="1_1g8eu"]
 [ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="1_h5nii"]
-[ext_resource type="Resource" uid="uid://dr3okj8ml5u8y" path="res://Resources/Stocks/TestStock.tres" id="2_403bu"]
 
 [node name="FarrozItemDisplay" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 948.0
+offset_bottom = 131.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_1g8eu")
-stock_resource = ExtResource("2_403bu")
 
 [node name="NameDisplay" type="RichTextLabel" parent="."]
 layout_mode = 2

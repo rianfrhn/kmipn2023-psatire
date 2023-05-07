@@ -3,6 +3,7 @@ extends Node
 
 @onready var timer : Timer = $Timer
 @onready var on_screen : Node = $OnScreen
+@onready var work_timer : Timer = $WorkTimer
 var day = 0
 var timemin = 0
 var timehr = 7
@@ -10,6 +11,8 @@ var timehr = 7
 var week = 1
 var date = 1
 var month = 1
+
+var player_object
 ########################
 # REQUEST TABLE
 var request : Array[FixableResource] = []
@@ -47,25 +50,41 @@ var on_operation : FixableResource
 signal operation_added()
 signal operation_updated()
 signal operation_removed()
+signal working()
+signal not_working()
 
 func add_operation(fixable: FixableResource):
 	on_operation = fixable
 	operation_added.emit()
 
-func add_component(fixable: FixableResource, component: StockResource):
+func add_component(fixable: FixableResource, component: StockResource, duration:float = 10):
 	var required = fixable.required_components
 	var slotted = fixable.slotted_components
 	if required.size() <= slotted.size(): return
+	working.emit()
+	work_timer.wait_time = duration
+	work_timer.start()
+	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
+	await work_timer.timeout
+	not_working.emit()
+	player_object.change_move_state(Player.MOVE_STATE.IDLE)
 	slotted.add(component)
 	operation_updated.emit()
 	
-func remove_component(fixable: FixableResource, component: StockResource):
+func remove_component(fixable: FixableResource, component: StockResource, duration:float = 10):
 	var required = fixable.required_components
 	var slotted = fixable.slotted_components
 	if slotted.size()==0: return
 	if slotted.has(component):
+		working.emit()
+		player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
+		work_timer.wait_time = duration
+		work_timer.start()
+		await work_timer.timeout
+		player_object.change_move_state(Player.MOVE_STATE.IDLE)
+		not_working.emit()
 		slotted.erase(component)
-		operation_updated.emit(fixable)
+		operation_updated.emit()
 
 func remove_operation(fixable: FixableResource):
 	on_operation = null
@@ -74,6 +93,8 @@ func remove_operation(fixable: FixableResource):
 ##############################
 ##########################
 # STORAGE
+
+
 var on_storage : Dictionary = Dictionary()
 signal storage_changed
 

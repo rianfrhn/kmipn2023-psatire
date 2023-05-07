@@ -9,4 +9,7 @@ script = ExtResource("1_043sg")
 wait_time = 1.667
 autostart = true
 
+[node name="WorkTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="OnScreen" type="CanvasLayer" parent="."]

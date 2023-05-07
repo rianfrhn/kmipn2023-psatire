@@ -13,11 +13,13 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("game_interact"):
 		if !waiting_prompt: return
+		Game.player_object.set_target_rotation_global(global_position)
 		if Game.on_hand == null:
 			Game.open_menu(menu)
 		else:
-			var obj = Game.on_hand
-			place_object(obj)
+			if Game.on_operation == null: 
+				var obj = Game.on_hand
+				place_object(obj)
 		
 
 func place_object(fixable : FixableResource):
