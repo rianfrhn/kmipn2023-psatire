@@ -58,7 +58,7 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[right]Uang"
+text = "[right]Rp500.000"
 fit_content = true
 scroll_active = false
 

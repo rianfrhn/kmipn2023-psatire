@@ -12,7 +12,7 @@ script = ExtResource("1_1g8eu")
 
 [node name="NameDisplay" type="RichTextLabel" parent="."]
 layout_mode = 2
-text = "Albob"
+text = "LCD"
 fit_content = true
 scroll_active = false
 

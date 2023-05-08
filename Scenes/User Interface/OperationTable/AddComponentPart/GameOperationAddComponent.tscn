@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpeupe4ochfaj"]
+[gd_scene load_steps=4 format=3 uid="uid://dwt5d8f1tx5ty"]
 
-[ext_resource type="Script" path="res://Scenes/User Interface/Storage/GameStorage.gd" id="1_qw8dl"]
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="2_uxi14"]
-[ext_resource type="Script" path="res://Scenes/User Interface/Button.gd" id="3_e3tmp"]
+[ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/AddComponentPart/GameOperationAddComponent.gd" id="1_birgk"]
+[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="2_3bap4"]
+[ext_resource type="Script" path="res://Scenes/User Interface/Button.gd" id="3_a62bw"]
 
-[node name="GameStorage" type="Control"]
+[node name="GameOperationAddComponent" type="Control"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -14,7 +14,7 @@ offset_top = -384.0
 offset_right = 268.0
 offset_bottom = -32.0
 grow_vertical = 2
-script = ExtResource("1_qw8dl")
+script = ExtResource("1_birgk")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_uxi14")
+texture = ExtResource("2_3bap4")
 region_rect = Rect2(0, 0, 16.0251, 16)
 patch_margin_left = 4
 patch_margin_top = 4
@@ -49,7 +49,7 @@ size_flags_horizontal = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
-text = "Daftar Komponen"
+text = "Tambah Komponen"
 fit_content = true
 scroll_active = false
 
@@ -68,4 +68,4 @@ offset_left = -44.0
 offset_bottom = 44.0
 grow_horizontal = 0
 text = "X"
-script = ExtResource("3_e3tmp")
+script = ExtResource("3_a62bw")

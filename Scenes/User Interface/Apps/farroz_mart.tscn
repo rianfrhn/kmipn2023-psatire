@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctwk8utsk125g"]
+[gd_scene load_steps=4 format=3 uid="uid://ctwk8utsk125g"]
 
 [ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="1_4dnnu"]
+[ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_kkkm6"]
+[ext_resource type="Texture2D" uid="uid://cwv4kljlufk8e" path="res://Assets/User Interface/Battery.png" id="2_hr6sa"]
 
 [node name="FarrozMart" type="VBoxContainer"]
 anchors_preset = 15
@@ -56,9 +58,12 @@ size_flags_vertical = 3
 [node name="ItemDisplay" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer"]
 layout_mode = 2
 
+[node name="HSeparator" type="HSeparator" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay"]
+layout_mode = 2
+
 [node name="NameDisplay" type="RichTextLabel" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay"]
 layout_mode = 2
-text = "Albob"
+text = "LCD"
 fit_content = true
 scroll_active = false
 
@@ -68,9 +73,9 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_4dnnu")
-expand_mode = 3
-stretch_mode = 3
+texture = ExtResource("1_kkkm6")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay/HBoxContainer"]
 layout_mode = 2
@@ -81,9 +86,10 @@ size_flags_stretch_ratio = 2.0
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Desk
-Harga:1000
-Waktu Pengiriman: 1"
+text = "Layar Kristal Cair digunakan pada mayoritas elektronik 
+Harga:50000
+Waktu Pengiriman: 1 Hari
+"
 fit_content = true
 scroll_active = false
 
@@ -110,9 +116,12 @@ text = "+"
 [node name="ItemDisplay2" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer"]
 layout_mode = 2
 
+[node name="HSeparator" type="HSeparator" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay2"]
+layout_mode = 2
+
 [node name="NameDisplay" type="RichTextLabel" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay2"]
 layout_mode = 2
-text = "Albob"
+text = "Baterai Smartphone"
 fit_content = true
 scroll_active = false
 
@@ -122,9 +131,9 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_4dnnu")
-expand_mode = 3
-stretch_mode = 3
+texture = ExtResource("2_hr6sa")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay2/HBoxContainer"]
 layout_mode = 2
@@ -135,9 +144,9 @@ size_flags_stretch_ratio = 2.0
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Desk
-Harga:1000
-Waktu Pengiriman: 1"
+text = "Baterai untuk smartphone pada umumnya
+Harga:80000
+Waktu Pengiriman: 3 Hari"
 fit_content = true
 scroll_active = false
 
@@ -164,6 +173,9 @@ text = "+"
 [node name="ItemDisplay3" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer"]
 layout_mode = 2
 
+[node name="HSeparator" type="HSeparator" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay3"]
+layout_mode = 2
+
 [node name="NameDisplay" type="RichTextLabel" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay3"]
 layout_mode = 2
 text = "Albob"
@@ -177,8 +189,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_4dnnu")
-expand_mode = 3
-stretch_mode = 3
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems/VBoxContainer/ItemDisplay3/HBoxContainer"]
 layout_mode = 2
@@ -236,7 +248,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[right]Rp.X"
+text = "[right]Rp.130.000"
 fit_content = true
 scroll_active = false
 text_direction = 1

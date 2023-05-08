@@ -19,7 +19,9 @@ func set_slot(n):
 
 func _on_add_component():
 	print("Adding Component")
-	Game.operation_updated.emit()
+	var menu = ResourceLoader.load("res://Scenes/User Interface/OperationTable/AddComponentPart/GameOperationAddComponent.tscn").instantiate()
+	menu.set_slot(slot)
+	Game.open_menu_instance(menu)
 	pass
 func _on_remove_component():
 	print("Removing Component")

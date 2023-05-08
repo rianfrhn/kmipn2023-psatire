@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://hgvm6mx18vyl"]
+[gd_scene load_steps=6 format=3 uid="uid://hgvm6mx18vyl"]
 
 [ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_fvdbo"]
 [ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="2_6ebr6"]
 [ext_resource type="Theme" uid="uid://cir3va4cextl6" path="res://Themes/PhoneTheme.tres" id="2_mnr88"]
+[ext_resource type="Script" path="res://Scenes/User Interface/phone.gd" id="2_p0upk"]
 [ext_resource type="PackedScene" uid="uid://ctwk8utsk125g" path="res://Scenes/User Interface/Apps/farroz_mart.tscn" id="3_4b882"]
 
 [node name="Phone" type="NinePatchRect"]
@@ -20,6 +21,7 @@ region_rect = Rect2(2.79718, -4.08, 153.223, 312.464)
 patch_margin_left = 10
 patch_margin_top = 41
 patch_margin_right = 7
+script = ExtResource("2_p0upk")
 
 [node name="Top" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -62,7 +64,7 @@ grow_vertical = 2
 [node name="Top" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top"]
+[node name="Date" type="RichTextLabel" parent="VBoxContainer/Top"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -70,7 +72,7 @@ text = "Sun, 1 Jan 2023"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Top"]
+[node name="Time" type="RichTextLabel" parent="VBoxContainer/Top"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3

@@ -172,6 +172,10 @@ func open_menu_path(path: String)->Node:
 	on_screen.add_child(scene)
 	return scene
 	pass
+func open_menu_instance(node: Node)->Node:
+	on_screen.add_child(node)
+	return node
+	pass
 
 func open_menu(resource : PackedScene)->Node:
 	if(resource == null): return
