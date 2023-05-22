@@ -16,7 +16,9 @@ func _process(delta):
 	var degree = -180 - ((Game.timehr-7 + Game.timemin/60.0)/(16.0-7)*180)
 	var date = Game.get_full_date_string()
 	var week = Game.week
+	var money = Game.money
 	date_text.text = day+", "+date
 	time_text.text = "[center]"+time
 	arrow.rotation_degrees = degree
+	money_text.text = "[right]Rp "+str(money)
 	

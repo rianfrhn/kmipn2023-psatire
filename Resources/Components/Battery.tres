@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ComponentResource" load_steps=3 format=3 uid="uid://s88e10mxmm4j"]
+
+[ext_resource type="Texture2D" uid="uid://cwv4kljlufk8e" path="res://Assets/User Interface/Battery.png" id="1_g54ie"]
+[ext_resource type="Script" path="res://Resources/Components/ComponentResource.gd" id="2_shioo"]
+
+[resource]
+script = ExtResource("2_shioo")
+id = 1
+stock_name = "Baterai Smartphone"
+stock_desc = "Baterai Untuk HP"
+stock_cost = 80000
+arrival_days = 3
+display_picture = ExtResource("1_g54ie")
+is_broken = false

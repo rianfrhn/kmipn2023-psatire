@@ -14,7 +14,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func update_view():
 	product_name_display.text = "Nama Produk: "+ str(fixable.name)
 	kendala_display.text = "Kendala: "+fixable.get_kendala()
@@ -22,10 +21,11 @@ func update_view():
 	for slot in fixable.slotted_components.size():
 		var component_num = fixable.slotted_components[slot]
 		var text : RichTextLabel = ResourceLoader.load("res://Scenes/User Interface/fixable_item_part.tscn").instantiate()
-		if fixable.defects[slot] == 1:
+		if (fixable.defects[slot] == 1 || fixable.required_components[slot] != component_num):
 			text.text = "- [color=#FF0000]"+Game.component_tostring(component_num)
 		else:
 			text.text = "- "+Game.component_tostring(component_num)
+			
 		if component_num == 0:
 			text.text = "- [color=#FF0000]SLOT KOSONG"
 		parts_display.add_child(text)

@@ -4,6 +4,27 @@ extends Node
 @onready var timer : Timer = $Timer
 @onready var on_screen : Node = $OnScreen
 @onready var work_timer : Timer = $WorkTimer
+
+enum STATE{ #
+	RUNNING,
+	PAUSED
+}
+var game_state : STATE = STATE.RUNNING 
+signal game_state_changed()
+func change_game_state(state : STATE):
+	game_state = state
+	game_state_changed.emit()
+
+
+var menu_state : STATE = STATE.RUNNING #Kalo lg kerja, menu di pause, gabisa close
+signal menu_state_changed()
+func change_menu_state(state : STATE):
+	menu_state = state
+	menu_state_changed.emit()
+	
+
+
+
 var day = 0
 var timemin = 0
 var timehr = 7
@@ -12,9 +33,18 @@ var week = 1
 var date = 1
 var month = 1
 
-var money = 100000
 
 var player_object
+##############
+# Money
+var money = 370000
+signal money_changed()
+
+func add_money(ammount : int):
+	money += ammount
+	
+func remove_money(ammount : int):
+	money -= ammount
 ########################
 # REQUEST TABLE
 var request : Array[FixableResource] = []
@@ -59,7 +89,7 @@ func add_operation(fixable: FixableResource):
 	on_operation = fixable
 	operation_added.emit()
 
-func add_component(fixable: FixableResource, component: COMPONENTS, slot: int, duration:float = 10):
+func add_component(fixable: FixableResource, component_id: int, slot: int, duration:float = 10):
 	working.emit()
 	work_timer.wait_time = duration
 	work_timer.start()
@@ -67,7 +97,7 @@ func add_component(fixable: FixableResource, component: COMPONENTS, slot: int, d
 	await work_timer.timeout
 	not_working.emit()
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
-	fixable.slotted_components[slot] = component
+	fixable.slotted_components[slot] = component_id
 	operation_updated.emit()
 	
 func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
@@ -78,11 +108,12 @@ func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	await work_timer.timeout
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
 	not_working.emit()
-	fixable.slotted_components[slot] = COMPONENTS.EMPTY
+	fixable.slotted_components[slot] = ComponentResource.TYPE.KOSONG
 	fixable.defects[slot] = 0
 	operation_updated.emit()
-func component_tostring(component : COMPONENTS)->String:
-	return COMPONENTS.keys()[component]
+	
+func component_tostring(type : int)->String:
+	return ComponentResource.TYPE.keys()[type]
 
 func remove_operation(fixable: FixableResource):
 	on_operation = null
@@ -91,20 +122,26 @@ func remove_operation(fixable: FixableResource):
 ##############################
 ##########################
 # STORAGE
-enum COMPONENTS{EMPTY, LCD, BATTERY}
-
-var on_storage : Array = [0,1,0]
+var on_storage : Dictionary = {# 'type' -> 'ammount'
+	0: 0,
+	1: 3,
+	2: 3
+} 
 signal storage_changed
 
-func add_storage(component : COMPONENTS, count: int):
-	on_storage[component] += count
+func add_storage(component_type : int, count: int):
+	on_storage[component_type] += count
 	storage_changed.emit()
 	
-func remove_storage(component: COMPONENTS, count:int) -> bool:
-	if on_storage[component] - count <= 0: return false
-	on_storage[component] -= count
+func remove_storage(component_type: int, count:int) -> bool:
+	if on_storage[component_type] - count <= 0: return false
+	on_storage[component_type] -= count
 	storage_changed.emit()
 	return true
+
+func get_new_component_by_id(id: int, is_broken : bool):
+	var comp = ComponentResource.new().generate_new_component(id, is_broken)
+	return comp
 	
 ############################
 #################################
@@ -143,7 +180,6 @@ func create_new_fixable(type : String) -> FixableResource:
 	var new_fixable = FixableResource.new()
 	match type:
 		"Phone":
-			var comp1 = LCD_Resource.new(false)
 			new_fixable.generate_new(FixableResource.TYPE.Phone)
 	return new_fixable
 
@@ -157,8 +193,8 @@ func _ready():
 	var test_fixable2 = create_new_fixable("Phone")
 	add_queue(test_fixable2)
 	
-	add_storage(COMPONENTS.LCD, 3)
-	add_storage(COMPONENTS.BATTERY, 2)
+	add_storage(ComponentResource.TYPE.LCD, 3)
+	add_storage(ComponentResource.TYPE.BATERAI, 2)
 	
 	
 	pass # Replace with function body.
@@ -204,6 +240,7 @@ func add_day(days:int):
 	date += days
 	day += days
 	if(day >= 5):
+		date += 1
 		day -=5
 		add_week(1)
 

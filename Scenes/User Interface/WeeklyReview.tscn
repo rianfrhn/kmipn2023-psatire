@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://xsi0652yh828"]
+
+[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_bwh8l"]
+
+[node name="WeeklyReview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = 199.0
+offset_right = 1012.0
+offset_bottom = 614.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_bwh8l")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/NinePatchRect/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "Hasil Mingguan"
+scroll_active = false
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/NinePatchRect/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+bbcode_enabled = true
+text = "Performa
+		Pelanggan Diterima	: 2
+		Jumlah Jasa Selesai		: 2
+		Pelanggan Baru			: 2
+		Jumlah Dikembalikan	: 0
+		Performa						: 5/5
+
+		Nilai Usaha					: 3.7/5 [color=#00ff00](^0.3)[/color]
+		
+
+Pendapatan
+		Modal								: Rp130000
+		Penghasilan					: Rp220000
+
+		Keuntungan					:[color=#00ff00] Rp90000"
+scroll_active = false

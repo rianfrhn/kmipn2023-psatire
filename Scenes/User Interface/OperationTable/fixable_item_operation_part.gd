@@ -8,7 +8,7 @@ func set_slot(n):
 	var fixable : FixableResource = Game.on_operation
 	slot = n
 	component = fixable.slotted_components[slot]
-	if component == Game.COMPONENTS.EMPTY:
+	if component == ComponentResource.TYPE.KOSONG:
 		button.text = "+"
 		button.pressed.connect(_on_add_component)
 	else:
