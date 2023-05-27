@@ -33,14 +33,15 @@ arrived : bool = false
 	
 func set_arrival(day : int, hour : int = 7):
 	arrival_day = day
-	arrival_hour = 7
+	arrival_hour = hour
 	var d = arrival_day + dissatisfaction_delta
 	dissatisfaction_day = d-5 if d >5 else d
-	dissatisfaction_hour = 7
+	dissatisfaction_hour = hour
 	
 func serve():
-	var d = arrival_day + 2
+	var d = arrival_day + 1
 	day_of_retrieval = d-5 if d>5 else d
+	hour_of_retrieval = arrival_hour
 
 func get_model()->Customer:
 	if(model != null):

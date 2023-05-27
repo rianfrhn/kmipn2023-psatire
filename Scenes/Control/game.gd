@@ -28,6 +28,7 @@ func change_menu_state(state : STATE):
 var day = 0
 signal day_changed()
 signal week_changed()
+signal hour_changed()
 var timemin = 0
 var timehr = 7
 
@@ -192,8 +193,8 @@ func create_new_fixable(resource_enum : FixableResource.TYPE) -> FixableResource
 # ON CUSTOMER QUEUE
 var on_customer_week_queue : Array[CustomerResource] = [] #Ini pas ngantri tiap week, dmn nnti customernya dateng di hari tertentu
 signal customer_week_queue_added(customer : CustomerResource)
-func add_customer_week_queue(cust_resource: CustomerResource, arrival_day : int): #pertama di masukin ke queue weekly
-	cust_resource.set_arrival(arrival_day)
+func add_customer_week_queue(cust_resource: CustomerResource, arrival_day : int, arrival_hour : int): #pertama di masukin ke queue weekly
+	cust_resource.set_arrival(arrival_day, arrival_hour)
 	on_customer_week_queue.append(cust_resource)
 	print("ADDED CUSTOMER: "+str(cust_resource))
 	customer_week_queue_added.emit(cust_resource)
@@ -224,23 +225,28 @@ func move_customer_to_served(customer : CustomerResource):
 func move_customer_to_leave(customer : CustomerResource):
 	if on_register.has(customer):
 		on_register.erase(customer)
+		customer_left.emit(customer)
+		print("Customer from register left")
+		
+		
 	if on_customer_served.has(customer):
 		on_customer_served.erase(customer)
-	customer_left.emit(customer)
+		customer_left.emit(customer)
+		print("Customer from served left")
 
-func daily_customer_checker():
-	print("DAILY CHECKING....")
+func hourly_customer_checker():
+	#print("HOURLY CHECKING....")
 	for cust in on_customer_week_queue:
-		if cust.arrival_day == day:
+		if cust.arrival_day == day && cust.arrival_hour == timehr:
 			move_customer_to_register(cust)
 	for cust in on_register:
-		if cust.dissatisfaction_day == day:
+		if cust.dissatisfaction_day == day && cust.dissatisfaction_hour == timehr:
 			move_customer_to_leave(cust)
 	for cust in on_customer_served:
-		if cust.day_of_retrieval == day:
+		if cust.day_of_retrieval == day && cust.hour_of_retrieval == timehr:
 			take_ready(cust)
 
-func create_new_customer(type: int):
+func create_new_customer(type: int, day:int = 1, hour:int = 7):
 	var new_customer = CustomerResource.new()
 	match type:
 		0:
@@ -266,23 +272,27 @@ func take_ready(customer : CustomerResource):
 	customer_take_ready.emit(customer)
 	if on_ready.has(cust_fixable):
 		on_fixable_done(cust_fixable)
+		remove_fromall_stations(customer.fixable)
 		await get_tree().create_timer(7.0).timeout
 		taken_ready(customer)
-		
+	else:
+		remove_fromall_stations(customer.fixable)
+		await get_tree().create_timer(7.0).timeout
+		taken_ready(customer)
 	
 signal customer_take_ready_left(customer : CustomerResource)
 func taken_ready(customer: CustomerResource):
 	customer_take_ready_left.emit(customer)
-	remove_fromall_stations(customer.fixable)
 	move_customer_to_leave(customer)
 
 func on_fixable_done(fixable : FixableResource):
 	var broken_value = fixable.count_broken_value()
 	if broken_value ==0:
 		rating += 0.2
+	if broken_value <=1:
+		add_money(fixable.price)
 	if broken_value == 3:
 		rating -=0.3
-	add_money(fixable.price)
 	
 
 
@@ -303,11 +313,22 @@ func remove_fromall_stations(fixable : FixableResource):
 
 ####################
 # Generate new Week
-var customer_median = 2
+var customer_median = 7
 var customer_randomness = 0
+var day_dictionary = {
+	1:0, 2:0, 3:0, 4:0, 5:0
+}
 func generate_week():
-	var cust = create_new_customer(0)
-	add_customer_week_queue(cust, 1)
+	var cust_random = randi_range(-customer_randomness, customer_randomness)
+	var customer_count = customer_median + cust_random
+	
+	for i in range(0, customer_count):
+		var day = randi_range(1,5)
+		var time = randi_range(7,15)
+		var cust = create_new_customer(0)
+		add_customer_week_queue(cust, day, time)
+	
+	
 
 
 
@@ -318,14 +339,14 @@ func _ready():
 	timer.timeout.connect(_on_clock_timeout)
 	
 	# DEBUG
-	var test_fixable = create_new_fixable(FixableResource.TYPE.Phone)
-	add_queue(test_fixable)
-	var test_fixable2 = create_new_fixable(FixableResource.TYPE.Phone)
-	add_queue(test_fixable2)
+	#var test_fixable = create_new_fixable(FixableResource.TYPE.Phone)
+	#add_queue(test_fixable)
+	#var test_fixable2 = create_new_fixable(FixableResource.TYPE.Phone)
+	#add_queue(test_fixable2)
 	
 	week_changed.connect(generate_week)
 	
-	day_changed.connect(daily_customer_checker)
+	hour_changed.connect(hourly_customer_checker)
 	add_storage(ComponentResource.TYPE.LCD, 3)
 	add_storage(ComponentResource.TYPE.BATERAI, 2)
 	
@@ -368,6 +389,7 @@ func add_time_hr(hours:int):
 	if(timehr >= 16):
 		timehr =7
 		add_day(1)
+	hour_changed.emit()
 		
 func add_day(days:int):
 	date += days
