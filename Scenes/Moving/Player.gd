@@ -49,7 +49,7 @@ func _unhandled_input(event):
 			menu_opened = false
 			
 	if Input.is_action_pressed("developer_key_1"):
-		Game.day += 1
+		Game.add_day(1)
 		
 	if Input.is_action_pressed("developer_key_2"):
 		Game.open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
@@ -92,7 +92,7 @@ func change_hand_state(state):
 			if move_state == MOVE_STATE.MOVING:
 				anim_player.play("Walk_Holding")
 			else:
-				anim_player.play("Walk_Holding") ######## FIXXXXX THISSS
+				anim_player.play("Walk_Holding") ######## TODO: FIXXXXX THISSS
 		HAND_STATE.IDLE:
 			if hand_state == HAND_STATE.IDLE: return
 			hand_state = HAND_STATE.IDLE

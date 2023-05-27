@@ -21,7 +21,9 @@ func update_view():
 	for slot in fixable.slotted_components.size():
 		var component_num = fixable.slotted_components[slot]
 		var text : RichTextLabel = ResourceLoader.load("res://Scenes/User Interface/fixable_item_part.tscn").instantiate()
-		if (fixable.defects[slot] == 1 || fixable.required_components[slot] != component_num):
+		if (fixable.defects[slot] == 1):
+			text.text = "- [color=#FFFF00]"+Game.component_tostring(component_num)
+		elif (fixable.required_components[slot] != component_num):
 			text.text = "- [color=#FF0000]"+Game.component_tostring(component_num)
 		else:
 			text.text = "- "+Game.component_tostring(component_num)

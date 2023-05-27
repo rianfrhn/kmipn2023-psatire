@@ -26,11 +26,14 @@ func change_menu_state(state : STATE):
 
 
 var day = 0
+signal day_changed()
+signal week_changed()
 var timemin = 0
 var timehr = 7
 
 var week = 1
 var date = 1
+signal date_changed()
 var month = 1
 
 
@@ -45,6 +48,9 @@ func add_money(ammount : int):
 	
 func remove_money(ammount : int):
 	money -= ammount
+	
+var rating = 1.0
+
 ########################
 # REQUEST TABLE
 var request : Array[FixableResource] = []
@@ -176,23 +182,150 @@ func remove_hand():
 	on_hand = null
 	hand_changed.emit()
 
-func create_new_fixable(type : String) -> FixableResource:
+func create_new_fixable(resource_enum : FixableResource.TYPE) -> FixableResource:
 	var new_fixable = FixableResource.new()
-	match type:
-		"Phone":
-			new_fixable.generate_new(FixableResource.TYPE.Phone)
+	new_fixable.generate_new(resource_enum)
 	return new_fixable
 
+###################
+##################
+# ON CUSTOMER QUEUE
+var on_customer_week_queue : Array[CustomerResource] = [] #Ini pas ngantri tiap week, dmn nnti customernya dateng di hari tertentu
+signal customer_week_queue_added(customer : CustomerResource)
+func add_customer_week_queue(cust_resource: CustomerResource, arrival_day : int): #pertama di masukin ke queue weekly
+	cust_resource.set_arrival(arrival_day)
+	on_customer_week_queue.append(cust_resource)
+	print("ADDED CUSTOMER: "+str(cust_resource))
+	customer_week_queue_added.emit(cust_resource)
+
+func move_customer_to_register(customer : CustomerResource):
+	print("Attempting to move to reister: "+customer.name)
+	if on_customer_week_queue.has(customer):
+		on_customer_week_queue.erase(customer)
+		on_register.append(customer)
+		register_added.emit(customer)
+		print("ADDED CUSTOMER TO REGISTER: "+customer.name)
+		
+		
+var on_register : Array[CustomerResource] = []
+signal register_added(customer : CustomerResource)
+
+var on_customer_served : Array[CustomerResource] = []
+signal customer_served(customer : CustomerResource)
+signal customer_left(customer : CustomerResource)
+func move_customer_to_served(customer : CustomerResource):
+	if on_register.has(customer):
+		on_customer_served.append(customer)
+		customer.serve()
+		customer_served.emit(customer)
+		on_register.erase(customer)
+		
+
+func move_customer_to_leave(customer : CustomerResource):
+	if on_register.has(customer):
+		on_register.erase(customer)
+	if on_customer_served.has(customer):
+		on_customer_served.erase(customer)
+	customer_left.emit(customer)
+
+func daily_customer_checker():
+	print("DAILY CHECKING....")
+	for cust in on_customer_week_queue:
+		if cust.arrival_day == day:
+			move_customer_to_register(cust)
+	for cust in on_register:
+		if cust.dissatisfaction_day == day:
+			move_customer_to_leave(cust)
+	for cust in on_customer_served:
+		if cust.day_of_retrieval == day:
+			take_ready(cust)
+
+func create_new_customer(type: int):
+	var new_customer = CustomerResource.new()
+	match type:
+		0:
+			var gender = CustomerResource.GENDER.MALE
+			var fixable = create_new_fixable(FixableResource.TYPE.Phone)
+			new_customer.initialize(gender, fixable)
+	return new_customer
+	
+#########
+########
+# On Cash Register
+func serve_customer(customer : CustomerResource, price : int):
+	if on_register.has(customer):
+		move_customer_to_served(customer)
+		add_hand(customer.fixable)
+		customer.fixable.set_price(price)
+		customer.serve()
+		
+#On ready table
+signal customer_take_ready(customer : CustomerResource)
+func take_ready(customer : CustomerResource):
+	var cust_fixable = customer.fixable
+	customer_take_ready.emit(customer)
+	if on_ready.has(cust_fixable):
+		on_fixable_done(cust_fixable)
+		await get_tree().create_timer(7.0).timeout
+		taken_ready(customer)
+		
+	
+signal customer_take_ready_left(customer : CustomerResource)
+func taken_ready(customer: CustomerResource):
+	customer_take_ready_left.emit(customer)
+	remove_fromall_stations(customer.fixable)
+	move_customer_to_leave(customer)
+
+func on_fixable_done(fixable : FixableResource):
+	var broken_value = fixable.count_broken_value()
+	if broken_value ==0:
+		rating += 0.2
+	if broken_value == 3:
+		rating -=0.3
+	add_money(fixable.price)
+	
+
+
+func remove_fromall_stations(fixable : FixableResource):
+	remove_ready(fixable)
+	remove_operation(fixable)
+	remove_queue(fixable)
+	if on_hand == fixable: remove_hand()
+	
+
+
+
+
+
+
+
+
+
+####################
+# Generate new Week
+var customer_median = 2
+var customer_randomness = 0
+func generate_week():
+	var cust = create_new_customer(0)
+	add_customer_week_queue(cust, 1)
+
+
+
 # Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	timer.timeout.connect(_on_clock_timeout)
 	
 	# DEBUG
-	var test_fixable = create_new_fixable("Phone")
+	var test_fixable = create_new_fixable(FixableResource.TYPE.Phone)
 	add_queue(test_fixable)
-	var test_fixable2 = create_new_fixable("Phone")
+	var test_fixable2 = create_new_fixable(FixableResource.TYPE.Phone)
 	add_queue(test_fixable2)
 	
+	week_changed.connect(generate_week)
+	
+	day_changed.connect(daily_customer_checker)
 	add_storage(ComponentResource.TYPE.LCD, 3)
 	add_storage(ComponentResource.TYPE.BATERAI, 2)
 	
@@ -239,6 +372,8 @@ func add_time_hr(hours:int):
 func add_day(days:int):
 	date += days
 	day += days
+	day_changed.emit()
+	date_changed.emit()
 	if(day >= 5):
 		date += 1
 		day -=5
@@ -246,6 +381,7 @@ func add_day(days:int):
 
 func add_week(weeks:int):
 	week += weeks
+	week_changed.emit()
 	if(week % 4 == 1):
 		date = 1
 		add_month(1)
