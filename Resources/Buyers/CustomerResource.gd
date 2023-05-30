@@ -4,6 +4,7 @@ enum GENDER {
 	MALE,
 	FEMALE
 }
+var id
 @export var gender : GENDER
 @export var fixable : FixableResource
 @export var retrieval_days : int
@@ -25,6 +26,7 @@ assigned_fixable = Game.create_new_fixable(FixableResource.TYPE.Phone),
 assigned_retrieval_days : int = 5, #brp hari sblm dia ambil lg
 arrived : bool = false
 ):
+	id = randf_range(0,1)
 	gender = assigned_gender
 	fixable = assigned_fixable
 	retrieval_days = assigned_retrieval_days  
@@ -38,10 +40,10 @@ func set_arrival(day : int, hour : int = 7):
 	dissatisfaction_day = d-5 if d >5 else d
 	dissatisfaction_hour = hour
 	
-func serve():
-	var d = arrival_day + 1
+func serve(day:int, hour:int):
+	var d = day + 1
 	day_of_retrieval = d-5 if d>5 else d
-	hour_of_retrieval = arrival_hour
+	hour_of_retrieval = hour
 
 func get_model()->Customer:
 	if(model != null):

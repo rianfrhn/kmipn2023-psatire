@@ -6,7 +6,8 @@ extends RichTextLabel
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "On Customer Week Queue:\n"
+	text = ""
+	text += "On Customer Week Queue:\n"
 	for x in Game.on_customer_week_queue:
 		text += str(x)+"\n"
 	text += "On Register Queue:\n"
@@ -15,4 +16,5 @@ func _process(delta):
 	text += "On Served Queue:\n"
 	for x in Game.on_customer_served:
 		text += str(x)+"\n"
+	
 	

@@ -6,6 +6,7 @@ var component
 var component_name
 var component_count
 var slot
+signal button_pressed()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_view()
@@ -27,4 +28,5 @@ func set_component(_component, _slot):
 func _on_pressed():
 	Game.add_component(Game.on_operation, component, slot)
 	Game.remove_storage(component, 1)
+	button_pressed.emit()
 	

@@ -13,14 +13,15 @@ func _ready():
 func add_fixable_item(fixable : FixableResource):
 	var fixable_view = ResourceLoader.load("res://Scenes/User Interface/OperationTable/fixable_item_operation_ui.tscn").instantiate()
 	fixable_view.set_fixable(fixable)
+	fixable_view.button_pressed.connect(destroy_this)
 	items_container.add_child(fixable_view)
 
 func set_fixable_item(fixable : FixableResource):
 	fixable_item = fixable
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func destroy_this():
+	queue_free()
 
 func update_view():
 	for node in items_container.get_children():

@@ -12,6 +12,11 @@ enum STATE{ #
 var game_state : STATE = STATE.RUNNING 
 signal game_state_changed()
 func change_game_state(state : STATE):
+	match state:
+		STATE.RUNNING:
+			timer.start()
+		STATE.PAUSED:
+			timer.stop()
 	game_state = state
 	game_state_changed.emit()
 
@@ -51,6 +56,17 @@ func remove_money(ammount : int):
 	money -= ammount
 	
 var rating = 1.0
+#######################
+# WEEKLY STATS
+var previous_money = 0
+var after_money = 0
+var money_spent = 0
+var profit = 0
+var previous_rating = 0
+var after_rating = 0
+var customer_satisfied = 0
+var customer_denied = 0
+var num_customer_served = 0
 
 ########################
 # REQUEST TABLE
@@ -81,6 +97,8 @@ func remove_ready(fixable: FixableResource):
 	if on_ready.has(fixable):
 		on_ready.erase(fixable)
 		ready_removed.emit()
+		return true
+	return false
 		
 ###############################
 ################################
@@ -101,9 +119,12 @@ func add_component(fixable: FixableResource, component_id: int, slot: int, durat
 	work_timer.wait_time = duration
 	work_timer.start()
 	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
+	Game.change_menu_state(Game.STATE.PAUSED)
 	await work_timer.timeout
 	not_working.emit()
+	Game.change_menu_state(Game.STATE.RUNNING)
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
+	if fixable == null: return
 	fixable.slotted_components[slot] = component_id
 	operation_updated.emit()
 	
@@ -112,7 +133,9 @@ func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
 	work_timer.wait_time = duration
 	work_timer.start()
+	Game.change_menu_state(Game.STATE.PAUSED)
 	await work_timer.timeout
+	Game.change_menu_state(Game.STATE.RUNNING)
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
 	not_working.emit()
 	fixable.slotted_components[slot] = ComponentResource.TYPE.KOSONG
@@ -123,8 +146,11 @@ func component_tostring(type : int)->String:
 	return ComponentResource.TYPE.keys()[type]
 
 func remove_operation(fixable: FixableResource):
-	on_operation = null
-	operation_removed.emit()
+	if on_operation == fixable:
+		on_operation = null
+		operation_removed.emit()
+		return true
+	return false
 
 ##############################
 ##########################
@@ -166,6 +192,8 @@ func remove_queue(fixable: FixableResource):
 	if on_queue.has(fixable):
 		on_queue.erase(fixable)
 		queue_removed.emit()
+		return true
+	return false
 
 #######################
 ####################
@@ -179,9 +207,10 @@ func add_hand(fixable: FixableResource):
 	hand_changed.emit()
 	
 func remove_hand():
-	if on_hand == null: return
+	if on_hand == null: return false
 	on_hand = null
 	hand_changed.emit()
+	return true
 
 func create_new_fixable(resource_enum : FixableResource.TYPE) -> FixableResource:
 	var new_fixable = FixableResource.new()
@@ -217,9 +246,10 @@ signal customer_left(customer : CustomerResource)
 func move_customer_to_served(customer : CustomerResource):
 	if on_register.has(customer):
 		on_customer_served.append(customer)
-		customer.serve()
+		customer.serve(day, timehr)
 		customer_served.emit(customer)
 		on_register.erase(customer)
+		num_customer_served += 1
 		
 
 func move_customer_to_leave(customer : CustomerResource):
@@ -227,12 +257,14 @@ func move_customer_to_leave(customer : CustomerResource):
 		on_register.erase(customer)
 		customer_left.emit(customer)
 		print("Customer from register left")
+		customer_denied += 1
 		
 		
 	if on_customer_served.has(customer):
 		on_customer_served.erase(customer)
 		customer_left.emit(customer)
 		print("Customer from served left")
+		customer_denied += 1
 
 func hourly_customer_checker():
 	#print("HOURLY CHECKING....")
@@ -263,7 +295,7 @@ func serve_customer(customer : CustomerResource, price : int):
 		move_customer_to_served(customer)
 		add_hand(customer.fixable)
 		customer.fixable.set_price(price)
-		customer.serve()
+		customer.serve(day, timehr)
 		
 #On ready table
 signal customer_take_ready(customer : CustomerResource)
@@ -273,6 +305,8 @@ func take_ready(customer : CustomerResource):
 	if on_ready.has(cust_fixable):
 		on_fixable_done(cust_fixable)
 		remove_fromall_stations(customer.fixable)
+		customer_satisfied += 1
+		customer_denied -=1
 		await get_tree().create_timer(7.0).timeout
 		taken_ready(customer)
 	else:
@@ -293,6 +327,7 @@ func on_fixable_done(fixable : FixableResource):
 		add_money(fixable.price)
 	if broken_value == 3:
 		rating -=0.3
+	after_rating = rating
 	
 
 
@@ -322,29 +357,59 @@ func generate_week():
 	var cust_random = randi_range(-customer_randomness, customer_randomness)
 	var customer_count = customer_median + cust_random
 	
+	# WEEKLY STATS
+	previous_money = money
+	after_money = money
+	money_spent = 0
+	profit = 0
+	previous_rating = rating
+	after_rating = rating
+	customer_satisfied = 0
+	customer_denied = 0
+	num_customer_served = 0
+	
 	for i in range(0, customer_count):
-		var day = randi_range(1,5)
+		var day = randi_range(1,4)
 		var time = randi_range(7,15)
 		var cust = create_new_customer(0)
 		add_customer_week_queue(cust, day, time)
+
+####################
+# ON START OF WEEk ONLY ON SUNRAY
+func start_week():
+	add_day(1)
+	generate_week()
 	
-	
+	change_game_state(STATE.RUNNING)
+	print(game_state)
 
 
+#################3
+# ON END OF WEEK
+func end_week():
+	change_game_state(STATE.PAUSED)
+	open_menu_path("res://Scenes/User Interface/phone.tscn")
+	open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
+	
+
+func initialgame():
+	if week == 1:
+		change_game_state(STATE.PAUSED)
+		open_menu_path("res://Scenes/User Interface/phone.tscn")
+		
 
 # Called when the node enters the scene tree for the first time.
 
-
 func _ready():
-	timer.timeout.connect(_on_clock_timeout)
-	
 	# DEBUG
 	#var test_fixable = create_new_fixable(FixableResource.TYPE.Phone)
 	#add_queue(test_fixable)
 	#var test_fixable2 = create_new_fixable(FixableResource.TYPE.Phone)
 	#add_queue(test_fixable2)
-	
-	week_changed.connect(generate_week)
+	timer.one_shot = false
+	timer.wait_time=1.667
+	timer.timeout.connect(_on_clock_timeout)
+	week_changed.connect(end_week)
 	
 	hour_changed.connect(hourly_customer_checker)
 	add_storage(ComponentResource.TYPE.LCD, 3)

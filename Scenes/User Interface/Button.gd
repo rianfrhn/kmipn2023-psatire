@@ -1,8 +1,9 @@
-extends Button
+extends GameButton
 @onready var thismenu = $"../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	pressed.connect(_on_click)
 
 

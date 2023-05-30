@@ -12,7 +12,7 @@ func _ready():
 	
 	pass # Replace with function body.
 
-
+signal button_pressed()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update_view():
 	var components = fixable.slotted_components
@@ -37,3 +37,4 @@ func _on_button_pressed():
 	if(Game.on_hand != null): return
 	Game.add_hand(fixable)
 	Game.remove_queue(fixable)
+	button_pressed.emit()

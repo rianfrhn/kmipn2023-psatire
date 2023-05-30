@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://xsi0652yh828"]
+[gd_scene load_steps=3 format=3 uid="uid://xsi0652yh828"]
 
 [ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_bwh8l"]
+[ext_resource type="Script" path="res://Scenes/User Interface/WeeklyReview.gd" id="1_ktby5"]
 
 [node name="WeeklyReview" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_ktby5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -66,3 +68,13 @@ Pendapatan
 
 		Keuntungan					:[color=#00ff00] Rp90000"
 scroll_active = false
+
+[node name="Button" type="Button" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "X"

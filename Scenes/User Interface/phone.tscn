@@ -111,10 +111,14 @@ layout_mode = 1
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/Bottom"]
+[node name="PhoneBackButton" type="Button" parent="VBoxContainer/Bottom"]
 layout_mode = 2
-text = "Back"
+text = "Kembali"
 
-[node name="Button2" type="Button" parent="VBoxContainer/Bottom"]
+[node name="Control" type="Control" parent="VBoxContainer/Bottom"]
 layout_mode = 2
-text = "Back"
+size_flags_horizontal = 3
+
+[node name="PhoneContinueButton" type="Button" parent="VBoxContainer/Bottom"]
+layout_mode = 2
+text = "Lanjut"

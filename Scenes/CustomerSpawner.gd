@@ -16,7 +16,6 @@ func _ready():
 	Game.customer_left.connect(_on_customer_left)
 	Game.customer_take_ready.connect(_on_customer_take)
 	Game.customer_take_ready_left.connect(_on_customer_take_left)
-	Game.generate_week()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

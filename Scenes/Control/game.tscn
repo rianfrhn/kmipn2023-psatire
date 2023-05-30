@@ -7,7 +7,6 @@ script = ExtResource("1_043sg")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.667
-autostart = true
 
 [node name="WorkTimer" type="Timer" parent="."]
 one_shot = true

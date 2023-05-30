@@ -2,6 +2,7 @@ extends Control
 
 var component
 var slot
+
 func set_slot(n):
 	var componentname = $RichTextLabel
 	var button = $Button

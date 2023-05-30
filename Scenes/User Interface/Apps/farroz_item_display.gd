@@ -1,7 +1,7 @@
 extends VBoxContainer
+class_name FarrozItemDisplay
 
-
-@export var stock_resource : StockResource
+@export var stock_resource : ComponentResource
 #	get:
 #		return stock_resource
 #	set(value):
@@ -26,7 +26,7 @@ var stock_arrival
 var stock_ammount = 0
 
 #Signals
-signal ammount_changed(total_price:int)
+signal ammount_changed()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -54,14 +54,17 @@ func update_data():
 	name_display.text = str(stock_name)
 	desc_display.text = str(stock_desc) + "\nHarga:" + str(stock_price) + "\nWaktu Pengiriman: "+str(stock_arrival)
 	ammount_display.text = "[center]"+str(stock_ammount)
+	pic_display.texture = stock_pic
 	
 	
 func _on_increment():
 	stock_ammount += 1
 	update_data()
+	ammount_changed.emit()
 	
 func _on_decrement():
 	if(stock_ammount <= 0):
 		return
 	stock_ammount -= 1
 	update_data()
+	ammount_changed.emit()

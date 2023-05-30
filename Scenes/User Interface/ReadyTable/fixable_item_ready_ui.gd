@@ -6,6 +6,7 @@ extends HBoxContainer
 @onready var parts_display = $VBoxContainer/VBoxContainer/PartName
 @onready var take_button = $VBoxContainer/Button
 
+signal button_pressed()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_view()
@@ -38,3 +39,4 @@ func _on_button_pressed():
 	if(Game.on_hand != null): return
 	Game.add_hand(fixable)
 	Game.remove_ready(fixable)
+	button_pressed.emit()

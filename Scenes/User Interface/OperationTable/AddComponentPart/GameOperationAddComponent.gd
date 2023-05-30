@@ -16,6 +16,7 @@ func _ready():
 func add_component(component):
 	var component_view = ResourceLoader.load("res://Scenes/User Interface/OperationTable/AddComponentPart/component_operation_ui.tscn").instantiate()
 	component_view.set_component(component, slot)
+	component_view.button_pressed.connect(delete_this)
 	items_container.add_child(component_view)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func set_slot(_slot):
@@ -31,3 +32,5 @@ func update_view():
 		if components[n] == 0: continue
 		add_component(n)
 		
+func delete_this():
+	queue_free()

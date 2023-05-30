@@ -9,5 +9,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("game_interact"):
 		if !waiting_prompt: return
 		Game.player_object.set_target_rotation_global(global_position)
-		Game.open_menu(menu)
+		if Game.on_hand == null:
+			Game.open_menu(menu)
 		

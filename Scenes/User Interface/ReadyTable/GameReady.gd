@@ -12,6 +12,7 @@ func _ready():
 func add_fixable_item(fixable : FixableResource):
 	var fixable_view = ResourceLoader.load("res://Scenes/User Interface/ReadyTable/fixable_item_ready_ui.tscn").instantiate()
 	fixable_view.set_fixable(fixable)
+	fixable_view.button_pressed.connect(destroy_this)
 	items_container.add_child(fixable_view)
 
 func set_fixable_items(arr : Array[FixableResource]):
@@ -29,3 +30,5 @@ func update_view():
 	for fixable in fixable_items:
 		add_fixable_item(fixable)
 		
+func destroy_this():
+	queue_free()

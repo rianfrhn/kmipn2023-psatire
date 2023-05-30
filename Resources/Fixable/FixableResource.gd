@@ -1,7 +1,7 @@
 extends Resource
 class_name FixableResource
 
-@export var id : String
+@export var id : float
 @export var name : String
 @export var required_components = [] # PAKE ENUM DI RESOURCECOMPONENT, 0 FOR EMPTY, 
 @export var slotted_components = []
@@ -14,7 +14,7 @@ var price : int
 var broken_value = 0
 
 func generate_new(type : TYPE):
-	id = Game.get_time_string()+Game.get_day_string()+str(type)
+	id = randf_range(0,1)
 	match(type):
 		TYPE.Phone:
 			name = "Phone"
