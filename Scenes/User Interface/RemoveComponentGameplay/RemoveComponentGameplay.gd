@@ -28,7 +28,7 @@ func initialize(complexity : int):
 		numbers.append(btn)
 		button_container.add_child(btn)
 	
-	numlabel.text = str(target_number[0])
+	numlabel.text = "[center]"+str(target_number[0])+"[/center]"
 	for i in range(1, number_size):
 		var txt = numlabel.duplicate()
 		label_container.add_child(txt)
