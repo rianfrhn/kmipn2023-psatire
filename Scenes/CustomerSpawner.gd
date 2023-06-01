@@ -57,10 +57,14 @@ func _on_customer_left(customer : CustomerResource):
 		var c_model = on_register[customer]
 		c_model.update_target_location(global_position)
 		on_register.erase(customer)
+		await get_tree().create_timer(3).timeout
+		c_model.queue_free()
 	if on_served.keys().has(customer):
 		var c_model = on_register[customer] #
 		c_model.update_target_location(global_position)
 		on_register.erase(customer)
+		await get_tree().create_timer(3).timeout
+		c_model.queue_free()
 		
 func _on_customer_take(customer : CustomerResource):
 	if on_served.keys().has(customer):
@@ -73,4 +77,6 @@ func _on_customer_take_left(customer : CustomerResource):
 		var c_model = on_served[customer] #
 		c_model.update_target_location(global_position)
 		on_served.erase(customer)
+		await get_tree().create_timer(3).timeout
+		c_model.queue_free()
 	
