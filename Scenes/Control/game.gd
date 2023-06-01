@@ -52,6 +52,7 @@ signal money_changed()
 func add_money(ammount : int):
 	money += ammount
 	
+	
 func remove_money(ammount : int):
 	money -= ammount
 	
@@ -120,7 +121,8 @@ func add_component(fixable: FixableResource, component_id: int, slot: int, durat
 	work_timer.start()
 	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
 	Game.change_menu_state(Game.STATE.PAUSED)
-	await work_timer.timeout
+	var minigame = open_menu_path("res://Scenes/User Interface/InsertComponentGameplay/insert_component_gameplay.tscn")
+	await minigame.minigame_done
 	not_working.emit()
 	Game.change_menu_state(Game.STATE.RUNNING)
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
@@ -134,7 +136,8 @@ func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	work_timer.wait_time = duration
 	work_timer.start()
 	Game.change_menu_state(Game.STATE.PAUSED)
-	await work_timer.timeout
+	var minigame = open_menu_path("res://Scenes/User Interface/RemoveComponentGameplay/remove_component_gameplay.tscn")
+	await minigame.minigame_done
 	Game.change_menu_state(Game.STATE.RUNNING)
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
 	not_working.emit()
@@ -313,7 +316,8 @@ func take_ready(customer : CustomerResource):
 		remove_fromall_stations(customer.fixable)
 		await get_tree().create_timer(7.0).timeout
 		taken_ready(customer)
-	
+
+
 signal customer_take_ready_left(customer : CustomerResource)
 func taken_ready(customer: CustomerResource):
 	customer_take_ready_left.emit(customer)
@@ -321,10 +325,19 @@ func taken_ready(customer: CustomerResource):
 
 func on_fixable_done(fixable : FixableResource):
 	var broken_value = fixable.count_broken_value()
+	var base_price = fixable.base_price
+	var setted_price = fixable.price
+	var profit_percentage = (1.0 * setted_price - base_price)/base_price
+	
+	if profit_percentage <=0.2:
+		rating += 0.2
+	elif profit_percentage >=0.4:
+		rating -= 0.4
+	
 	if broken_value ==0:
 		rating += 0.2
 	if broken_value <=1:
-		add_money(fixable.price)
+		add_money(setted_price)
 	if broken_value == 3:
 		rating -=0.3
 	after_rating = rating
@@ -354,6 +367,7 @@ var day_dictionary = {
 	1:0, 2:0, 3:0, 4:0, 5:0
 }
 func generate_week():
+	customer_median = 6 + int(rating * 2)
 	var cust_random = randi_range(-customer_randomness, customer_randomness)
 	var customer_count = customer_median + cust_random
 	
@@ -368,6 +382,11 @@ func generate_week():
 	customer_denied = 0
 	num_customer_served = 0
 	
+	if on_customer_served.size() == 0:
+		customer_count -= 1
+		var cust = create_new_customer(0)
+		add_customer_week_queue(cust, 1, 8)
+		
 	for i in range(0, customer_count):
 		var day = randi_range(1,4)
 		var time = randi_range(7,15)
@@ -387,6 +406,7 @@ func start_week():
 #################3
 # ON END OF WEEK
 func end_week():
+	after_money = money
 	change_game_state(STATE.PAUSED)
 	open_menu_path("res://Scenes/User Interface/phone.tscn")
 	open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
@@ -461,9 +481,9 @@ func add_day(days:int):
 	day += days
 	day_changed.emit()
 	date_changed.emit()
-	if(day >= 5):
+	if(day > 5):
 		date += 1
-		day -=5
+		day -=6
 		add_week(1)
 
 func add_week(weeks:int):

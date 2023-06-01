@@ -15,6 +15,14 @@ enum TYPE{ #korespon sama id nya
 	LCD
 }
 
+static func getPrice(type : TYPE = -1) -> int:
+	match(type):
+		TYPE.BATERAI:
+			return 80000
+		TYPE.LCD:
+			return 100000
+	return 0
+
 func generate_new_component(new_type: TYPE, broken:bool = false):
 	type=new_type
 	match(new_type):
@@ -32,4 +40,3 @@ func generate_new_component(new_type: TYPE, broken:bool = false):
 			arrival_days = 3
 			display_picture = ResourceLoader.load("res://Assets/User Interface/smartphone.png")
 			is_broken = broken
-			

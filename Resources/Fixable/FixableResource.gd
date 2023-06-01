@@ -9,8 +9,8 @@ class_name FixableResource
 @export var due_date : int
 @export var scene : PackedScene
 enum TYPE{Phone, Laptop}
-var base_price : int
-var price : int
+var base_price : int = 0
+var price : int = 0
 var broken_value = 0
 
 func generate_new(type : TYPE):
@@ -28,7 +28,21 @@ func generate_new(type : TYPE):
 				ComponentResource.TYPE.BATERAI
 			]
 			defects = [0,1]
-			base_price = 100000
+	
+	
+	setBasePrice()
+
+func setBasePrice():
+	base_price = 0
+	
+	var i=0
+	for item in required_components:
+		if slotted_components[i] != item:
+			base_price += ComponentResource.getPrice(item)
+		elif defects[i] == 1:
+			base_price += ComponentResource.getPrice(item)
+		i+=1
+
 
 func get_kendala()->String:
 	return "Device saya bermasalah"
