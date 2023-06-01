@@ -15,18 +15,17 @@ grow_vertical = 2
 script = ExtResource("1_4bnqi")
 
 [node name="FarrozMartHome" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="FarrozMartHome"]
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
-text = "[center][wave amp=100 freq=10] FarrozMart [/wave][/center]"
+text = "[center][wave amp=100 freq=10][color=#000000] FarrozMart[/color][/wave][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="FarrozMartHome"]
+[node name="Belanja" type="Button" parent="FarrozMartHome"]
 layout_mode = 2
 text = "Belanja"
 
@@ -38,6 +37,7 @@ text = "Lihat Kiriman"
 layout_mode = 2
 
 [node name="FarrozMartBuy" type="VBoxContainer" parent="."]
+visible = false
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3

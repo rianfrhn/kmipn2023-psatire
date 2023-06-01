@@ -86,7 +86,129 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_mnr88")
 
-[node name="Apps" type="ItemList" parent="VBoxContainer/Middle"]
+[node name="Apps" type="ScrollContainer" parent="VBoxContainer/Middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Apps" type="GridContainer" parent="VBoxContainer/Middle/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+
+[node name="FarrozMart" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart"]
+layout_mode = 2
+texture = ExtResource("2_6ebr6")
+stretch_mode = 5
+
+[node name="FarrozMart" type="Button" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]FarrozMart"
+fit_content = true
+
+[node name="LinkedOut" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut"]
+layout_mode = 2
+texture = ExtResource("2_6ebr6")
+stretch_mode = 5
+
+[node name="LinkedOut" type="Button" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]LinkedOut"
+fit_content = true
+
+[node name="IKEyA" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/IKEyA"]
+layout_mode = 2
+texture = ExtResource("2_6ebr6")
+stretch_mode = 5
+
+[node name="IKEyA" type="Button" parent="VBoxContainer/Middle/Apps/Apps/IKEyA/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/IKEyA"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]IKEyA"
+fit_content = true
+
+[node name="WeekReview" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/WeekReview"]
+layout_mode = 2
+texture = ExtResource("2_6ebr6")
+stretch_mode = 5
+
+[node name="WeekReview" type="Button" parent="VBoxContainer/Middle/Apps/Apps/WeekReview/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/WeekReview"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Week Review"
+fit_content = true
+
+[node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+visible = false
+layout_mode = 1
+
+[node name="IKEyA" type="VBoxContainer" parent="VBoxContainer/Middle"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -94,19 +216,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_height = true
-item_count = 3
-max_columns = 3
-icon_mode = 0
-item_0/text = "FarrozMart"
-item_0/icon = ExtResource("2_6ebr6")
-item_1/text = "LinkedOut"
-item_1/icon = ExtResource("2_6ebr6")
-item_2/text = "IKEyA"
-item_2/icon = ExtResource("2_6ebr6")
 
-[node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Middle/IKEyA"]
+layout_mode = 2
+text = "IKEyA"
+fit_content = true
+
+[node name="LinkedOut" type="VBoxContainer" parent="VBoxContainer/Middle"]
+visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/LinkedOut"]
+layout_mode = 2
+text = "Coming Soon"
+fit_content = true
 
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

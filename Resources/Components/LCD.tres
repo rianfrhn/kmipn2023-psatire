@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_3eb3c")
-id = 2
+type = 2
 stock_name = "LCD"
 stock_desc = "Layar Crystal Display untuk Elektronik"
 stock_cost = 100000
-arrival_days = 3
+arrival_days = 1
 display_picture = ExtResource("1_0puiw")
 is_broken = false

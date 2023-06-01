@@ -7,12 +7,21 @@ var total_price
 
 @onready var buy_button = $FarrozMartBuy/BuyBottom/HBoxContainer/VBoxContainer/Button
 
+@onready var binds = [
+	{
+		$FarrozMartHome/Belanja: [$FarrozMartHome, $FarrozMartBuy]
+	}
+]
+func get_binds():
+	return binds
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_items()
 	
 	for item in items:
 		item.ammount_changed.connect(update_price)
+		
+	buy_button.pressed.connect(on_buy)
 
 func update_items():
 	for item in item_container.get_children():
@@ -32,5 +41,13 @@ func update_price():
 		price_text.text = "[right]Rp."+str(total_price)
 		buy_button.disabled = false
 		
-	
+func on_buy():
+	for item in items:
+		var price = item.stock_price * item.stock_ammount
+		Game.add_storage(item.stock_resource.type, item.stock_ammount)
+		item.stock_ammount = 0
+		item.update_data()
+		
+	Game.remove_money(total_price)
+	update_price()
 		

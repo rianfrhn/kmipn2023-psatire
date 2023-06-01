@@ -170,7 +170,7 @@ func add_storage(component_type : int, count: int):
 	storage_changed.emit()
 	
 func remove_storage(component_type: int, count:int) -> bool:
-	if on_storage[component_type] - count <= 0: return false
+	if on_storage[component_type] - count < 0: return false
 	on_storage[component_type] -= count
 	storage_changed.emit()
 	return true

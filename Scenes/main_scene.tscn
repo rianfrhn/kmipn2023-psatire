@@ -318,6 +318,7 @@ shadow_enabled = true
 [node name="debug_stats" parent="." instance=ExtResource("1_yrk5r")]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 offset_left = 917.0
 offset_top = 132.0
 offset_right = 1154.0

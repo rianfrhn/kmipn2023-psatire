@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("2_shioo")
-id = 1
+type = 1
 stock_name = "Baterai Smartphone"
 stock_desc = "Baterai Untuk HP"
 stock_cost = 80000
-arrival_days = 3
+arrival_days = 1
 display_picture = ExtResource("1_g54ie")
 is_broken = false

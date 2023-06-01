@@ -34,6 +34,7 @@ func initialize(complexity : int):
 		label_container.add_child(txt)
 		txt.text = str(target_number[i])
 		
+	updateview()
 	
 func create_button(pos : int, num:int): # 0 connector, 1 start, 2 end
 	var button : RemoveComponentButton= ResourceLoader.load("res://Scenes/User Interface/RemoveComponentGameplay/remove_component_button.tscn").instantiate()
