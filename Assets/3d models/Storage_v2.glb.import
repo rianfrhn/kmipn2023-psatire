@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bi6cp3ixja3gp"
-path="res://.godot/imported/Storage.glb-355dff462f73aad5bb657c74757ac2f7.scn"
+uid="uid://nktptjktefpc"
+path="res://.godot/imported/Storage_v2.glb-35ad33b196b5d370c109606674580d44.scn"
 
 [deps]
 
-source_file="res://Assets/3d models/Storage.glb"
-dest_files=["res://.godot/imported/Storage.glb-355dff462f73aad5bb657c74757ac2f7.scn"]
+source_file="res://Assets/3d models/Storage_v2.glb"
+dest_files=["res://.godot/imported/Storage_v2.glb-35ad33b196b5d370c109606674580d44.scn"]
 
 [params]
 
@@ -29,4 +29,4 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
-gltf/embedded_image_handling=2
+gltf/embedded_image_handling=1

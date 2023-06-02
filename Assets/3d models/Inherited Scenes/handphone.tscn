@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cblcgt2x6vwfo"]
+
+[ext_resource type="PackedScene" uid="uid://b56rmlgb4nupk" path="res://Assets/3d models/Handphone.glb" id="1_8dctg"]
+
+[node name="Handphone" instance=ExtResource("1_8dctg")]
+
+[node name="Handphone2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)

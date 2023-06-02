@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bavp2lgvyrk0u"]
+
+[ext_resource type="PackedScene" uid="uid://bjyrp41nsub4t" path="res://Assets/3d models/Laptop.glb" id="1_enh30"]
+
+[node name="Laptop" instance=ExtResource("1_enh30")]
+
+[node name="Laptop2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
