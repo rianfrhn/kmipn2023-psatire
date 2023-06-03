@@ -4,7 +4,13 @@ extends Node
 @onready var timer : Timer = $Timer
 @onready var on_screen : Node = $OnScreen
 @onready var work_timer : Timer = $WorkTimer
+@onready var playersfx = $PlayerSFX
+@onready var custsfx = $CustomerSFX
 
+func playsound(node : AudioStreamPlayer, sound : String = ""):
+	node.stream = load(sound) if sound != "" else null
+	node.play()
+	
 enum STATE{ #
 	RUNNING,
 	PAUSED
@@ -50,10 +56,12 @@ var money = 370000
 signal money_changed()
 
 func add_money(ammount : int):
+	playsound(playersfx, "res://Assets/Sound Effect/SellBuy.wav")
 	money += ammount
 	
 	
 func remove_money(ammount : int):
+	playsound(playersfx, "res://Assets/Sound Effect/SellBuy.wav")
 	money -= ammount
 	
 var rating = 1.0
@@ -92,6 +100,7 @@ signal ready_removed()
 
 func add_ready(fixable: FixableResource):
 	on_ready.append(fixable)
+	playsound(playersfx, "res://Assets/Sound Effect/ItemDrop.wav")
 	ready_added.emit()
 
 func remove_ready(fixable: FixableResource):
@@ -113,6 +122,7 @@ signal not_working()
 
 func add_operation(fixable: FixableResource):
 	on_operation = fixable
+	playsound(playersfx, "res://Assets/Sound Effect/ItemDrop.wav")
 	operation_added.emit()
 
 func add_component(fixable: FixableResource, component_id: int, slot: int, duration:float = 10):
@@ -189,6 +199,7 @@ signal queue_removed(fixable : FixableResource)
 
 func add_queue(fixable: FixableResource):
 	on_queue.append(fixable)
+	playsound(playersfx, "res://Assets/Sound Effect/ItemDrop.wav")
 	queue_added.emit()
 
 func remove_queue(fixable: FixableResource):
@@ -207,6 +218,7 @@ signal hand_changed()
 func add_hand(fixable: FixableResource):
 	if on_hand != null: return
 	on_hand = fixable
+	playsound(playersfx, "res://Assets/Sound Effect/ItemTake.wav")
 	hand_changed.emit()
 	
 func remove_hand():
@@ -228,17 +240,14 @@ signal customer_week_queue_added(customer : CustomerResource)
 func add_customer_week_queue(cust_resource: CustomerResource, arrival_day : int, arrival_hour : int): #pertama di masukin ke queue weekly
 	cust_resource.set_arrival(arrival_day, arrival_hour)
 	on_customer_week_queue.append(cust_resource)
-	print("ADDED CUSTOMER: "+str(cust_resource))
 	customer_week_queue_added.emit(cust_resource)
 
 func move_customer_to_register(customer : CustomerResource):
-	print("Attempting to move to reister: "+customer.name)
 	if on_customer_week_queue.has(customer):
 		on_customer_week_queue.erase(customer)
 		on_register.append(customer)
 		register_added.emit(customer)
-		print("ADDED CUSTOMER TO REGISTER: "+customer.name)
-		
+		playsound(custsfx, "res://Assets/Sound Effect/Bell.wav")
 		
 var on_register : Array[CustomerResource] = []
 signal register_added(customer : CustomerResource)
@@ -398,7 +407,7 @@ func generate_week():
 func start_week():
 	add_day(1)
 	generate_week()
-	
+	MusicHandler.play_song("res://Assets/Songs/Kalem Bang.ogg")
 	change_game_state(STATE.RUNNING)
 	print(game_state)
 
@@ -406,6 +415,7 @@ func start_week():
 #################3
 # ON END OF WEEK
 func end_week():
+	MusicHandler.play_song("res://Assets/Songs/Capek bang.ogg")
 	after_money = money
 	change_game_state(STATE.PAUSED)
 	open_menu_path("res://Scenes/User Interface/phone.tscn")
@@ -413,9 +423,9 @@ func end_week():
 	
 
 func initialgame():
-	if week == 1:
-		change_game_state(STATE.PAUSED)
-		open_menu_path("res://Scenes/User Interface/phone.tscn")
+	MusicHandler.play_song("res://Assets/Songs/Capek bang.ogg")
+	change_game_state(STATE.PAUSED)
+	open_menu_path("res://Scenes/User Interface/phone.tscn")
 		
 
 # Called when the node enters the scene tree for the first time.
@@ -435,9 +445,6 @@ func _ready():
 	add_storage(ComponentResource.TYPE.LCD, 3)
 	add_storage(ComponentResource.TYPE.BATERAI, 2)
 	
-	
-	pass # Replace with function body.
-	
 
 
 
@@ -445,10 +452,12 @@ func _ready():
 func open_menu_path(path: String)->Node:
 	var scene : Node = ResourceLoader.load(path).instantiate()
 	on_screen.add_child(scene)
+	playsound(playersfx, "res://Assets/Sound Effect/OpenMenu.wav")
 	return scene
 	pass
 func open_menu_instance(node: Node)->Node:
 	on_screen.add_child(node)
+	playsound(playersfx, "res://Assets/Sound Effect/OpenMenu.wav")
 	return node
 	pass
 
@@ -456,6 +465,7 @@ func open_menu(resource : PackedScene)->Node:
 	if(resource == null): return
 	var scene = resource.instantiate()
 	on_screen.add_child(scene)
+	playsound(playersfx, "res://Assets/Sound Effect/OpenMenu.wav")
 	return scene
 	
 

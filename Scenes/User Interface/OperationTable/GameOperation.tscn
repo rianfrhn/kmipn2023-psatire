@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://clndnhpjka4lt"]
+[gd_scene load_steps=6 format=3 uid="uid://clndnhpjka4lt"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/GameOperation.gd" id="1_vdqd6"]
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="2_aeehj"]
-[ext_resource type="Script" path="res://Scenes/User Interface/Button.gd" id="3_4m3ai"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_wdkq5"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_8ek1b"]
+[ext_resource type="PackedScene" uid="uid://i7puu6t5dkye" path="res://Scenes/User Interface/xbutton.tscn" id="4_gekvh"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="5_86y1e"]
 
 [node name="GameOperation" type="Control"]
 layout_mode = 3
@@ -14,6 +16,7 @@ offset_top = -384.0
 offset_right = 268.0
 offset_bottom = -32.0
 grow_vertical = 2
+theme = ExtResource("1_wdkq5")
 script = ExtResource("1_vdqd6")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -23,22 +26,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_aeehj")
-region_rect = Rect2(0, 0, 16.0251, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("3_8ek1b")
+region_rect = Rect2(4, 6, 504, 500)
+patch_margin_left = 69
+patch_margin_top = 67
+patch_margin_right = 72
+patch_margin_bottom = 67
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -56,13 +59,12 @@ scroll_active = false
 [node name="Items" type="VBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_bottom = 44.0
-grow_horizontal = 0
-text = "X"
-script = ExtResource("3_4m3ai")
+[node name="Button2" parent="NinePatchRect" instance=ExtResource("4_gekvh")]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 22.0
+offset_right = 211.0
+offset_bottom = 54.0
+
+[node name="ButtonSoundEffect" parent="NinePatchRect/Button2" instance=ExtResource("5_86y1e")]
+hover_sound_effect = true

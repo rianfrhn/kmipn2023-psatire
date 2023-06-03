@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccia06v1pxgce"]
+[gd_scene load_steps=5 format=3 uid="uid://ccia06v1pxgce"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/InsertComponentGameplay/InsertComponentGameplay.gd" id="1_5ky6k"]
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="2_7a7g3"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_71fla"]
 [ext_resource type="PackedScene" uid="uid://bc582df14rep" path="res://Scenes/User Interface/InsertComponentGameplay/insert_component_button.tscn" id="3_2ihvh"]
+[ext_resource type="Texture2D" uid="uid://bmfv7i84oaqca" path="res://icon-frame/Frame.png" id="3_40fr7"]
 
 [node name="InsertComponentGameplay" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_71fla")
 script = ExtResource("1_5ky6k")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -23,7 +25,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7a7g3")
+texture = ExtResource("3_40fr7")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4

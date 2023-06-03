@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://djyvlvuic2mv"
+path="res://.godot/imported/Kalem Bang.ogg-abb693a65fc5fac364e3fe6703d4a1b4.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Kalem Bang.ogg"
+dest_files=["res://.godot/imported/Kalem Bang.ogg-abb693a65fc5fac364e3fe6703d4a1b4.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

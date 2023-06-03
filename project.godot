@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="KMIPN_Psatire_PNJ"
-run/main_scene="res://Scenes/main_scene.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Game="*res://Scenes/Control/game.tscn"
+SceneTransition="*res://Scenes/Control/scene_transition.tscn"
+MusicHandler="*res://Scenes/Control/MusicHandler.tscn"
 
 [editor]
 
@@ -27,6 +29,10 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/prettyprimitive/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

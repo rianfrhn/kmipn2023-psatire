@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3rvmr3epl2bm"]
+[gd_scene load_steps=5 format=3 uid="uid://b3rvmr3epl2bm"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/GameQueue.gd" id="1_2plmk"]
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_weosh"]
-[ext_resource type="Script" path="res://Scenes/User Interface/Button.gd" id="2_bxyg2"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_fcbja"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_3odwi"]
+[ext_resource type="PackedScene" uid="uid://i7puu6t5dkye" path="res://Scenes/User Interface/xbutton.tscn" id="4_nid25"]
 
 [node name="GameQueue" type="Control"]
 layout_mode = 3
@@ -14,6 +15,7 @@ offset_top = -384.0
 offset_right = 268.0
 offset_bottom = -32.0
 grow_vertical = 2
+theme = ExtResource("1_fcbja")
 script = ExtResource("1_2plmk")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -23,22 +25,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_weosh")
-region_rect = Rect2(0, 0, 16.0251, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("3_3odwi")
+region_rect = Rect2(4, 6, 504, 500)
+patch_margin_left = 69
+patch_margin_top = 63
+patch_margin_right = 72
+patch_margin_bottom = 67
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,20 +51,16 @@ size_flags_horizontal = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
-text = "Queue"
+text = "Meja Inspeksi"
 fit_content = true
 scroll_active = false
 
 [node name="Items" type="VBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_bottom = 44.0
-grow_horizontal = 0
-text = "X"
-script = ExtResource("2_bxyg2")
+[node name="Button2" parent="NinePatchRect" instance=ExtResource("4_nid25")]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 23.0
+offset_right = 210.0
+offset_bottom = 55.0

@@ -13,8 +13,8 @@ func _ready():
 	var modal = Game.money_spent
 	var profit = gain-modal
 	var performa = (jasa_selesai-dikembalikan * 1.0)/served if served >0 else 1.0
-	var rating_gain_text = "[color=#FF0000]("+str(rating_gain)+")[/color]" if rating_gain <=0 else "[color=#00FF00]("+str(rating_gain)+")[/color]"
-	var profit_text = "[color=#FF0000]"+str(profit)+"[/color]" if profit <= 0 else "[color=#FF0000] Rp"+str(profit)+"[/color]"
+	var rating_gain_text = "[color=#C83E4D](-"+str(rating_gain)+")[/color]" if rating_gain <=0 else "[color=#00C49A](^"+str(rating_gain)+")[/color]"
+	var profit_text = "[color=#C83E4D]"+str(profit)+"[/color]" if profit <= 0 else "[color=#00C49A] Rp"+str(profit)+"[/color]"
 	var formatter = {
 		"diterima":served,
 		"selesai":jasa_selesai,

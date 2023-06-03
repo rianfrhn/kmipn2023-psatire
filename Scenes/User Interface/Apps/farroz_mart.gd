@@ -47,7 +47,7 @@ func on_buy():
 		Game.add_storage(item.stock_resource.type, item.stock_ammount)
 		item.stock_ammount = 0
 		item.update_data()
-		
+	Game.money_spent += total_price
 	Game.remove_money(total_price)
 	update_price()
 		

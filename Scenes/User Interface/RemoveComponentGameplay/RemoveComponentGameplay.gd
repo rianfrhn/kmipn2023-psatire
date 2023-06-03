@@ -32,7 +32,7 @@ func initialize(complexity : int):
 	for i in range(1, number_size):
 		var txt = numlabel.duplicate()
 		label_container.add_child(txt)
-		txt.text = str(target_number[i])
+		txt.text = "[center]"+str(target_number[i])+"[/center]"
 		
 	updateview()
 	

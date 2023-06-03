@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://blr7giws5nydh"]
+
+[ext_resource type="Script" path="res://Scenes/Control/MusicHandler.gd" id="1_k2hsb"]
+
+[sub_resource type="Animation" id="Animation_xpppg"]
+resource_name = "onetwo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -50.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-80.0, -50.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31xse"]
+_data = {
+"onetwo": SubResource("Animation_xpppg")
+}
+
+[node name="MusicHandler" type="Node"]
+script = ExtResource("1_k2hsb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_31xse")
+}

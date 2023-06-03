@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ei4trwfaqq2"]
+[gd_scene load_steps=4 format=3 uid="uid://b6ei4trwfaqq2"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/fixable_item_operation_part.gd" id="1_a0o8t"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_xtkjl"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="3_ms05p"]
 
 [node name="FixablePart" type="HBoxContainer"]
 anchors_preset = 10
@@ -20,4 +22,7 @@ autowrap_mode = 0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+theme = ExtResource("2_xtkjl")
 text = "-"
+
+[node name="ButtonSoundEffect" parent="Button" instance=ExtResource("3_ms05p")]

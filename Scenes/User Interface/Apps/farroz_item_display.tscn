@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpvfxajsrnf5k"]
+[gd_scene load_steps=3 format=3 uid="uid://cpvfxajsrnf5k"]
 
 [ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_w45ey"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_0er4q"]
 
 [node name="ItemDisplay" type="VBoxContainer"]
 
@@ -46,6 +47,8 @@ layout_mode = 2
 layout_mode = 2
 text = "-"
 
+[node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/DecButton" instance=ExtResource("2_0er4q")]
+
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
@@ -58,3 +61,5 @@ scroll_active = false
 [node name="IncButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/IncButton" instance=ExtResource("2_0er4q")]

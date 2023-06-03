@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://xsi0652yh828"]
+[gd_scene load_steps=6 format=3 uid="uid://xsi0652yh828"]
 
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_bwh8l"]
 [ext_resource type="Script" path="res://Scenes/User Interface/WeeklyReview.gd" id="1_ktby5"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_ywmie"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_1cvd7"]
+[ext_resource type="PackedScene" uid="uid://i7puu6t5dkye" path="res://Scenes/User Interface/xbutton.tscn" id="4_6mhw6"]
+[ext_resource type="AudioStream" uid="uid://bp7hgatnjfjkw" path="res://Assets/Sound Effect/EndOfWeek.wav" id="5_dpdg4"]
 
 [node name="WeeklyReview" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_ywmie")
 script = ExtResource("1_ktby5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -22,17 +26,22 @@ grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("1_bwh8l")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("3_1cvd7")
+region_rect = Rect2(3, 6, 505, 500)
+patch_margin_left = 70
+patch_margin_top = 67
+patch_margin_right = 70
+patch_margin_bottom = 67
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -47,7 +56,6 @@ scroll_active = false
 layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/NinePatchRect/VBoxContainer"]
-clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 12.0
@@ -67,14 +75,15 @@ Pendapatan
 		Penghasilan					: Rp220000
 
 		Keuntungan					:[color=#00ff00] Rp90000"
-scroll_active = false
 
-[node name="Button" type="Button" parent="MarginContainer/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-text = "X"
+[node name="Button" parent="MarginContainer/NinePatchRect" instance=ExtResource("4_6mhw6")]
+layout_mode = 0
+offset_left = 817.0
+offset_top = 25.0
+offset_right = 849.0
+offset_bottom = 57.0
+script = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dpdg4")
+autoplay = true

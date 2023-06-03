@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0w7k71yfn8e6"]
+[gd_scene load_steps=4 format=3 uid="uid://d0w7k71yfn8e6"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/fixable_item_operation_ui.gd" id="1_eih0x"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_maq5v"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="3_dubob"]
 
 [node name="Item" type="HBoxContainer"]
 offset_right = 362.0
@@ -55,11 +57,17 @@ layout_mode = 2
 alignment = 2
 
 [node name="ButtonAtur" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("2_maq5v")
 text = "Atur"
 
 [node name="ButtonAmbil" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("2_maq5v")
 text = "Ambil"
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/HBoxContainer/ButtonAmbil" instance=ExtResource("3_dubob")]
+hover_sound_effect = true

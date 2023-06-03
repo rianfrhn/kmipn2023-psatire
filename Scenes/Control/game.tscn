@@ -12,3 +12,7 @@ wait_time = 1.667
 one_shot = true
 
 [node name="OnScreen" type="CanvasLayer" parent="."]
+
+[node name="PlayerSFX" type="AudioStreamPlayer" parent="."]
+
+[node name="CustomerSFX" type="AudioStreamPlayer" parent="."]

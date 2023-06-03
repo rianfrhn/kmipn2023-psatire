@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6b27xt0ehw4u"
+path="res://.godot/imported/ItemTake.wav-ce1fce336edc98e8d955bddaefd4bb61.sample"
+
+[deps]
+
+source_file="res://Assets/Sound Effect/ItemTake.wav"
+dest_files=["res://.godot/imported/ItemTake.wav-ce1fce336edc98e8d955bddaefd4bb61.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhe7gmcrveaai"]
+[gd_scene load_steps=3 format=3 uid="uid://dhe7gmcrveaai"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/ReadyTable/fixable_item_ready_ui.gd" id="1_ty1hv"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_jl816"]
 
 [node name="Item" type="HBoxContainer"]
 script = ExtResource("1_ty1hv")
@@ -50,4 +51,5 @@ size_flags_stretch_ratio = 4.0
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("2_jl816")
 text = "Ambil"

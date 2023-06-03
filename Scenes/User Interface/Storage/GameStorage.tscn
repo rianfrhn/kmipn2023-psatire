@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpeupe4ochfaj"]
+[gd_scene load_steps=5 format=3 uid="uid://dpeupe4ochfaj"]
 
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_klgq7"]
 [ext_resource type="Script" path="res://Scenes/User Interface/Storage/GameStorage.gd" id="1_qw8dl"]
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="2_uxi14"]
-[ext_resource type="Script" path="res://Scenes/User Interface/Button.gd" id="3_e3tmp"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_bmiig"]
+[ext_resource type="PackedScene" uid="uid://i7puu6t5dkye" path="res://Scenes/User Interface/xbutton.tscn" id="4_q6xem"]
 
 [node name="GameStorage" type="Control"]
 layout_mode = 3
@@ -14,6 +15,7 @@ offset_top = -384.0
 offset_right = 268.0
 offset_bottom = -32.0
 grow_vertical = 2
+theme = ExtResource("1_klgq7")
 script = ExtResource("1_qw8dl")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -23,22 +25,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_uxi14")
-region_rect = Rect2(0, 0, 16.0251, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("3_bmiig")
+region_rect = Rect2(4, 6, 504, 500)
+patch_margin_left = 72
+patch_margin_top = 63
+patch_margin_right = 71
+patch_margin_bottom = 65
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -59,13 +61,12 @@ layout_mode = 2
 [node name="Items" type="VBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_bottom = 44.0
-grow_horizontal = 0
-text = "X"
-script = ExtResource("3_e3tmp")
+[node name="Button2" parent="NinePatchRect" instance=ExtResource("4_q6xem")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 176.0
+offset_top = 21.0
+offset_right = 208.0
+offset_bottom = 53.0
