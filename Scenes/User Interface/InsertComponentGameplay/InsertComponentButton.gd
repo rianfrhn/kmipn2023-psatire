@@ -4,6 +4,7 @@ class_name InsertComponentButton
 var grid_pos : Vector2
 
 var number : int = 0
+var max_number = 1
 var connected := false
 var source := false
 var exit := false
@@ -12,8 +13,9 @@ var checked := false
 func _ready():
 	pressed.connect(on_clicked)
 # Called when the node enters the scene tree for the first time.
-func initialize(pos : Vector2):
+func initialize(pos : Vector2, max_number = 1):
 	grid_pos = pos
+	self.max_number = max_number
 
 func _process(_delta):
 	var color = "[color=#ffffff]"
@@ -27,7 +29,7 @@ signal clicked()
 func on_clicked():
 	print("clicked")
 	var num = number +1
-	if num>=3: num-=3
+	if num>max_number: num = 0
 	number = num
 	clicked.emit()
 	

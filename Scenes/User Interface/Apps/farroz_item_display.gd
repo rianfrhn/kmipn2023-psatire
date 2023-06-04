@@ -36,9 +36,6 @@ func _ready():
 	update_resource()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func update_resource():
 	stock_pic = stock_resource.display_picture

@@ -70,6 +70,7 @@ var rating = 1.0
 var previous_money = 0
 var after_money = 0
 var money_spent = 0
+var modal = 0
 var profit = 0
 var previous_rating = 0
 var after_rating = 0
@@ -131,7 +132,9 @@ func add_component(fixable: FixableResource, component_id: int, slot: int, durat
 	work_timer.start()
 	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
 	Game.change_menu_state(Game.STATE.PAUSED)
-	var minigame = open_menu_path("res://Scenes/User Interface/InsertComponentGameplay/insert_component_gameplay.tscn")
+	var _minigame = load("res://Scenes/User Interface/InsertComponentGameplay/insert_component_gameplay.tscn").instantiate()
+	_minigame.initialize(ComponentResource.getComplexity(component_id))
+	var minigame = open_menu_instance(_minigame)
 	await minigame.minigame_done
 	not_working.emit()
 	Game.change_menu_state(Game.STATE.RUNNING)
@@ -146,7 +149,10 @@ func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	work_timer.wait_time = duration
 	work_timer.start()
 	Game.change_menu_state(Game.STATE.PAUSED)
-	var minigame = open_menu_path("res://Scenes/User Interface/RemoveComponentGameplay/remove_component_gameplay.tscn")
+	var component_id = fixable.slotted_components[slot]
+	var _minigame = load("res://Scenes/User Interface/RemoveComponentGameplay/remove_component_gameplay.tscn").instantiate()
+	_minigame.initialize(ComponentResource.getComplexity(component_id))
+	var minigame = open_menu_instance(_minigame)
 	await minigame.minigame_done
 	Game.change_menu_state(Game.STATE.RUNNING)
 	player_object.change_move_state(Player.MOVE_STATE.IDLE)
@@ -176,6 +182,7 @@ var on_storage : Dictionary = {# 'type' -> 'ammount'
 signal storage_changed
 
 func add_storage(component_type : int, count: int):
+	if !on_storage.has(component_type): on_storage[component_type] = 0
 	on_storage[component_type] += count
 	storage_changed.emit()
 	
@@ -293,10 +300,19 @@ func hourly_customer_checker():
 func create_new_customer(type: int, day:int = 1, hour:int = 7):
 	var new_customer = CustomerResource.new()
 	match type:
-		0:
+		0:  #0 = pengguna hp, phone type 0-2, 
 			var gender = CustomerResource.GENDER.MALE
-			var fixable = create_new_fixable(FixableResource.TYPE.Phone)
-			new_customer.initialize(gender, fixable)
+			var fixable = create_new_fixable(randi_range(0,2))
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+		1: #1 = pengguna laptop only, type 3-5
+			var gender = CustomerResource.GENDER.MALE
+			var fixable = create_new_fixable(randi_range(3,5))
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+		2: #1 = pengguna laptop dan hp, type 3-5
+			var gender = CustomerResource.GENDER.MALE
+			var fixable = create_new_fixable(randi_range(0,5))
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+			
 	return new_customer
 	
 #########
@@ -383,8 +399,9 @@ func generate_week():
 	# WEEKLY STATS
 	previous_money = money
 	after_money = money
-	money_spent = 0
 	profit = 0
+	modal = money_spent
+	money_spent = 0
 	previous_rating = rating
 	after_rating = rating
 	customer_satisfied = 0
@@ -393,13 +410,13 @@ func generate_week():
 	
 	if on_customer_served.size() == 0:
 		customer_count -= 1
-		var cust = create_new_customer(0)
+		var cust = create_new_customer(2)
 		add_customer_week_queue(cust, 1, 8)
 		
 	for i in range(0, customer_count):
 		var day = randi_range(1,4)
 		var time = randi_range(7,15)
-		var cust = create_new_customer(0)
+		var cust = create_new_customer(2)
 		add_customer_week_queue(cust, day, time)
 
 ####################

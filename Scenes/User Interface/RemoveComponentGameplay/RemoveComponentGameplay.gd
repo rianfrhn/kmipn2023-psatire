@@ -1,6 +1,7 @@
 extends Control
 var complexity : int
 var number_size = 4
+var number_range = 1
 var target_number := []
 var numbers := []
 @onready var button_container = $NinePatchRect/VBoxContainer/HBoxContainer2
@@ -9,20 +10,35 @@ var numbers := []
 @onready var numlabel = $NinePatchRect/VBoxContainer/HBoxContainer/RichTextLabel
 signal minigame_done()
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	initialize(0)
 
-func initialize(complexity : int):
+func initialize(complexity : int = 0):
 	self.complexity = complexity
+	match complexity:
+		0:
+			number_size = 3
+			number_range = 1
+		1:
+			number_size = 3
+			number_range = 2
+		2:
+			number_size = 4
+			number_range = 2
+		3:
+			number_size = 4
+			number_range = 3
+	
+	
+	await ready
 	for items in button_container.get_children():
 		items.queue_free()
+	
 	
 	
 	target_number = []
 	numbers = []
 	for i in range(0, number_size):
-		var target_n = randi_range(0,2)
-		var n = randi_range(0,2)
+		var target_n = randi_range(0,number_range)
+		var n = randi_range(0,number_range)
 		target_number.append(target_n)
 		var btn = create_button(i, n)
 		numbers.append(btn)
@@ -50,15 +66,15 @@ func button_clicked(pos:int):
 	var after = null
 	if pos-1 >=0:
 		prev = numbers[pos-1]
-		var new_num = prev.number +1 if prev.number+1<3 else 0
+		var new_num = prev.number +1 if prev.number+1<=number_range else 0
 		prev.number = new_num
 	if pos+1 <number_size:
 		after = numbers[pos+1]
-		var new_num = after.number +1 if after.number+1<3 else 0
+		var new_num = after.number +1 if after.number+1<=number_range else 0
 		after.number = new_num
 	
 	current = numbers[pos]
-	var new_num = current.number +1 if current.number+1<3 else 0
+	var new_num = current.number +1 if current.number+1<=number_range else 0
 	current.number = new_num
 	updateview()
 

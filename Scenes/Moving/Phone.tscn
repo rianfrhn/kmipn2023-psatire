@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgoxukle3wm5o"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a4rgi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f25ee"]
 albedo_color = Color(0.321569, 0.368627, 0.368627, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y62aj"]
-material = SubResource("StandardMaterial3D_a4rgi")
+material = SubResource("StandardMaterial3D_f25ee")
 size = Vector3(0.4, 0.25, 0.8)
 
 [node name="Phone" type="Node3D"]

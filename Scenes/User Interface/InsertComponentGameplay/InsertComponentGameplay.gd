@@ -2,6 +2,7 @@ extends Control
 var complexity : int
 var rows = 10
 var col = 10
+var numrange = 2
 var grid : Array = [[]] # [row][column]
 var start:Vector2
 var end:Vector2
@@ -9,11 +10,28 @@ var end:Vector2
 @onready var label = $NinePatchRect/VBoxContainer/RichTextLabel
 signal minigame_done()
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	initialize(0)
-
-func initialize(complexity : int):
+func initialize(complexity : int = 0):
 	self.complexity = complexity
+	
+	match complexity:
+		0:
+			col = 7
+			rows = 7
+			numrange = 1
+		1:
+			col = 7
+			rows = 7
+			numrange = 3
+		2:
+			col = 11
+			rows = 11
+			numrange = 2
+		3:
+			col = 11
+			rows = 11
+			numrange = 3
+	
+	await ready
 	for items in grid_container.get_children():
 		items.queue_free()
 		
@@ -23,7 +41,7 @@ func initialize(complexity : int):
 func create_button(pos : Vector2, num:int, type : int = 0): # 0 connector, 1 start, 2 end
 	var button : InsertComponentButton= ResourceLoader.load("res://Scenes/User Interface/InsertComponentGameplay/insert_component_button.tscn").instantiate()
 	button.pressed.connect(updategrid)
-	button.initialize(pos)
+	button.initialize(pos, numrange)
 	button.clicked.connect(updategrid)
 	button.number = num
 	button.disabled = false
@@ -42,13 +60,13 @@ func creategrid():
 	var end = randi_range(0, rows-1)
 	self.start = Vector2(0,start)
 	self.end = Vector2(col-1, end)
-	var target_num = randi_range(0,2)
+	var target_num = randi_range(0,numrange)
 	for i in range(rows):
 		grid.append([])
 		for j in range(col):
 			grid[i].append(null)
 			var type = 0
-			var num = randi_range(0,2)
+			var num = randi_range(0,numrange)
 			if i==start && j == 0:
 				type = 1
 				num = target_num

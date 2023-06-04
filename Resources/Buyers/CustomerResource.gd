@@ -22,8 +22,8 @@ var week_of_retrieval # minggu ke brp
 
 
 func initialize(assigned_gender : GENDER = GENDER.MALE,
-assigned_fixable = Game.create_new_fixable(FixableResource.TYPE.Phone),
-assigned_retrieval_days : int = 5, #brp hari sblm dia ambil lg
+assigned_fixable = Game.create_new_fixable(FixableResource.TYPE.Phone1),
+assigned_retrieval_days : int = 2, #brp hari sblm dia ambil lg
 arrived : bool = false
 ):
 	id = randf_range(0,1)
@@ -41,8 +41,8 @@ func set_arrival(day : int, hour : int = 7):
 	dissatisfaction_hour = hour
 	
 func serve(day:int, hour:int):
-	var d = day + 1
-	day_of_retrieval = d-5 if d>5 else d
+	var d = ((day-1 + retrieval_days)%5)+1
+	day_of_retrieval = d
 	hour_of_retrieval = hour
 
 func get_model()->Customer:

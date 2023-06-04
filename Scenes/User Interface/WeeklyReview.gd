@@ -10,7 +10,7 @@ func _ready():
 	var gain = Game.after_money - Game.previous_money
 	var rating = Game.after_rating
 	var rating_gain = rating - Game.previous_rating
-	var modal = Game.money_spent
+	var modal = Game.modal
 	var profit = gain-modal
 	var performa = (jasa_selesai-dikembalikan * 1.0)/served if served >0 else 1.0
 	var rating_gain_text = "[color=#C83E4D](-"+str(rating_gain)+")[/color]" if rating_gain <=0 else "[color=#00C49A](^"+str(rating_gain)+")[/color]"

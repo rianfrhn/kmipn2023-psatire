@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctwk8utsk125g"]
+[gd_scene load_steps=3 format=3 uid="uid://ctwk8utsk125g"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_mart.gd" id="1_4bnqi"]
-[ext_resource type="PackedScene" uid="uid://cpvfxajsrnf5k" path="res://Scenes/User Interface/Apps/farroz_item_display.tscn" id="1_hhrxv"]
 [ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_hllro"]
-[ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_item_display.gd" id="2_yg02m"]
-[ext_resource type="Resource" uid="uid://s88e10mxmm4j" path="res://Resources/Components/Battery.tres" id="3_pw1oi"]
-[ext_resource type="Resource" uid="uid://cm3talp8bfpjs" path="res://Resources/Components/LCD.tres" id="4_81ui4"]
 
 [node name="FarrozMart" type="VBoxContainer"]
 anchors_preset = 15
@@ -64,16 +60,6 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="ItemDisplay" parent="FarrozMartBuy/FarrozItems/VBoxContainer" instance=ExtResource("1_hhrxv")]
-layout_mode = 2
-script = ExtResource("2_yg02m")
-stock_resource = ExtResource("3_pw1oi")
-
-[node name="ItemDisplay2" parent="FarrozMartBuy/FarrozItems/VBoxContainer" instance=ExtResource("1_hhrxv")]
-layout_mode = 2
-script = ExtResource("2_yg02m")
-stock_resource = ExtResource("4_81ui4")
 
 [node name="BuyBottom" type="VBoxContainer" parent="FarrozMartBuy"]
 layout_mode = 2
