@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blyehkwfhg0gl"]
+
+[ext_resource type="PackedScene" uid="uid://nktptjktefpc" path="res://Assets/3d models/Storage_v2.glb" id="1_yow4f"]
+
+[node name="Storage_v2" instance=ExtResource("1_yow4f")]
+
+[node name="Storage" parent="." index="0"]
+transform = Transform3D(0.592013, 0, 0, 0, 0.592013, 0, 0, 0, 0.592013, 0, 0, 0)
