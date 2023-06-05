@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3wruhpbyeqnj"]
+
+[ext_resource type="Script" path="res://Scenes/Moving/Player.gd" id="1_o5w7m"]
+[ext_resource type="PackedScene" uid="uid://b1xvfbdpwewv6" path="res://Scenes/3d models/albob.tscn" id="2_42up1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_svbl8"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_84x2y"]
+margin = 0.0
+radius = 0.25
+height = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_o5w7m")
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.461711, 0, 0, 0, 0.461711, 0, 0, 0, 0.461711, 0, 0.25, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_svbl8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.461711, 0, 0, 0, 0.461711, 0, 0, 0, 0.461711, 0, 0.25, 0)
+shape = SubResource("CapsuleShape3D_84x2y")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Albob" parent="." instance=ExtResource("2_42up1")]
+
+[node name="Skeleton3D" parent="Albob/Armature" index="0"]
+bones/0/rotation = Quaternion(0.00995077, 1.19203e-07, -1.18622e-09, 0.99995)
+bones/1/rotation = Quaternion(0.0191101, 1.30848e-10, 1.0807e-08, 0.999817)
+bones/2/rotation = Quaternion(0.197988, -7.82274e-05, 1.35646e-05, 0.980204)
+bones/3/rotation = Quaternion(0.0529216, -7.58476e-05, 2.30565e-05, 0.998599)
+bones/4/rotation = Quaternion(0.597767, 0.461054, -0.493858, 0.431517)
+bones/5/rotation = Quaternion(0.264534, -0.115978, 0.307622, 0.906609)
+bones/6/rotation = Quaternion(0.321503, 0.00759154, 0.568825, 0.756978)
+bones/7/rotation = Quaternion(-0.10342, -0.0798245, -0.0403422, 0.990608)
+bones/9/rotation = Quaternion(-0.205422, 0.204601, 0.747679, 0.597425)
+bones/10/rotation = Quaternion(0.106416, 0.0987275, 0.488425, 0.860447)
+bones/11/rotation = Quaternion(0.0863396, 0.0565056, 0.679916, 0.725994)
+bones/12/rotation = Quaternion(0.0604708, 0.0534203, -0.249384, 0.965037)
+bones/13/rotation = Quaternion(-0.277249, -0.108862, 0.225524, 0.927589)
+
+[editable path="Albob"]

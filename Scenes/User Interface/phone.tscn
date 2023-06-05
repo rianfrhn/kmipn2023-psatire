@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://hgvm6mx18vyl"]
+[gd_scene load_steps=10 format=3 uid="uid://hgvm6mx18vyl"]
 
-[ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="1_tu3x8"]
-[ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="2_6ebr6"]
+[ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_fvdbo"]
+[ext_resource type="Theme" uid="uid://cir3va4cextl6" path="res://Themes/PhoneTheme.tres" id="2_mnr88"]
+[ext_resource type="Script" path="res://Scenes/User Interface/phone.gd" id="2_p0upk"]
 [ext_resource type="PackedScene" uid="uid://ctwk8utsk125g" path="res://Scenes/User Interface/Apps/farroz_mart.tscn" id="3_4b882"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="5_cu8b1"]
+[ext_resource type="Texture2D" uid="uid://burwfj0m16s7f" path="res://icon-frame/bob.png" id="5_oaln1"]
+[ext_resource type="Texture2D" uid="uid://c2rstscrtc715" path="res://icon-frame/linkout.png" id="6_nmd4s"]
+[ext_resource type="Texture2D" uid="uid://bw6rjhwh67gi2" path="res://icon-frame/ikea.png" id="7_wyydl"]
+[ext_resource type="Texture2D" uid="uid://tbd5y3ovvhb0" path="res://icon-frame/weekrev.png" id="8_05alu"]
 
 [node name="Phone" type="NinePatchRect"]
 anchors_preset = 3
@@ -11,27 +17,58 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -294.0
-offset_top = -436.0
+offset_top = -484.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("1_tu3x8")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("1_fvdbo")
+region_rect = Rect2(2.79718, -4.08, 153.223, 312.464)
+patch_margin_left = 10
+patch_margin_top = 41
+patch_margin_right = 7
+script = ExtResource("2_p0upk")
+
+[node name="Top" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = -5.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bottom" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -78.0
+offset_right = -5.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 40.0
+offset_right = -11.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Top" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top"]
+[node name="Date" type="RichTextLabel" parent="VBoxContainer/Top"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -39,7 +76,7 @@ text = "Sun, 1 Jan 2023"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Top"]
+[node name="Time" type="RichTextLabel" parent="VBoxContainer/Top"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,8 +88,139 @@ text_direction = 2
 [node name="Middle" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_mnr88")
 
-[node name="Apps" type="ItemList" parent="VBoxContainer/Middle"]
+[node name="Apps" type="ScrollContainer" parent="VBoxContainer/Middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Apps" type="GridContainer" parent="VBoxContainer/Middle/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+
+[node name="FarrozMart" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart"]
+layout_mode = 2
+texture = ExtResource("5_oaln1")
+stretch_mode = 5
+
+[node name="FarrozMart" type="Button" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart/TextureRect/FarrozMart" instance=ExtResource("5_cu8b1")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/FarrozMart"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]FarrozMart"
+fit_content = true
+
+[node name="LinkedOut" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut"]
+layout_mode = 2
+texture = ExtResource("6_nmd4s")
+stretch_mode = 5
+
+[node name="LinkedOut" type="Button" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut/TextureRect/LinkedOut" instance=ExtResource("5_cu8b1")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/LinkedOut"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]LinkedOut"
+fit_content = true
+
+[node name="IKEyA" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/IKEyA"]
+layout_mode = 2
+texture = ExtResource("7_wyydl")
+stretch_mode = 5
+
+[node name="IKEyA" type="Button" parent="VBoxContainer/Middle/Apps/Apps/IKEyA/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/Middle/Apps/Apps/IKEyA/TextureRect/IKEyA" instance=ExtResource("5_cu8b1")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/IKEyA"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]IKEyA"
+fit_content = true
+
+[node name="WeekReview" type="VBoxContainer" parent="VBoxContainer/Middle/Apps/Apps"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Middle/Apps/Apps/WeekReview"]
+layout_mode = 2
+texture = ExtResource("8_05alu")
+stretch_mode = 5
+
+[node name="WeekReview" type="Button" parent="VBoxContainer/Middle/Apps/Apps/WeekReview/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/Middle/Apps/Apps/WeekReview/TextureRect/WeekReview" instance=ExtResource("5_cu8b1")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/Apps/Apps/WeekReview"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Week Review"
+fit_content = true
+
+[node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+visible = false
+layout_mode = 1
+
+[node name="IKEyA" type="VBoxContainer" parent="VBoxContainer/Middle"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -60,25 +228,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_height = true
-item_count = 3
-max_columns = 3
-icon_mode = 0
-item_0/text = "FarrozMart"
-item_0/icon = ExtResource("2_6ebr6")
-item_1/text = "LinkedOut"
-item_1/icon = ExtResource("2_6ebr6")
-item_2/text = "IKEyAMart"
-item_2/icon = ExtResource("2_6ebr6")
 
-[node name="FarrozMart" parent="VBoxContainer/Middle" instance=ExtResource("3_4b882")]
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/Middle/IKEyA"]
+layout_mode = 2
+text = "IKEyA"
+fit_content = true
+
+[node name="LinkedOut" type="VBoxContainer" parent="VBoxContainer/Middle"]
+visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Middle/LinkedOut"]
+layout_mode = 2
+text = "Coming Soon"
+fit_content = true
 
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/Bottom"]
+[node name="PhoneBackButton" type="Button" parent="VBoxContainer/Bottom"]
 layout_mode = 2
-text = "Back"
+text = "Kembali"
 
-[editable path="VBoxContainer/Middle/FarrozMart"]
+[node name="ButtonSoundEffect" parent="VBoxContainer/Bottom/PhoneBackButton" instance=ExtResource("5_cu8b1")]
+hover_sound_effect = true
+
+[node name="Control" type="Control" parent="VBoxContainer/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PhoneContinueButton" type="Button" parent="VBoxContainer/Bottom"]
+layout_mode = 2
+text = "Lanjut"
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/Bottom/PhoneContinueButton" instance=ExtResource("5_cu8b1")]
+hover_sound_effect = true

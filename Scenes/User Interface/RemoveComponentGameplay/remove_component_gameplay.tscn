@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://jrp21ahqyl5c"]
+
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_2qi1a"]
+[ext_resource type="Script" path="res://Scenes/User Interface/RemoveComponentGameplay/RemoveComponentGameplay.gd" id="1_i6jtx"]
+[ext_resource type="PackedScene" uid="uid://bd4j6561du4x3" path="res://Scenes/User Interface/RemoveComponentGameplay/remove_component_button.tscn" id="3_0vggl"]
+[ext_resource type="Texture2D" uid="uid://bmfv7i84oaqca" path="res://icon-frame/Frame.png" id="3_4hru2"]
+
+[node name="InsertComponentGameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2qi1a")
+script = ExtResource("1_i6jtx")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4hru2")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Sesuaikan angka di bawah ini:"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]1[/center]"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" parent="NinePatchRect/VBoxContainer/HBoxContainer2" instance=ExtResource("3_0vggl")]
+layout_mode = 2

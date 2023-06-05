@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cjs4rmouq7mc3"
+path="res://.godot/imported/Servis bang.ogg-5f0852aa759599ce5322e32d64d5e25b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Songs/Servis bang.ogg"
+dest_files=["res://.godot/imported/Servis bang.ogg-5f0852aa759599ce5322e32d64d5e25b.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

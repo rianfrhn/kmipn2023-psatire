@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmohhvji7v4go"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+bbcode_enabled = true
+text = "- LCD"
+fit_content = true

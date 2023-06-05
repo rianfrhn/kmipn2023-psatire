@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwt5d8f1tx5ty"]
+
+[ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/AddComponentPart/GameOperationAddComponent.gd" id="1_birgk"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_cr5ae"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_wkdde"]
+[ext_resource type="PackedScene" uid="uid://i7puu6t5dkye" path="res://Scenes/User Interface/xbutton.tscn" id="4_ebljh"]
+
+[node name="GameOperationAddComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -384.0
+offset_right = 268.0
+offset_bottom = -32.0
+grow_vertical = 2
+theme = ExtResource("1_cr5ae")
+script = ExtResource("1_birgk")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wkdde")
+region_rect = Rect2(4, 6, 504, 500)
+patch_margin_left = 69
+patch_margin_top = 67
+patch_margin_right = 72
+patch_margin_bottom = 67
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+text = "Tambah Komponen"
+fit_content = true
+scroll_active = false
+
+[node name="HSeparator" type="HSeparator" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Items" type="VBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" parent="NinePatchRect" instance=ExtResource("4_ebljh")]
+layout_mode = 1
+offset_left = 181.0
+offset_top = 19.0
+offset_right = 213.0
+offset_bottom = 51.0

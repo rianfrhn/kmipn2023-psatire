@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://chrd640ebsrgd"]
+
+[ext_resource type="Script" path="res://Scenes/Control/scene_transition.gd" id="1_c6ro2"]
+[ext_resource type="Texture2D" uid="uid://vpph3u62iita" path="res://Assets/User Interface/service-bg.jpg" id="2_xns26"]
+
+[node name="scene_transition" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_c6ro2")
+
+[node name="Panel" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1275.0
+offset_right = 2521.0
+offset_bottom = 652.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_xns26")

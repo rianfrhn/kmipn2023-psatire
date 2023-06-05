@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://46r46ogojbaw"]
+
+[ext_resource type="Script" path="res://Scenes/User Interface/Storage/component_storage_ui.gd" id="1_yly5t"]
+
+[node name="Item" type="HBoxContainer"]
+offset_right = 372.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yly5t")
+
+[node name="ComponentName" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="ComponentCount" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "
+"
+fit_content = true
+scroll_active = false

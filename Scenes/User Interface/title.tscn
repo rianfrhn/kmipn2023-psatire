@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6kp3oap7pnue"]
+
+[ext_resource type="Script" path="res://Scenes/User Interface/title.gd" id="1_lxby6"]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lxby6")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 282.0
+grow_vertical = 0
+text = "Start"

@@ -1,22 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://m0732e0vw8hc"]
+[gd_scene load_steps=4 format=3 uid="uid://cpvfxajsrnf5k"]
 
-[ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_item_display.gd" id="1_1g8eu"]
-[ext_resource type="Texture2D" uid="uid://d2q78hrgmtem0" path="res://Assets/User Interface/testlogo.png" id="1_h5nii"]
-[ext_resource type="Resource" uid="uid://dr3okj8ml5u8y" path="res://Resources/Stocks/TestStock.tres" id="2_403bu"]
+[ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_item_display.gd" id="1_r80uh"]
+[ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_w45ey"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_0er4q"]
 
-[node name="FarrozItemDisplay" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-script = ExtResource("1_1g8eu")
-stock_resource = ExtResource("2_403bu")
+[node name="ItemDisplay" type="VBoxContainer"]
+script = ExtResource("1_r80uh")
 
-[node name="Name" type="RichTextLabel" parent="."]
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
-text = "Item Name"
+
+[node name="NameDisplay" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "LCD"
 fit_content = true
 scroll_active = false
 
@@ -26,9 +22,9 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_h5nii")
-expand_mode = 3
-stretch_mode = 3
+texture = ExtResource("1_w45ey")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -39,9 +35,10 @@ size_flags_stretch_ratio = 2.0
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Description for item
-Harga: X
-Waktu Pengiriman: X"
+text = "Layar Kristal Cair digunakan pada mayoritas elektronik 
+Harga:50000
+Waktu Pengiriman: 1 Hari
+"
 fit_content = true
 scroll_active = false
 
@@ -52,15 +49,19 @@ layout_mode = 2
 layout_mode = 2
 text = "-"
 
+[node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/DecButton" instance=ExtResource("2_0er4q")]
+
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[center]0"
+text = "[center]1"
 fit_content = true
 scroll_active = false
 
 [node name="IncButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "+"
+
+[node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/IncButton" instance=ExtResource("2_0er4q")]

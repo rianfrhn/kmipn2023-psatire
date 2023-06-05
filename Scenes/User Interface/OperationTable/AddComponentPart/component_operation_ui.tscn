@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnnsp70kq5u3p"]
+
+[ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/AddComponentPart/component_operation_ui.gd" id="1_wr5km"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_6pev4"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="3_dok4k"]
+
+[node name="Item" type="HBoxContainer"]
+offset_right = 372.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wr5km")
+
+[node name="ComponentName" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="ComponentAdd" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_6pev4")
+text = "Pasang"
+
+[node name="ButtonSoundEffect" parent="ComponentAdd" instance=ExtResource("3_dok4k")]
+hover_sound_effect = true

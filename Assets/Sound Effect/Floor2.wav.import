@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://clfw2aj6ircve"
+path="res://.godot/imported/Floor2.wav-e9ebb129fb8cb522c377fd8cb7500b9d.sample"
+
+[deps]
+
+source_file="res://Assets/Sound Effect/Floor2.wav"
+dest_files=["res://.godot/imported/Floor2.wav-e9ebb129fb8cb522c377fd8cb7500b9d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

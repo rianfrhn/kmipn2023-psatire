@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ComponentResource" load_steps=3 format=3 uid="uid://cm3talp8bfpjs"]
+
+[ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_0puiw"]
+[ext_resource type="Script" path="res://Resources/Components/ComponentResource.gd" id="1_3eb3c"]
+
+[resource]
+script = ExtResource("1_3eb3c")
+type = 2
+stock_name = "LCD"
+stock_desc = "Layar Crystal Display untuk Elektronik"
+stock_cost = 100000
+arrival_days = 1
+display_picture = ExtResource("1_0puiw")
+is_broken = false

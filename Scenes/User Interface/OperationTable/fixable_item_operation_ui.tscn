@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0w7k71yfn8e6"]
+
+[ext_resource type="Script" path="res://Scenes/User Interface/OperationTable/fixable_item_operation_ui.gd" id="1_eih0x"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_maq5v"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="3_dubob"]
+
+[node name="Item" type="HBoxContainer"]
+offset_right = 362.0
+offset_bottom = 143.0
+script = ExtResource("1_eih0x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ProductName" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Nama Produk: X
+"
+fit_content = true
+scroll_active = false
+
+[node name="ProductKendala" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Kendala: Lorem Ipsum
+"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Part:
+"
+fit_content = true
+scroll_active = false
+
+[node name="PartName" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ButtonAtur" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_maq5v")
+text = "Atur"
+
+[node name="ButtonAmbil" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_maq5v")
+text = "Ambil"
+
+[node name="ButtonSoundEffect" parent="VBoxContainer/HBoxContainer/ButtonAmbil" instance=ExtResource("3_dubob")]
+hover_sound_effect = true

@@ -1,50 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctwk8utsk125g"]
+[gd_scene load_steps=3 format=3 uid="uid://ctwk8utsk125g"]
 
-[ext_resource type="PackedScene" uid="uid://m0732e0vw8hc" path="res://Scenes/User Interface/Apps/farroz_item_display.tscn" id="1_mhtxy"]
+[ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_mart.gd" id="1_4bnqi"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_hllro"]
 
-[node name="FarrozMart" type="Control"]
-layout_mode = 3
+[node name="FarrozMart" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4bnqi")
 
 [node name="FarrozMartHome" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="FarrozMartHome"]
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
-text = "[center][wave amp=100 freq=10] FarrozMart [/wave][/center]"
+text = "[center][wave amp=100 freq=10][color=#000000] FarrozMart[/color][/wave][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="FarrozMartHome"]
+[node name="Belanja" type="Button" parent="FarrozMartHome"]
 layout_mode = 2
 text = "Belanja"
+
+[node name="ButtonSoundEffect" parent="FarrozMartHome/Belanja" instance=ExtResource("2_hllro")]
+hover_sound_effect = true
 
 [node name="Button2" type="Button" parent="FarrozMartHome"]
 layout_mode = 2
 text = "Lihat Kiriman"
 
+[node name="ButtonSoundEffect" parent="FarrozMartHome/Button2" instance=ExtResource("2_hllro")]
+hover_sound_effect = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartHome"]
 layout_mode = 2
 
 [node name="FarrozMartBuy" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="FarrozMartBuy"]
 layout_mode = 2
@@ -55,9 +54,12 @@ scroll_active = false
 [node name="FarrozItems" type="ScrollContainer" parent="FarrozMartBuy"]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="FarrozItem" parent="FarrozMartBuy/FarrozItems" instance=ExtResource("1_mhtxy")]
+[node name="VBoxContainer" type="VBoxContainer" parent="FarrozMartBuy/FarrozItems"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="BuyBottom" type="VBoxContainer" parent="FarrozMartBuy"]
 layout_mode = 2
@@ -80,7 +82,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[right]Rp.X"
+text = "[right]Rp 0"
 fit_content = true
 scroll_active = false
 text_direction = 1

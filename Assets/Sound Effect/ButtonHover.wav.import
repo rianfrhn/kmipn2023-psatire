@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnuwpxiotgf7e"
+path="res://.godot/imported/ButtonHover.wav-ff2792343e475607d014a1981303da7c.sample"
+
+[deps]
+
+source_file="res://Assets/Sound Effect/ButtonHover.wav"
+dest_files=["res://.godot/imported/ButtonHover.wav-ff2792343e475607d014a1981303da7c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
