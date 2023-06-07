@@ -7,7 +7,14 @@ var numbers := []
 @onready var button_container = $NinePatchRect/VBoxContainer/HBoxContainer2
 @onready var label_container = $NinePatchRect/VBoxContainer/HBoxContainer
 @onready var label = $NinePatchRect/VBoxContainer/RichTextLabel
-@onready var numlabel = $NinePatchRect/VBoxContainer/HBoxContainer/RichTextLabel
+@onready var textur = $NinePatchRect/VBoxContainer/HBoxContainer/TextureRect
+
+var textures = [preload("res://Assets/PuzzleCode/Code0.png"),
+preload("res://Assets/PuzzleCode/Code1.png"),
+preload("res://Assets/PuzzleCode/Code2.png"),
+preload("res://Assets/PuzzleCode/Code3.png"),
+null,
+]
 signal minigame_done()
 # Called when the node enters the scene tree for the first time.
 
@@ -44,11 +51,11 @@ func initialize(complexity : int = 0):
 		numbers.append(btn)
 		button_container.add_child(btn)
 	
-	numlabel.text = "[center]"+str(target_number[0])+"[/center]"
+	textur.texture = textures[target_number[0]]
 	for i in range(1, number_size):
-		var txt = numlabel.duplicate()
+		var txt = textur.duplicate()
 		label_container.add_child(txt)
-		txt.text = "[center]"+str(target_number[i])+"[/center]"
+		txt.texture = textures[target_number[i]]
 		
 	updateview()
 	

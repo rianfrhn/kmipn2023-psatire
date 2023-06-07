@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnuu33vmnc437"]
+
+[ext_resource type="PackedScene" uid="uid://ct5ani55d0dn3" path="res://Assets/3d models/NPC_002.glb" id="1_y4uvl"]
+
+[node name="NPC_002" instance=ExtResource("1_y4uvl")]
+
+[node name="Skeleton3D" parent="NPC_002_bone" index="0"]
+bones/5/rotation = Quaternion(0.04319, 0.0020798, 0.0478745, 0.997917)
+bones/6/rotation = Quaternion(-0.0267128, 1.40417e-07, -0.000643647, 0.999643)
+bones/10/rotation = Quaternion(-0.0212423, 0.428997, 0.0608778, 0.901002)
+bones/11/rotation = Quaternion(0.0267128, 3.81575e-07, 0.000643665, 0.999643)

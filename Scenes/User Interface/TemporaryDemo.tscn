@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnwcuop6l5loc"]
+
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="1_71kb3"]
+[ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="2_ohwhe"]
+[ext_resource type="Script" path="res://Scenes/User Interface/EndGameButton.gd" id="3_8s7mx"]
+
+[node name="TemporaryDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 99.0
+offset_right = 969.0
+offset_bottom = 553.0
+texture = ExtResource("1_71kb3")
+patch_margin_left = 111
+patch_margin_top = 110
+patch_margin_right = 96
+patch_margin_bottom = 108
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][wave]SELESAI!!!!![/wave][/center]
+
+	Terimakasih telah memainkan \"Servis Bang\". Kami mohon maaf karena demo sangat singkat dengan batasan: Mencapai rating > 5 atau Melewati minggu ke 3.
+	Kami tim psatire berterimakasih karena telah mencoba permainan kami, akan lebih banyak fitur yang kami rencanakan yang akan kami implementasi yang insya Allah akan kami kembangkan lebih lanjut.
+
+
+Powered by: 								Godot Engine
+Software yang Digunakan:	- Godot 4.0.3 Stable
+													- Blender
+													- Waveform 11
+													- Krita
+
+Kami, tim Psatire (Muhammad Asaduddin, Andra Rizki Pratama, dan Riandar Farhan), sekali lagi mengucapkan terimakasih"
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_ohwhe")
+text = "Main Menu"
+script = ExtResource("3_8s7mx")

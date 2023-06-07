@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Customer
-
+@onready var anim_player = $NPCModel/AnimationPlayer
+@onready var model = $NPCModel
 enum MOVE_STATE {MOVING, IDLE}
 #enum HAND_STATE {HOLDING, IDLE}
 
@@ -15,8 +16,6 @@ var speed = 2.0
 var accel_angle = 10
 var target_rotation : Vector3 = Vector3.ZERO
 
-func _ready():
-	pass
 	
 
 func _physics_process(delta):
@@ -30,6 +29,8 @@ func _physics_process(delta):
 		move_and_slide()
 		change_move_state(MOVE_STATE.MOVING)
 		set_target_rotation_relative(vel)
+	else:
+		change_move_state(MOVE_STATE.IDLE)
 	
 	update_rotation(delta)
 	
@@ -39,17 +40,15 @@ func change_move_state(state):
 		MOVE_STATE.IDLE:
 			if move_state == MOVE_STATE.IDLE: return
 			move_state = MOVE_STATE.IDLE
-			#anim_player.play("Idle") 
+			anim_player.play("Idle") 
 		MOVE_STATE.MOVING:
 			if move_state == MOVE_STATE.MOVING: return
 			move_state = MOVE_STATE.MOVING
-			print("CHANGING STATE TO MOVING")
-			#anim_player.play("Walk") 
+			anim_player.play("Walk") 
 			
 
 func update_rotation(delta):
-	#model.rotation.y = lerp(model.rotation.y, atan2(target_rotation.x, target_rotation.z), delta * accel_angle)
-	pass
+	model.rotation.y = lerp(model.rotation.y, atan2(target_rotation.x, target_rotation.z), delta * accel_angle)
 	
 func set_target_rotation_relative(vec3 : Vector3):
 	target_rotation = vec3

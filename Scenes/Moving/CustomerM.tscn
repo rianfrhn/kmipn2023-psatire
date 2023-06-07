@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b03yh1cm8kwgt"]
+
+[ext_resource type="Script" path="res://Scenes/Moving/Customer.gd" id="1_k17ha"]
+[ext_resource type="PackedScene" uid="uid://bp54f3m2pf6bs" path="res://Scenes/Moving/CustomerMale.tscn" id="2_h17a0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5cmwu"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7b1vu"]
+margin = 0.0
+radius = 0.25
+height = 1.0
+
+[node name="Customer" type="CharacterBody3D"]
+script = ExtResource("1_k17ha")
+
+[node name="CapsuleMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.461711, 0, 0, 0, 0.461711, 0, 0, 0, 0.461711, 0, 0.25, 0)
+mesh = SubResource("CapsuleMesh_5cmwu")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.461711, 0, 0, 0, 0.461711, 0, 0, 0, 0.461711, 0, 0.25, 0)
+shape = SubResource("CapsuleShape3D_7b1vu")
+disabled = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="NPCModel" parent="." instance=ExtResource("2_h17a0")]

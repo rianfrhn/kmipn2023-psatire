@@ -16,9 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cniigegfqe6gd" path="res://Scenes/User Interface/RegisterTable/GameRegister.tscn" id="4_oo6fx"]
 [ext_resource type="PackedScene" uid="uid://prsa0vwgbdx6" path="res://Scenes/3d models/ready_station.tscn" id="4_r4wwm"]
 [ext_resource type="PackedScene" uid="uid://kaybtir40bv2" path="res://Scenes/3d models/queue_table.tscn" id="7_26lko"]
-[ext_resource type="PackedScene" uid="uid://bbxqi3t70huaw" path="res://Scenes/3d models/storage.tscn" id="8_52e5a"]
 [ext_resource type="Script" path="res://Scenes/StorageStation.gd" id="9_m3sse"]
 [ext_resource type="PackedScene" uid="uid://dpeupe4ochfaj" path="res://Scenes/User Interface/Storage/GameStorage.tscn" id="10_g2j8u"]
+[ext_resource type="PackedScene" uid="uid://blyehkwfhg0gl" path="res://Scenes/3d models/storage_v_2.tscn" id="14_7wgta"]
 [ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="20_wwcmc"]
 [ext_resource type="Script" path="res://Scenes/GameDebug.gd" id="21_ws7o5"]
 
@@ -116,13 +116,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4652, 4.76837e-07, 12.881)
 script = ExtResource("2_bo4ru")
 
 [node name="RegistPoint" type="Marker3D" parent="Place/NavigationRegion3D/CustomerSpawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2195, 2.38419e-07, -6.97079)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2195, 2.38419e-07, -6.82737)
 
 [node name="RegistPointSource" type="Marker3D" parent="Place/NavigationRegion3D/CustomerSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2195, 2.38419e-07, -3.50079)
 
 [node name="ReadyPoint" type="Marker3D" parent="Place/NavigationRegion3D/CustomerSpawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1891, 2.38419e-07, -6.92626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1891, 2.38419e-07, -6.78284)
 
 [node name="ReadyPointSource" type="Marker3D" parent="Place/NavigationRegion3D/CustomerSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1891, 2.38419e-07, -3.45626)
@@ -220,11 +220,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125855, 0, -1.20137)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.10345, 0)
 
 [node name="Storage" type="StaticBody3D" parent="Place/NavigationRegion3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.06, 0, -4.15092)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.66943, 0, -4.1843)
 script = ExtResource("9_m3sse")
 menu = ExtResource("10_g2j8u")
 
-[node name="Storage" parent="Place/NavigationRegion3D/Storage" instance=ExtResource("8_52e5a")]
+[node name="Storage_v2" parent="Place/NavigationRegion3D/Storage" instance=ExtResource("14_7wgta")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CubeMesh" type="MeshInstance3D" parent="Place/NavigationRegion3D/Storage"]

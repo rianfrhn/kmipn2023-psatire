@@ -52,7 +52,7 @@ var month = 1
 var player_object
 ##############
 # Money
-var money = 370000
+var money = 1000000
 signal money_changed()
 
 func add_money(ammount : int):
@@ -301,16 +301,16 @@ func create_new_customer(type: int, day:int = 1, hour:int = 7):
 	var new_customer = CustomerResource.new()
 	match type:
 		0:  #0 = pengguna hp, phone type 0-2, 
-			var gender = CustomerResource.GENDER.MALE
+			var gender = randi_range(0,1)
 			var fixable = create_new_fixable(randi_range(0,2))
 			new_customer.initialize(gender, fixable, fixable.wait_time)
-		1: #1 = pengguna laptop only, type 3-5
-			var gender = CustomerResource.GENDER.MALE
-			var fixable = create_new_fixable(randi_range(3,5))
-			new_customer.initialize(gender, fixable, fixable.wait_time)
-		2: #1 = pengguna laptop dan hp, type 3-5
-			var gender = CustomerResource.GENDER.MALE
+		1: #1 = pengguna laptop dan hp, type 3-5
+			var gender = randi_range(0,1)
 			var fixable = create_new_fixable(randi_range(0,5))
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+		2: #1 = pengguna laptop only, type 3-5
+			var gender = randi_range(0,1)
+			var fixable = create_new_fixable(randi_range(3,5))
 			new_customer.initialize(gender, fixable, fixable.wait_time)
 			
 	return new_customer
@@ -407,16 +407,20 @@ func generate_week():
 	customer_satisfied = 0
 	customer_denied = 0
 	num_customer_served = 0
-	
+	var cust_diff = 0
+	if week == 1: cust_diff = 0
+	elif week == 2: cust_diff = 1
+	else: cust_diff= 2
+	print("WEEK "+str(week))
 	if on_customer_served.size() == 0:
 		customer_count -= 1
-		var cust = create_new_customer(2)
+		var cust = create_new_customer(cust_diff)
 		add_customer_week_queue(cust, 1, 8)
 		
 	for i in range(0, customer_count):
 		var day = randi_range(1,4)
 		var time = randi_range(7,15)
-		var cust = create_new_customer(2)
+		var cust = create_new_customer(cust_diff)
 		add_customer_week_queue(cust, day, time)
 
 ####################
@@ -436,6 +440,10 @@ func end_week():
 	after_money = money
 	change_game_state(STATE.PAUSED)
 	open_menu_path("res://Scenes/User Interface/phone.tscn")
+	if week==4 or rating >5:
+		open_menu_path("res://Scenes/User Interface/TemporaryDemo.tscn")
+	
+	
 	open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
 	
 
@@ -460,11 +468,13 @@ func _ready():
 	
 	hour_changed.connect(hourly_customer_checker)
 	add_storage(ComponentResource.TYPE.LCD, 3)
-	add_storage(ComponentResource.TYPE.BATERAI, 2)
+	add_storage(ComponentResource.TYPE.BATERAI, 3)
 	
 
 
-
+func close_all_menu():
+	for item in on_screen.get_children():
+		item.queue_free()
 
 func open_menu_path(path: String)->Node:
 	var scene : Node = ResourceLoader.load(path).instantiate()

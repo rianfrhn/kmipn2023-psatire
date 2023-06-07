@@ -15,7 +15,7 @@ func play_song(dir : String):
 	elif playing == 2:
 		music_player.stream = audio
 		music_player.play()
-		anim.play_backwards("onetwo")
+		anim.play("twoone")
 		await anim.animation_finished
 		music_player2.playing = false
 		playing = 1

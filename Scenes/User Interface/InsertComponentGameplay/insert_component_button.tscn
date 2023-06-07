@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc582df14rep"]
+[gd_scene load_steps=5 format=3 uid="uid://bc582df14rep"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/InsertComponentGameplay/InsertComponentButton.gd" id="1_42wms"]
 [ext_resource type="Theme" uid="uid://ckmygpxkilnmg" path="res://Themes/Button-input.tres" id="1_glhug"]
+[ext_resource type="Texture2D" uid="uid://6yc2o6pex" path="res://Assets/PuzzleCode/Code0.png" id="3_u0exx"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="4_8hlbn"]
 
 [node name="Button" type="Button"]
 offset_right = 32.0
@@ -9,16 +11,18 @@ offset_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_glhug")
+flat = true
 script = ExtResource("1_42wms")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "0"
-fit_content = true
+texture = ExtResource("3_u0exx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonSoundEffect" parent="." instance=ExtResource("4_8hlbn")]

@@ -65,7 +65,7 @@ func generate_new_component(new_type: TYPE, broken:bool = false):
 			stock_desc = "Keyboard pengganti untuk laptop"
 			stock_cost = 60000
 			arrival_days = 1
-			display_picture = ResourceLoader.load("res://Assets/User Interface/smartphone.png")
+			display_picture = ResourceLoader.load("res://Assets/User Interface/Keyboard.png")
 			is_broken = broken
 			complexity = 2
 		TYPE.MOTHERBOARD:
@@ -73,7 +73,7 @@ func generate_new_component(new_type: TYPE, broken:bool = false):
 			stock_desc = "Motherboard canggih khusus laptop"
 			stock_cost = 200000
 			arrival_days = 1
-			display_picture = ResourceLoader.load("res://Assets/User Interface/smartphone.png")
+			display_picture = ResourceLoader.load("res://Assets/User Interface/Motherboard.png")
 			is_broken = broken
 			complexity = 3
 			

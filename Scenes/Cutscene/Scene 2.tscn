@@ -1,0 +1,258 @@
+[gd_scene load_steps=20 format=3 uid="uid://dfrohvgsk4hc4"]
+
+[ext_resource type="PackedScene" uid="uid://b3wruhpbyeqnj" path="res://Scenes/Moving/Player.tscn" id="1_gvuyc"]
+[ext_resource type="Script" path="res://Scenes/Cutscene/ScenePlayer.gd" id="1_u8x1u"]
+[ext_resource type="Texture2D" uid="uid://bscaxctn2sdql" path="res://Assets/Office 2.png" id="2_jqm1o"]
+[ext_resource type="Texture2D" uid="uid://bhatguvv0wk8b" path="res://Assets/Office Texture.png" id="3_02t4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifu3p"]
+albedo_texture = ExtResource("2_jqm1o")
+uv1_scale = Vector3(13, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gj7r3"]
+material = SubResource("StandardMaterial3D_ifu3p")
+size = Vector3(10, 30, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwrok"]
+albedo_texture = ExtResource("3_02t4j")
+uv1_scale = Vector3(70, 20, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fokcj"]
+material = SubResource("StandardMaterial3D_mwrok")
+size = Vector3(10, 10, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltu03"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pqbx"]
+material = SubResource("StandardMaterial3D_ltu03")
+size = Vector3(1, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l7fm"]
+albedo_color = Color(0.564706, 0.564706, 0.564706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dwxlw"]
+material = SubResource("StandardMaterial3D_0l7fm")
+size = Vector3(40, 0.1, 70)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ieewy"]
+albedo_color = Color(0.1064, 0.2698, 0.76, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_ki5bn"]
+material = SubResource("StandardMaterial3D_ieewy")
+text = "Udin Co."
+horizontal_alignment = 0
+pixel_size = 0.2
+depth = 0.3
+text_direction = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lj7u5"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 20.87
+dof_blur_far_transition = 10.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 2.17
+dof_blur_near_transition = 2.0
+dof_blur_amount = 0.11
+
+[sub_resource type="Sky" id="Sky_adu2i"]
+
+[sub_resource type="Environment" id="Environment_2bxmy"]
+background_mode = 1
+background_color = Color(0.262745, 0.337255, 0.4, 1)
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_adu2i")
+ambient_light_source = 2
+ambient_light_color = Color(0.45098, 0.341176, 0.341176, 1)
+glow_enabled = true
+adjustment_brightness = 0.7
+
+[sub_resource type="Animation" id="Animation_cby02"]
+resource_name = "new_animation"
+length = 15.0
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Building3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.8, 9.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(13.5311, -32.0948, -17.2234), Vector3(13.5311, -32.0948, -17.2234), Vector3(13.531, -10, -17.223)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Building4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.1, 10.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(25.2733, -32.7815, 10.2527), Vector3(25.2733, -32.7815, 10.2527), Vector3(25.273, 0, 10.253)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Text/MeshInstance3D:mesh:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.5, 4.8, 5.1, 5.4, 5.7, 6, 6.3, 6.6, 7.2, 7.5, 7.8, 8.1, 8.4, 8.7, 9, 9.3, 9.6, 9.9, 10.2, 10.5, 10.8, 11.1, 11.4, 11.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Udin Co.", "Udin Co.", "Udin Co", "Udin C", "Udin", "Udi", "Ud", "U", "", "M", "Mi", "Mik", "Miks", "Miksu", "Miksue", "Miksue E", "Miksue En", "Miksue Ent", "Miksue Ente", "Miksue Enter", "Miksue Enterp", "Miksue Enterpr", "Miksue Enterpri", "Miksue Enterpris", "Miksue Enterprise"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:background_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.2, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.262745, 0.337255, 0.4, 1), Color(0.262745, 0.337255, 0.4, 1), Color(0.4, 0.262745, 0.262745, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DirectionalLight3D:light_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.1, 7.2, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.984314, 0.717647, 1), Color(1, 0.984314, 0.717647, 1), Color(1, 0.721569, 0.721569, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Text/MeshInstance3D:mesh:pixel_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 7.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.2, 0.15]
+}
+tracks/6/type = "animation"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player/Albob/AnimationPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": PackedStringArray("Idle", "Idle", "Idle"),
+"times": PackedFloat32Array(0, 5.7, 11.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7uta"]
+_data = {
+"new_animation": SubResource("Animation_cby02")
+}
+
+[node name="Scene 2" type="Node3D"]
+script = ExtResource("1_u8x1u")
+
+[node name="Player" parent="." instance=ExtResource("1_gvuyc")]
+transform = Transform3D(-0.543379, 0, 0.839487, 0, 1, 0, -0.839487, 0, -0.543379, 1.00062, 0.0854397, 22.2837)
+script = null
+
+[node name="CapsuleMesh" parent="Player" index="0"]
+skeleton = NodePath("../../Text/MeshInstance3D")
+
+[node name="Skeleton3D" parent="Player/Albob/Armature" index="0"]
+bones/0/rotation = Quaternion(0, 1.19209e-07, 0, 1)
+bones/1/rotation = Quaternion(-0.0419965, 0, -1.00127e-08, 0.999118)
+bones/2/rotation = Quaternion(0.13895, 7.17503e-15, 3.31282e-08, 0.990299)
+bones/3/rotation = Quaternion(-0.0333665, 1.19143e-07, -1.19328e-08, 0.999443)
+bones/4/rotation = Quaternion(0.548074, 0.502706, -0.539357, 0.394963)
+bones/5/rotation = Quaternion(0.498986, 0.023464, 0.0526048, 0.864694)
+bones/6/rotation = Quaternion(0.0604881, 1.44274e-07, 0.00145751, 0.998168)
+bones/7/rotation = Quaternion(-0.0927664, -2.05991e-07, -0.00223524, 0.995685)
+bones/9/rotation = Quaternion(-0.267293, 0.154185, 0.721003, 0.620432)
+bones/10/rotation = Quaternion(-0.439529, 0.352187, 0.242009, 0.79007)
+bones/11/rotation = Quaternion(-0.0604882, 3.53564e-07, -0.00145747, 0.998168)
+bones/12/rotation = Quaternion(0.0927664, -2.66241e-07, 0.00223525, 0.995685)
+bones/13/rotation = Quaternion(-0.315939, 1.216e-07, -0.00761265, 0.948749)
+bones/14/rotation = Quaternion(0.70617, 0.0367462, 0.70705, -0.0073731)
+
+[node name="AnimationPlayer" parent="Player/Albob" index="1"]
+reset_on_save = false
+
+[node name="Hand" parent="Player/Albob" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Building1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5311, 0, -3.72529)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.977, 0)
+mesh = SubResource("BoxMesh_gj7r3")
+
+[node name="Building2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5311, 0, 8.86882)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6366, 7.03312)
+mesh = SubResource("BoxMesh_fokcj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.58014, 0, 3.60386)
+mesh = SubResource("BoxMesh_1pqbx")
+
+[node name="Building3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5311, -32.0948, -17.2234)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.977, 0)
+mesh = SubResource("BoxMesh_gj7r3")
+
+[node name="Building4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.2733, -32.7815, 10.2527)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.977, 0)
+mesh = SubResource("BoxMesh_gj7r3")
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_dwxlw")
+
+[node name="Text" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.25324, 10.4286, 11.3874)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Text"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04209, 0.516438, 0.38067)
+mesh = SubResource("TextMesh_ki5bn")
+
+[node name="GameCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.577858, -0.254908, -0.775308, 0, 0.949972, -0.312335, 0.816138, 0.180485, 0.548949, -1.4028, 1.47605, 22.3158)
+attributes = SubResource("CameraAttributesPractical_lj7u5")
+current = true
+fov = 60.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.277597, -0.819803, 0.500862, 0.495543, 0.568831, 0.656406, -0.823029, 0.0659829, 0.564153, 0, 12.8618, 17.232)
+light_color = Color(1, 0.984314, 0.717647, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2bxmy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f7uta")
+}
+
+[editable path="Player"]
+[editable path="Player/Albob"]

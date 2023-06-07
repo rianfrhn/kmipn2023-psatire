@@ -1,33 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://did3xpn6ealc4"]
+[gd_scene load_steps=2 format=3 uid="uid://did3xpn6ealc4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4ahe"]
-albedo_color = Color(0, 0, 0, 1)
-metallic_texture_channel = 1
-refraction_scale = -0.73
+[ext_resource type="PackedScene" uid="uid://bjyrp41nsub4t" path="res://Assets/3d models/Laptop.glb" id="1_x425j"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ok3ot"]
-material = SubResource("StandardMaterial3D_u4ahe")
-size = Vector3(0.8, 0.1, 0.7)
+[node name="Laptop" instance=ExtResource("1_x425j")]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8sa6d"]
-material = SubResource("StandardMaterial3D_u4ahe")
-size = Vector3(0.7, 0.05, 0.6)
-
-[node name="Laptop" type="Node3D"]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-
-[node name="CubeMesh" type="MeshInstance3D" parent="CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0675268)
-mesh = SubResource("BoxMesh_ok3ot")
-skeleton = NodePath("../../../../../../..")
-
-[node name="CubeMesh2" type="MeshInstance3D" parent="CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, -0.321522, 0.946902, 0, -0.946902, -0.321522, 0, 0.304815, -0.408647)
-mesh = SubResource("BoxMesh_ok3ot")
-skeleton = NodePath("../../../../../../..")
-
-[node name="CubeMesh3" type="MeshInstance3D" parent="CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0358205, 0.0545434)
-mesh = SubResource("BoxMesh_8sa6d")
-skeleton = NodePath("../../../../../../..")
+[node name="Laptop2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

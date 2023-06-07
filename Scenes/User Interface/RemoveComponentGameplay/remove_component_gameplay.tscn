@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://jrp21ahqyl5c"]
+[gd_scene load_steps=6 format=3 uid="uid://jrp21ahqyl5c"]
 
 [ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="1_2qi1a"]
 [ext_resource type="Script" path="res://Scenes/User Interface/RemoveComponentGameplay/RemoveComponentGameplay.gd" id="1_i6jtx"]
 [ext_resource type="PackedScene" uid="uid://bd4j6561du4x3" path="res://Scenes/User Interface/RemoveComponentGameplay/remove_component_button.tscn" id="3_0vggl"]
-[ext_resource type="Texture2D" uid="uid://bmfv7i84oaqca" path="res://icon-frame/Frame.png" id="3_4hru2"]
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="3_3ujus"]
+[ext_resource type="Texture2D" uid="uid://6yc2o6pex" path="res://Assets/PuzzleCode/Code0.png" id="4_dvjpf"]
 
 [node name="InsertComponentGameplay" type="Control"]
 layout_mode = 3
@@ -23,40 +24,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = -50.0
+offset_left = -215.0
+offset_top = -168.0
+offset_right = 215.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_4hru2")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+texture = ExtResource("3_3ujus")
+patch_margin_left = 78
+patch_margin_top = 73
+patch_margin_right = 76
+patch_margin_bottom = 76
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-text = "Sesuaikan angka di bawah ini:"
+size_flags_vertical = 3
+text = "Sesuaikan simbol di bawah ini untuk membongkar komponen"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-bbcode_enabled = true
-text = "[center]1[/center]"
-fit_content = true
+texture = ExtResource("4_dvjpf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2

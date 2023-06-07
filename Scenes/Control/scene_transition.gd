@@ -2,18 +2,20 @@ extends CanvasLayer
 
 @onready var panel = $Panel
 func change_scene_path(path : String):
-	panel.position = Vector2(1275,0)
+	panel.position = Vector2(1370,0)
 	move_panel(Vector2(-10,0))
 	await tween_done
 	get_tree().change_scene_to_file(path)
-	move_panel(Vector2(-1275,0))
+	Game.close_all_menu()
+	move_panel(Vector2(-1370,0))
 	
 func change_scene_packed(packed_scene: PackedScene):
-	panel.position = Vector2(1275,0)
+	panel.position = Vector2(1370,0)
 	move_panel(Vector2(0,0))
 	await tween_done
 	get_tree().change_scene_to_packed(packed_scene)
-	move_panel(Vector2(-1275,0))
+	Game.close_all_menu()
+	move_panel(Vector2(-1370,0))
 	
 
 signal tween_done()

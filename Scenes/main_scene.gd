@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	light.rotation_degrees.x =90 -((Game.timehr-7 + Game.timemin/60.0)/(16.0-7)*360)
+	light.rotation_degrees.x =20 -((Game.timehr-7 + Game.timemin/60.0)/(16.0-7)*200)

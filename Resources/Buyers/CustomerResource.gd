@@ -31,7 +31,12 @@ arrived : bool = false
 	fixable = assigned_fixable
 	retrieval_days = assigned_retrieval_days  
 	arrived = false
-	model = ResourceLoader.load("res://Scenes/Moving/Customer.tscn")
+	var modelres = ""
+	if gender == GENDER.MALE:
+		modelres = "res://Scenes/Moving/CustomerM.tscn"
+	else:
+		modelres = "res://Scenes/Moving/CustomerF.tscn"
+	model = ResourceLoader.load(modelres)
 	
 func set_arrival(day : int, hour : int = 7):
 	arrival_day = day

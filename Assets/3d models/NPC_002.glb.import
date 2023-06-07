@@ -3629,8 +3629,8 @@ _subresources={
 "slices/amount": null
 },
 "Walk001": {
-"save_to_file/enabled": false,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/enabled": true,
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,

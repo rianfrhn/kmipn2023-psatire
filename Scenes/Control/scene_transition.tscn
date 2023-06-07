@@ -9,8 +9,8 @@ script = ExtResource("1_c6ro2")
 
 [node name="Panel" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 1275.0
-offset_right = 2521.0
+offset_left = 1370.0
+offset_right = 2616.0
 offset_bottom = 652.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
