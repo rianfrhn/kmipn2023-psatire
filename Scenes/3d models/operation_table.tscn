@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpya0d65vf24"]
+
+[ext_resource type="PackedScene" uid="uid://efgmcj4ngtmq" path="res://Assets/3d models/Operation Table.glb" id="1_16yv7"]
+
+[node name="Operation Table" instance=ExtResource("1_16yv7")]
+
+[node name="Operation Table2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
