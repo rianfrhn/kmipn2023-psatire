@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c8qweb4x71xav"]
+[gd_scene load_steps=43 format=3 uid="uid://c8qweb4x71xav"]
 
 [ext_resource type="Script" path="res://Scenes/QueueStation.gd" id="1_46mm5"]
 [ext_resource type="Script" path="res://Scenes/ReadyStation.gd" id="1_bnus8"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/StorageStation.gd" id="9_m3sse"]
 [ext_resource type="PackedScene" uid="uid://dpeupe4ochfaj" path="res://Scenes/User Interface/Storage/GameStorage.tscn" id="10_g2j8u"]
 [ext_resource type="PackedScene" uid="uid://blyehkwfhg0gl" path="res://Scenes/3d models/storage_v_2.tscn" id="14_7wgta"]
+[ext_resource type="PackedScene" uid="uid://bpya0d65vf24" path="res://Scenes/3d models/operation_table.tscn" id="17_thit6"]
 [ext_resource type="Texture2D" uid="uid://njchuocwib2a" path="res://Assets/User Interface/Frame.png" id="20_wwcmc"]
 [ext_resource type="Script" path="res://Scenes/GameDebug.gd" id="21_ws7o5"]
 
@@ -251,8 +252,12 @@ script = ExtResource("3_1w5ts")
 menu = ExtResource("4_myac0")
 items_offset = Vector3(10, 0, 0)
 
+[node name="Operation Table" parent="Place/NavigationRegion3D/OperatingTable" instance=ExtResource("17_thit6")]
+transform = Transform3D(1.63399, 0, 0, 0, 1.06049, 0, 0, 0, 1.71353, -0.27609, 0, 2.98023e-08)
+
 [node name="CubeMesh" type="MeshInstance3D" parent="Place/NavigationRegion3D/OperatingTable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421091, 0)
+visible = false
 mesh = SubResource("BoxMesh_d77cx")
 
 [node name="CubeShape" type="CollisionShape3D" parent="Place/NavigationRegion3D/OperatingTable"]
@@ -346,3 +351,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_ws7o5")
+
+[editable path="Player"]
+[editable path="Player/Albob"]

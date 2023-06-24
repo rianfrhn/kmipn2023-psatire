@@ -13,7 +13,9 @@ config_version=5
 config/name="KMIPN_Psatire_PNJ"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://Assets/User Interface/splash.png"
+config/icon="res://Assets/User Interface/LogoSmall.png"
 
 [autoload]
 
@@ -28,7 +30,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/prettyprimitive/plugin.cfg")
+enabled=PackedStringArray("res://addons/prettyprimitive/plugin.cfg", "res://addons/godot_icon/plugin.cfg")
 
 [input]
 

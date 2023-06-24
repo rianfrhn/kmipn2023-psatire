@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://i3pi10lkkbqf"]
+[gd_scene load_steps=38 format=3 uid="uid://i3pi10lkkbqf"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_0vtka"]
 [ext_resource type="Script" path="res://Scenes/CustomerSpawner.gd" id="1_ekqpe"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kaybtir40bv2" path="res://Scenes/3d models/queue_table.tscn" id="4_edq51"]
 [ext_resource type="PackedScene" uid="uid://b3wruhpbyeqnj" path="res://Scenes/Moving/Player.tscn" id="6_hjqri"]
 [ext_resource type="PackedScene" uid="uid://blyehkwfhg0gl" path="res://Scenes/3d models/storage_v_2.tscn" id="6_xiwmx"]
+[ext_resource type="PackedScene" uid="uid://bpya0d65vf24" path="res://Scenes/3d models/operation_table.tscn" id="7_jwwxi"]
 [ext_resource type="Theme" uid="uid://bq2171q782pen" path="res://Themes/Button-input_Bigger.tres" id="7_ohvk2"]
 [ext_resource type="Texture2D" uid="uid://vpph3u62iita" path="res://Assets/User Interface/service-bg.jpg" id="7_xah0m"]
 [ext_resource type="Texture2D" uid="uid://5il2o1ugoxeu" path="res://Assets/User Interface/psatire-removebg-preview.png" id="9_7ixdg"]
@@ -242,6 +243,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.371
 
 [node name="CubeMesh" type="MeshInstance3D" parent="Place/NavigationRegion3D/OperatingTable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421091, 0)
+visible = false
 mesh = SubResource("BoxMesh_63dli")
 
 [node name="CubeShape" type="CollisionShape3D" parent="Place/NavigationRegion3D/OperatingTable"]
@@ -259,6 +261,9 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 2.38419e
 
 [node name="Items" type="Node3D" parent="Place/NavigationRegion3D/OperatingTable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 1.06282, 1.01226)
+
+[node name="Operation Table" parent="Place/NavigationRegion3D/OperatingTable" instance=ExtResource("7_jwwxi")]
+transform = Transform3D(1.63399, 0, 0, 0, 1.06049, 0, 0, 0, 1.71353, -0.27609, 0, 2.98023e-08)
 
 [node name="Walls2" type="MultiMeshInstance3D" parent="Place/NavigationRegion3D"]
 
@@ -299,26 +304,6 @@ fov = 60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.0644146, -2.06347)
 script = null
 
-[node name="Skeleton3D" parent="Player/Albob/Armature" index="0"]
-bones/0/rotation = Quaternion(0.00287151, 1.19209e-07, 8.29304e-09, 0.999996)
-bones/1/rotation = Quaternion(-0.0494867, -8.7725e-10, -3.26688e-08, 0.998775)
-bones/2/rotation = Quaternion(0.143851, -1.91648e-09, 4.79555e-08, 0.989599)
-bones/3/rotation = Quaternion(-0.0333665, 1.01188e-07, -6.03921e-09, 0.999443)
-bones/4/rotation = Quaternion(0.548074, 0.502705, -0.539357, 0.394963)
-bones/5/rotation = Quaternion(0.495993, 0.0235919, 0.0529195, 0.866392)
-bones/6/rotation = Quaternion(0.0604894, -0.000946506, 0.00146178, 0.998167)
-bones/7/rotation = Quaternion(-0.0927664, -2.05998e-07, -0.00223524, 0.995685)
-bones/9/rotation = Quaternion(-0.267293, 0.154185, 0.721003, 0.620432)
-bones/10/rotation = Quaternion(-0.436648, 0.352805, 0.241138, 0.791656)
-bones/11/rotation = Quaternion(-0.0604882, 3.53565e-07, -0.00145747, 0.998168)
-bones/12/rotation = Quaternion(0.0927664, -2.66231e-07, 0.00223525, 0.995685)
-bones/13/rotation = Quaternion(-0.315939, 1.216e-07, -0.00761265, 0.948749)
-bones/16/rotation = Quaternion(1.35793e-07, 4.98164e-08, 0.535149, 0.844758)
-bones/17/rotation = Quaternion(-7.43351e-08, 1.4726e-07, -0.643285, 0.765627)
-bones/18/rotation = Quaternion(0.705251, -0.00727963, 0.707967, 0.0367649)
-bones/20/rotation = Quaternion(1.39525e-07, 5.22729e-08, 0.535149, 0.844758)
-bones/21/rotation = Quaternion(-7.89539e-08, 1.51175e-07, -0.643285, 0.765627)
-
 [node name="AnimationPlayer" parent="Player/Albob" index="1"]
 reset_on_save = false
 
@@ -326,7 +311,7 @@ reset_on_save = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.986572, 0, 0.163326, -0.0253217, 0.987909, 0.152956, -0.161351, -0.155038, 0.974643, 0, 12.8618, 17.232)
+transform = Transform3D(0.986572, 1.20631e-08, 0.163326, -0.161905, -0.131599, 0.977992, 0.0214935, -0.991303, -0.129832, 0, 2.40392, 1.81361)
 light_color = Color(1, 0.968627, 0.788235, 1)
 shadow_enabled = true
 
@@ -402,10 +387,10 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Laptop" parent="." instance=ExtResource("14_elwp7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1.30478)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.94695, -1.30478)
 
 [node name="Handphone" parent="." instance=ExtResource("15_rh8mu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80633, 1, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80633, 0.94695, -1)
 
 [editable path="Player"]
 [editable path="Player/Albob"]

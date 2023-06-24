@@ -64,7 +64,7 @@ func change_move_state(state):
 			print("CHANGING STATE TO IDLE")
 			
 			if hand_state == HAND_STATE.HOLDING:
-				anim_player.play("Walk_Holding")
+				anim_player.play("Idle_holding")
 			else:
 				anim_player.play("Idle") 
 		MOVE_STATE.MOVING:
@@ -92,7 +92,7 @@ func change_hand_state(state):
 			if move_state == MOVE_STATE.MOVING:
 				anim_player.play("Walk_Holding")
 			else:
-				anim_player.play("Walk_Holding") ######## TODO: FIXXXXX THISSS
+				anim_player.play("Idle_holding") ######## TODO: FIXXXXX THISSS
 		HAND_STATE.IDLE:
 			if hand_state == HAND_STATE.IDLE: return
 			hand_state = HAND_STATE.IDLE
