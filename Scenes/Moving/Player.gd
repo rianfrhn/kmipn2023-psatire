@@ -20,7 +20,9 @@ var target_rotation : Vector3 = Vector3.ZERO
 func _ready():
 	Game.hand_changed.connect(update_hand)
 	Game.player_object = self
-	
+	Game.speed_changed.connect(change_speed)
+func change_speed():
+	speed = 2.0 * Game.speed
 
 func _physics_process(delta):
 	var current_location = global_position

@@ -99,7 +99,7 @@ func updateview():
 	if match_points == number_size:
 		print("PLAYER HAS DONE MINIGAME")
 		label.text = "SELESAI!"
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(3.0 / Game.speed).timeout
 		minigame_done.emit()
 		queue_free()
 		

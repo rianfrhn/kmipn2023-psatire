@@ -7,6 +7,7 @@ extends Node
 @onready var playersfx = $PlayerSFX
 @onready var custsfx = $CustomerSFX
 
+
 func playsound(node : AudioStreamPlayer, sound : String = ""):
 	node.stream = load(sound) if sound != "" else null
 	node.play()
@@ -58,11 +59,13 @@ signal money_changed()
 func add_money(ammount : int):
 	playsound(playersfx, "res://Assets/Sound Effect/SellBuy.wav")
 	money += ammount
+	money_changed.emit()
 	
 	
 func remove_money(ammount : int):
 	playsound(playersfx, "res://Assets/Sound Effect/SellBuy.wav")
 	money -= ammount
+	money_changed.emit()
 	
 var rating = 1.0
 #######################
@@ -98,6 +101,7 @@ func remove_request(fixable: FixableResource):
 var on_ready : Array[FixableResource] = []
 signal ready_added()
 signal ready_removed()
+signal ready_opened()
 
 func add_ready(fixable: FixableResource):
 	on_ready.append(fixable)
@@ -115,6 +119,7 @@ func remove_ready(fixable: FixableResource):
 ################################
 # OPERATION TABLE
 var on_operation : FixableResource
+signal operation_opened()
 signal operation_added()
 signal operation_updated()
 signal operation_removed()
@@ -126,6 +131,7 @@ func add_operation(fixable: FixableResource):
 	playsound(playersfx, "res://Assets/Sound Effect/ItemDrop.wav")
 	operation_added.emit()
 
+signal component_added()
 func add_component(fixable: FixableResource, component_id: int, slot: int, duration:float = 10):
 	working.emit()
 	work_timer.wait_time = duration
@@ -142,7 +148,9 @@ func add_component(fixable: FixableResource, component_id: int, slot: int, durat
 	if fixable == null: return
 	fixable.slotted_components[slot] = component_id
 	operation_updated.emit()
+	component_added.emit()
 	
+signal component_removed()
 func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	working.emit()
 	player_object.change_move_state(Player.MOVE_STATE.REPAIRING)
@@ -160,6 +168,7 @@ func remove_component(fixable: FixableResource, slot: int, duration:float = 10):
 	fixable.slotted_components[slot] = ComponentResource.TYPE.KOSONG
 	fixable.defects[slot] = 0
 	operation_updated.emit()
+	component_removed.emit()
 	
 func component_tostring(type : int)->String:
 	return ComponentResource.TYPE.keys()[type]
@@ -180,6 +189,7 @@ var on_storage : Dictionary = {# 'type' -> 'ammount'
 	2: 3
 } 
 signal storage_changed
+signal storage_opened()
 
 func add_storage(component_type : int, count: int):
 	if !on_storage.has(component_type): on_storage[component_type] = 0
@@ -200,7 +210,7 @@ func get_new_component_by_id(id: int, is_broken : bool):
 #################################
 # QUEUE TABLE
 var on_queue : Array[FixableResource] = []
-
+signal queue_opened()
 signal queue_added()
 signal queue_removed(fixable : FixableResource)
 
@@ -258,6 +268,7 @@ func move_customer_to_register(customer : CustomerResource):
 		
 var on_register : Array[CustomerResource] = []
 signal register_added(customer : CustomerResource)
+signal register_opened()
 
 var on_customer_served : Array[CustomerResource] = []
 signal customer_served(customer : CustomerResource)
@@ -300,6 +311,15 @@ func hourly_customer_checker():
 func create_new_customer(type: int, day:int = 1, hour:int = 7):
 	var new_customer = CustomerResource.new()
 	match type:
+		-2: # Tutorial, insert doang
+			var gender = randi_range(0,1)
+			var fixable = create_new_fixable(2)
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+		-1: #tutorial, baterai remove insert
+			var gender = randi_range(0,1)
+			var fixable = create_new_fixable(0)
+			new_customer.initialize(gender, fixable, fixable.wait_time)
+			
 		0:  #0 = pengguna hp, phone type 0-2, 
 			var gender = randi_range(0,1)
 			var fixable = create_new_fixable(randi_range(0,2))
@@ -425,16 +445,20 @@ func generate_week():
 
 ####################
 # ON START OF WEEk ONLY ON SUNRAY
+signal week_started()
 func start_week():
 	add_day(1)
-	generate_week()
+	if(week != 1):
+		generate_week()
 	MusicHandler.play_song("res://Assets/Songs/Kalem Bang.ogg")
 	change_game_state(STATE.RUNNING)
+	week_started.emit()
 	print(game_state)
 
 
 #################3
 # ON END OF WEEK
+signal week_ended()
 func end_week():
 	MusicHandler.play_song("res://Assets/Songs/Capek bang.ogg")
 	after_money = money
@@ -445,12 +469,14 @@ func end_week():
 	
 	
 	open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
+	week_ended.emit()
 	
 
 func initialgame():
 	MusicHandler.play_song("res://Assets/Songs/Capek bang.ogg")
 	change_game_state(STATE.PAUSED)
 	open_menu_path("res://Scenes/User Interface/phone.tscn")
+	start_tutorial()
 		
 
 # Called when the node enters the scene tree for the first time.
@@ -470,7 +496,13 @@ func _ready():
 	add_storage(ComponentResource.TYPE.LCD, 3)
 	add_storage(ComponentResource.TYPE.BATERAI, 3)
 	
-
+signal speed_changed()
+var speed := 1
+func set_speed(spd : int):
+	print("Changed speed to "+str(spd))
+	speed = spd
+	speed_changed.emit()
+	timer.wait_time = (1.0 + 2.0/3) / spd
 
 func close_all_menu():
 	for item in on_screen.get_children():
@@ -564,3 +596,109 @@ func get_month_string() -> String :
 		
 func get_full_date_string() -> String:
 	return str(date)+ " " + get_month_string()
+
+func start_tutorial():
+	await add_tutorial_text("Halo dan selamat datang di permainan Servis Bang!")
+	await add_tutorial_text("Tujuan anda pada permainan ini adalah untuk mendapatkan uang\nSebanyak-banyaknya!")
+	await add_tutorial_text("Pertama, silahkan beli barang yang tersedia di FarrozMart!\n\nTip: Ingat-ingat harga barang yang anda beli!")
+	await money_changed
+	await add_tutorial_text("Setelah kamu selesai, klik lanjut untuk memulaikan permainan!")
+	await week_started
+	await add_tutorial_text("Saat memulai permainan, perhatikan bar yang ada di atas!")
+	await add_tutorial_text("Terdapat informasi waktu, hari, dan jumlah uang yang anda miliki")
+	await add_tutorial_text("Pada hari-hari kerja, akan ada pelanggan yang datang untuk meminta servis")
+	var cust = create_new_customer(-2, 1, 8)
+	add_customer_week_queue(cust, 1, 8)
+	await register_added
+	await add_tutorial_text("Lihat! ada pelanggan baru!")
+	change_game_state(STATE.PAUSED)
+	await add_tutorial_text("Pergi ke meja konter dengan klik kiri\nSaat sudah di konter, klik kanan untuk membuka menu!")
+	await register_opened
+	add_time_min(20)
+	await add_tutorial_text("Di menu ini anda lihat kendala yang di alami pelanggan\nHarga dapat di set sesuai dengan komponen yang besar kemungkinan di gunakan\n\nHint: Pelanggan tidak memiliki layar, maka anda harus memasang lcd!\nKarena harga lcd adalah Rp100000, Set harga sekitar Rp150000 untuk mendapatkan profit!")
+	await hand_changed
+	add_time_min(20)
+	await add_tutorial_text("Klik meja inspeksi yang ada pada bagian kiri.\nSaat sudah disana, klik kanan untuk menaruh smartphone lalu klik kanan lagi untuk membuka menu")
+	await queue_added
+	await queue_opened
+	add_time_min(20)
+	await add_tutorial_text("Kamu dapat melihat komponen yang ada di dalam smartphone\nDisini, terdapat slot kosong untuk memasang LCD")
+	await add_tutorial_text("Ambil perangkat dan bawa ke meja operasional yang ada pada tengah ruangan")
+	await operation_opened
+	add_time_min(20)
+	await add_tutorial_text("Slot kosong pada perangkat akan kami pasang LCD, klik + untuk memasang LCD\nAkan ada puzzle saat memasang LCD! Perhatikan baik-baik cara kerja puzzle!")
+	await component_added
+	add_time_min(20)
+	await add_tutorial_text("Jika anda sudah selesai, bawa perangkat ke meja siap yang ada pada kanan bawah")
+	await ready_added
+	var cust2 = create_new_customer(-2, 1, 8)
+	add_customer_week_queue(cust2, 1, 8)
+	move_customer_to_register(cust2)
+	await add_tutorial_text("Setelah beberapa lama, perangkat akan di ambil oleh pelanggan,\ndan akan dibayar sesuai harga yang telah di set")
+	await add_tutorial_text("Sementara itu, Silahkan coba untuk melayani pelanggan yang baru saja datang!")
+	change_game_state(STATE.RUNNING)
+	await customer_take_ready
+	change_game_state(STATE.PAUSED)
+	await add_tutorial_text("Luar Biasa!\nKamu telah mendapatkan profit!")
+	await add_tutorial_text("Untuk kedepannya, akan ada banyak pelanggan dengan kendala perangkat yang berbeda beda.")
+	await add_tutorial_text("Jangan lupa untuk perkirakan harga sesuai dengan modal yang dikeluarkan\nuntuk membeli komponen yang mungkin untuk digunakan")
+	await add_tutorial_text("Puzzle yang dilakukan juga memiliki kesulitan yang berbeda beda!")
+	var cust3 = create_new_customer(-1, 2, 9)
+	add_customer_week_queue(cust3, 2, 9)
+	move_customer_to_register(cust3)
+	await add_tutorial_text("Ada pelanggan lagi! Coba untuk melayaninya!")
+	await register_opened
+	add_time_min(10)
+	await add_tutorial_text("Kali ini, baterai yang mengalami masalah!\nCoba bawa lagi ke meja inspeksi untuk melihat komponen\n\nTip: Harga baterai adalah Rp60000")
+	await queue_added
+	add_time_min(10)
+	await queue_opened
+	add_time_min(10)
+	await add_tutorial_text("Jika kamu lihat, Teks baterai berwarna kuning.\nHal ini berarti baterai perlu di lepas dan di pasang baterai yang baru!")
+	await add_tutorial_text("Bawa perangkat ke meja operasi!")
+	await operation_added
+	add_time_min(10)
+	await operation_opened
+	add_time_min(10)
+	await add_tutorial_text("Kita butuh menggantikan baterai. Lepas baterai dengan klik tombol - pada baterai")
+	await add_tutorial_text("Puzzle saat melepas komponen akan lebih sulit.\nNamun kami yakin anda dapat mengerti!")
+	await component_added
+	add_time_min(10)
+	await add_tutorial_text("Mantap!")
+	await add_tutorial_text("Perlu diperingati bahwa akan ada perangkat-perangkat yang komponennya jauh lebih kompleks!\nNamun mereka akan memiliki profit yang jauh lebih tinggi!")
+	await add_tutorial_text("Jika kamu tidak sanggup, kamu dapat menolaknya saat di konter")
+	await add_tutorial_text("Skor anda akan di evaluasi pada akhir minggu! Harap lakukan yang terbaik dalam membangun tempat servis ini!")
+	await ready_added
+	var cust4 = create_new_customer(0, 3, 8)
+	add_customer_week_queue(cust4, 3, 8)
+	move_customer_to_register(cust4)
+	var cust5 = create_new_customer(0, 3, 9)
+	add_customer_week_queue(cust5, 3, 9)
+	var cust6 = create_new_customer(0, 4, 12)
+	add_customer_week_queue(cust6, 4, 12)
+	change_game_state(STATE.RUNNING)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+func add_tutorial_text(text : String):
+	var node : TutorialText = ResourceLoader.load("res://Scenes/User Interface/Tutorial/tutorial_text.tscn").instantiate()
+	var prevGameState = game_state
+	node.initialize(text)
+	add_child(node)
+	change_game_state(STATE.PAUSED)
+	await node.finished
+	change_game_state(prevGameState)
+	
+	

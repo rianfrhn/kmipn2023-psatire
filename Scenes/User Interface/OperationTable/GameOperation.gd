@@ -9,7 +9,7 @@ func _ready():
 	Game.operation_added.connect(update_view)
 	Game.operation_removed.connect(update_view)
 	Game.operation_updated.connect(update_view)
-	pass # Replace with function body.
+	Game.operation_opened.emit()
 func add_fixable_item(fixable : FixableResource):
 	var fixable_view = ResourceLoader.load("res://Scenes/User Interface/OperationTable/fixable_item_operation_ui.tscn").instantiate()
 	fixable_view.set_fixable(fixable)

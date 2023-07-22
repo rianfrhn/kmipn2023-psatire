@@ -21,6 +21,7 @@ func _ready():
 	Game.register_added.connect(update_view)
 	Game.customer_served.connect(update_view_for_serve)
 	Game.customer_left.connect(update_view)
+	Game.register_opened.emit()
 	
 	
 

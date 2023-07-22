@@ -8,7 +8,7 @@ func _ready():
 	update_view()
 	Game.ready_added.connect(update_view)
 	Game.ready_removed.connect(update_view)
-	pass # Replace with function body.
+	Game.ready_opened.emit()
 func add_fixable_item(fixable : FixableResource):
 	var fixable_view = ResourceLoader.load("res://Scenes/User Interface/ReadyTable/fixable_item_ready_ui.tscn").instantiate()
 	fixable_view.set_fixable(fixable)

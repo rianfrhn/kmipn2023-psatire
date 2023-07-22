@@ -7,6 +7,7 @@ var components
 func _ready():
 	update_view()
 	Game.storage_changed.connect(update_view)
+	Game.storage_opened.emit()
 	
 	
 	

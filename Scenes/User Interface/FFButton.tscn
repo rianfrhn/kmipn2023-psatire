@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://s0iryu6p83e7"]
+
+[ext_resource type="Texture2D" uid="uid://cakgwsc0am7sm" path="res://Assets/User Interface/FFButton0000.png" id="1_0jov0"]
+[ext_resource type="Script" path="res://Scenes/User Interface/FFButton.gd" id="1_u1344"]
+[ext_resource type="Texture2D" uid="uid://cardkyocfhxgl" path="res://Assets/User Interface/FFButton0001.png" id="2_yawav"]
+[ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="4_td454"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t22pw"]
+texture = ExtResource("1_0jov0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ol25i"]
+texture = ExtResource("2_yawav")
+
+[node name="FFButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_u1344")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 80.0
+offset_right = -30.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_t22pw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t22pw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ol25i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ol25i")
+text = " "
+
+[node name="ButtonSoundEffect" parent="HBoxContainer/Button" instance=ExtResource("4_td454")]
+
+[node name="RichTextLabel" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1x"
+flat = true
