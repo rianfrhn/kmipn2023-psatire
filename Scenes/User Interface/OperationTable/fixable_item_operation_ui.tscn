@@ -49,7 +49,7 @@ scroll_active = false
 
 [node name="PartName" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 size_flags_stretch_ratio = 4.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

@@ -40,21 +40,22 @@ func _physics_process(delta):
 	update_rotation(delta)
 	
 func _unhandled_input(event):
-	if Input.is_action_pressed("game_pause"):
-		if !menu_opened:
-			opened_menu = Game.open_menu_path("res://Scenes/User Interface/phone.tscn")
-			menu_opened = true
-		else:
-			opened_menu.queue_free()
-			menu_opened = false
-			
-	if Input.is_action_pressed("developer_key_1"):
-		Game.add_day(1)
-		
-	if Input.is_action_pressed("developer_key_2"):
-		Game.open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
-		Game.add_money(220000)
-		pass
+#	if Input.is_action_pressed("game_pause"):
+#		if !menu_opened:
+#			opened_menu = Game.open_menu_path("res://Scenes/User Interface/phone.tscn")
+#			menu_opened = true
+#		else:
+#			opened_menu.queue_free()
+#			menu_opened = false
+#
+#	if Input.is_action_pressed("developer_key_1"):
+#		Game.add_day(1)
+#
+#	if Input.is_action_pressed("developer_key_2"):
+#		Game.open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
+#		Game.add_money(220000)
+#		pass
+	pass
 
 func change_move_state(state):
 	match state:
@@ -123,8 +124,10 @@ func update_target_location(target_location : Vector3):
 func await_prompt():
 	print("Waiting for Right Click")
 	
+
 func leave_prompt():
 	print("No longer waiting for right click")
+
 func update_hand():
 	var onhand = Game.on_hand
 	remove_hand()

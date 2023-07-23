@@ -21,8 +21,9 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(70, 32)
 layout_mode = 2
 theme = ExtResource("2_xtkjl")
-text = "-"
+text = "Lepas"
 
 [node name="ButtonSoundEffect" parent="Button" instance=ExtResource("3_ms05p")]

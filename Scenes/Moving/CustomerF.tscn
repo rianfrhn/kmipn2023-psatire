@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://wgdk48q76wp7"]
+[gd_scene load_steps=5 format=3 uid="uid://cn2s0avlad4xu"]
 
 [ext_resource type="Script" path="res://Scenes/Moving/Customer.gd" id="1_la08b"]
-[ext_resource type="PackedScene" uid="uid://bnuu33vmnc437" path="res://Scenes/Moving/CustomerFemale.tscn" id="2_xqp16"]
+[ext_resource type="PackedScene" uid="uid://nq0h7p0tcd3s" path="res://Scenes/Moving/CustomerFemale.tscn" id="2_xqp16"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5cmwu"]
 radius = 0.25

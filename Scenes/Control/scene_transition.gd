@@ -7,7 +7,7 @@ func change_scene_path(path : String):
 	await tween_done
 	get_tree().change_scene_to_file(path)
 	Game.close_all_menu()
-	move_panel(Vector2(-1370,0))
+	move_panel(Vector2(-2000,0))
 	
 func change_scene_packed(packed_scene: PackedScene):
 	panel.position = Vector2(1370,0)

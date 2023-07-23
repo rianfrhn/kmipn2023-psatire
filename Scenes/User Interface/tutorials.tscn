@@ -1,0 +1,194 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwqyhp5h0klj0"]
+
+[ext_resource type="Texture2D" uid="uid://c1v5wx2t3moax" path="res://Assets/User Interface/NewFrame.png" id="1_46eul"]
+[ext_resource type="Texture2D" uid="uid://bvstqk2cmffj6" path="res://Assets/User Interface/arrow.png" id="2_qyln2"]
+[ext_resource type="Texture2D" uid="uid://cxpl4ypmfxae2" path="res://Assets/ScreenShots/Fase_Persiapan.png" id="3_xu2ex"]
+[ext_resource type="Texture2D" uid="uid://dojcdfe8dtjih" path="res://Assets/ScreenShots/move.png" id="4_q2878"]
+
+[node name="Tutorials" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -353.0
+offset_top = -244.0
+offset_right = 385.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_46eul")
+patch_margin_left = 76
+patch_margin_top = 73
+patch_margin_right = 77
+patch_margin_bottom = 73
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="layout" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="btn_prev" type="TextureButton" parent="TextureRect/MarginContainer/layout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("2_qyln2")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="page_1" type="VBoxContainer" parent="TextureRect/MarginContainer/layout"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="TextureRect/MarginContainer/layout/page_1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Fase di dalam game"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_1"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Terdapat dua fase dalam satu pekan, yaitu [b]Fase Persiapan[/b] dan [b]Fase Kerja[/b]."
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/layout/page_1"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Fase Persiapan[/b] berada pada akhir pekan (Minggu). Waktu untuk membeli perlengkapan, serta melihat review pekanan."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Fase Kerja[/b] berada pada hari kerja (Senin - Jumat). Waktu untuk mengambil order dan memperbaiki barang"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_xu2ex")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/layout/page_1/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_q2878")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="page_2" type="VBoxContainer" parent="TextureRect/MarginContainer/layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="TextureRect/MarginContainer/layout/page_2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Fase di dalam game"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Terdapat dua fase dalam satu pekan, yaitu [b]Fase Persiapan[/b] dan [b]Fase Kerja[/b]."
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/layout/page_2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Fase Persiapan[/b] berada pada akhir pekan (Minggu). Waktu untuk membeli perlengkapan, serta melihat review pekanan."
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Fase Kerja[/b] berada pada hari kerja (Senin - Jumat). Waktu untuk mengambil order dan memperbaiki barang"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_xu2ex")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/layout/page_2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_q2878")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="btn_next" type="TextureButton" parent="TextureRect/MarginContainer/layout"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("2_qyln2")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true

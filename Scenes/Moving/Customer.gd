@@ -44,7 +44,10 @@ func change_move_state(state):
 		MOVE_STATE.MOVING:
 			if move_state == MOVE_STATE.MOVING: return
 			move_state = MOVE_STATE.MOVING
-			anim_player.play("Walk") 
+			if anim_player.get_animation("Walk") != null :
+				anim_player.play("Walk") 
+			else :
+				anim_player.play("Walk001") 
 			
 
 func update_rotation(delta):

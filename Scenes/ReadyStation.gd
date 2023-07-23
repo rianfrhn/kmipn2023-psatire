@@ -2,13 +2,21 @@ extends Station
 
 @onready var trigger = $Trigger
 @onready var items_place = $Items
+
+var ready_position
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	outline = $"Ready Station/Ready Station2/MeshInstance3D"
 	set_items(Game.on_ready)
 	initial(items_place)
 	set_trigger(trigger)
+	mouse_entered.connect(show_outline)
+	mouse_exited.connect(hide_outline)
 	Game.ready_added.connect(update_items)
 	Game.ready_removed.connect(update_items)
+	trigger.body_entered.connect(ready_enter)
+	context_label.text = "Taruh perbaikan yang selesai"
+	ready_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(0, 50)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_interact"):
@@ -24,8 +32,14 @@ func _unhandled_input(event):
 func place_object(fixable : FixableResource):
 	Game.remove_hand()
 	Game.add_ready(fixable)
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func ready_enter(body):
+	if body is Player:
+		prompt_image.global_position = ready_position
+
+func add_label():
+	table_name.global_position = ready_position - Vector2(10, 50)

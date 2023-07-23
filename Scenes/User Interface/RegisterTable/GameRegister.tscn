@@ -102,6 +102,7 @@ alignment = 2
 
 [node name="ButtonTolak" type="Button" parent="NinePatchRect/ScrollContainer/VBoxContainer/Items/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("4_4soxf")
 text = "Tolak"
 
@@ -110,6 +111,7 @@ hover_sound_effect = true
 
 [node name="ButtonTerima" type="Button" parent="NinePatchRect/ScrollContainer/VBoxContainer/Items/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("4_4soxf")
 text = "Terima"
 

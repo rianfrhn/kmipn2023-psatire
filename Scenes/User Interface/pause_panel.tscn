@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgq5vqr6qw2s6"]
+
+[ext_resource type="Theme" uid="uid://dbtab8d6us8vf" path="res://Themes/btn_continue.tres" id="1_cf6pb"]
+[ext_resource type="Script" path="res://Scenes/User Interface/pause_panel.gd" id="1_doj2t"]
+[ext_resource type="Theme" uid="uid://cir3va4cextl6" path="res://Themes/PhoneTheme.tres" id="3_dw5k4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6m1s"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.721569, 0.188235, 0.188235, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PausePanel" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.207843, 0.207843, 0.207843, 0.4)
+script = ExtResource("1_doj2t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.441
+anchor_right = 0.5
+anchor_bottom = 0.441
+offset_left = -265.0
+offset_top = -17.768
+offset_right = 276.0
+offset_bottom = 20.232
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "PERMAINAN DIJEDA"
+horizontal_alignment = 1
+
+[node name="btn_continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cf6pb")
+text = "Lanjutkan Permainan"
+
+[node name="btn_continue2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_dw5k4")
+text = "Lihat Tutorial"
+
+[node name="btn_exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_s6m1s")
+text = "Kembali ke Menu Utama"

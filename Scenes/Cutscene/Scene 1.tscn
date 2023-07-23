@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bss2tvbs7cmid" path="res://Scenes/3d models/cash_register.tscn" id="2_ks063"]
 [ext_resource type="PackedScene" uid="uid://prsa0vwgbdx6" path="res://Scenes/3d models/ready_station.tscn" id="3_eedrg"]
 [ext_resource type="PackedScene" uid="uid://kaybtir40bv2" path="res://Scenes/3d models/queue_table.tscn" id="4_6wb50"]
-[ext_resource type="PackedScene" uid="uid://blyehkwfhg0gl" path="res://Scenes/3d models/storage_v_2.tscn" id="5_qytgy"]
+[ext_resource type="PackedScene" path="res://Scenes/3d models/storage_v_2.tscn" id="5_qytgy"]
 [ext_resource type="PackedScene" uid="uid://b3wruhpbyeqnj" path="res://Scenes/Moving/Player.tscn" id="6_2xny4"]
-[ext_resource type="PackedScene" uid="uid://bavp2lgvyrk0u" path="res://Scenes/3d models/laptop.tscn" id="7_6f6wp"]
+[ext_resource type="PackedScene" path="res://Scenes/3d models/laptop.tscn" id="7_6f6wp"]
 [ext_resource type="PackedScene" uid="uid://cgoxukle3wm5o" path="res://Scenes/Moving/Phone.tscn" id="8_phihb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w30oe"]

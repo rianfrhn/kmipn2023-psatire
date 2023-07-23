@@ -11,13 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://tbd5y3ovvhb0" path="res://icon-frame/weekrev.png" id="8_05alu"]
 
 [node name="Phone" type="NinePatchRect"]
-anchors_preset = 3
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -294.0
-offset_top = -484.0
+offset_top = -533.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("1_fvdbo")
@@ -26,6 +26,7 @@ patch_margin_left = 10
 patch_margin_top = 41
 patch_margin_right = 7
 script = ExtResource("2_p0upk")
+metadata/_edit_vertical_guides_ = []
 
 [node name="Top" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -253,6 +254,8 @@ layout_mode = 2
 
 [node name="PhoneBackButton" type="Button" parent="VBoxContainer/Bottom"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_mnr88")
 text = "Kembali"
 
 [node name="ButtonSoundEffect" parent="VBoxContainer/Bottom/PhoneBackButton" instance=ExtResource("5_cu8b1")]
@@ -264,6 +267,8 @@ size_flags_horizontal = 3
 
 [node name="PhoneContinueButton" type="Button" parent="VBoxContainer/Bottom"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_mnr88")
 text = "Lanjut"
 
 [node name="ButtonSoundEffect" parent="VBoxContainer/Bottom/PhoneContinueButton" instance=ExtResource("5_cu8b1")]

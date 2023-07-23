@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctwk8utsk125g"]
+[gd_scene load_steps=5 format=3 uid="uid://ctwk8utsk125g"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_mart.gd" id="1_4bnqi"]
+[ext_resource type="Theme" uid="uid://cir3va4cextl6" path="res://Themes/PhoneTheme.tres" id="2_b5dy6"]
+[ext_resource type="Theme" uid="uid://bendw5xf587ml" path="res://Themes/PhoneUI.tres" id="2_ggbrk"]
 [ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_hllro"]
 
 [node name="FarrozMart" type="VBoxContainer"]
@@ -24,6 +26,7 @@ scroll_active = false
 
 [node name="Belanja" type="Button" parent="FarrozMartHome"]
 layout_mode = 2
+theme = ExtResource("2_ggbrk")
 text = "Belanja"
 
 [node name="ButtonSoundEffect" parent="FarrozMartHome/Belanja" instance=ExtResource("2_hllro")]
@@ -31,6 +34,7 @@ hover_sound_effect = true
 
 [node name="Button2" type="Button" parent="FarrozMartHome"]
 layout_mode = 2
+theme = ExtResource("2_b5dy6")
 text = "Lihat Kiriman"
 
 [node name="ButtonSoundEffect" parent="FarrozMartHome/Button2" instance=ExtResource("2_hllro")]
@@ -89,4 +93,5 @@ text_direction = 1
 
 [node name="Button" type="Button" parent="FarrozMartBuy/BuyBottom/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ggbrk")
 text = "Beli"

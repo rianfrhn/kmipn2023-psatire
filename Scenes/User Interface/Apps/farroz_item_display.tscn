@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpvfxajsrnf5k"]
+[gd_scene load_steps=5 format=3 uid="uid://cpvfxajsrnf5k"]
 
 [ext_resource type="Script" path="res://Scenes/User Interface/Apps/farroz_item_display.gd" id="1_r80uh"]
 [ext_resource type="Texture2D" uid="uid://1mh0kcfrsya0" path="res://Assets/User Interface/smartphone.png" id="1_w45ey"]
 [ext_resource type="PackedScene" uid="uid://b6rjmifbj26hf" path="res://Scenes/Control/button_sound_effect.tscn" id="2_0er4q"]
+[ext_resource type="Theme" uid="uid://cir3va4cextl6" path="res://Themes/PhoneTheme.tres" id="3_1riyk"]
 
 [node name="ItemDisplay" type="VBoxContainer"]
 script = ExtResource("1_r80uh")
@@ -47,6 +48,7 @@ layout_mode = 2
 
 [node name="DecButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_1riyk")
 text = "-"
 
 [node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/DecButton" instance=ExtResource("2_0er4q")]
@@ -62,6 +64,7 @@ scroll_active = false
 
 [node name="IncButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_1riyk")
 text = "+"
 
 [node name="ButtonSoundEffect" parent="HBoxContainer/VBoxContainer/HBoxContainer/IncButton" instance=ExtResource("2_0er4q")]

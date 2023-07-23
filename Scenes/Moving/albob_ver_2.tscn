@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn62iun8rrq4y"]
+[gd_scene load_steps=2 format=3 uid="uid://dt385mxolih7k"]
 
-[ext_resource type="PackedScene" uid="uid://bfmp03e2gqfjj" path="res://Assets/3d models/Albob_ver2.glb" id="1_uwows"]
+[ext_resource type="PackedScene" uid="uid://bhr6yg3uuyuy5" path="res://Assets/3d models/Albob_ver2.glb" id="1_uwows"]
 
 [node name="Albob_ver2" instance=ExtResource("1_uwows")]
 

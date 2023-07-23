@@ -23,6 +23,10 @@ Game="*res://Scenes/Control/game.tscn"
 SceneTransition="*res://Scenes/Control/scene_transition.tscn"
 MusicHandler="*res://Scenes/Control/MusicHandler.tscn"
 
+[display]
+
+window/size/mode=2
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
