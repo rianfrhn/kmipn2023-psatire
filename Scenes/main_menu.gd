@@ -19,9 +19,17 @@ func set_idle():
 	ply_anim.play("Idle")
 	print("Now set to idle")
 func start_newgame():
+	Game.day = 0
+	Game.date = 1
+	Game.week = 1
+	Game.month = 1
+	Game.money = 1000000
 	MusicHandler.play_song("")
 	SceneTransition.change_scene_path("res://Scenes/main_scene.tscn")
 	
 func load_game():
 	MusicHandler.play_song("")
 	SceneTransition.change_scene_path("res://Scenes/main_scene.tscn")
+
+func exit_game():
+	get_tree().quit()

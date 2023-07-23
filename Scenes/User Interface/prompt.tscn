@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://o71tluptetp1"]
+
+[ext_resource type="Texture2D" uid="uid://bo570edp4cwlm" path="res://Assets/User Interface/mouse_action.png" id="1_psq2p"]
+
+[node name="prompt" type="HBoxContainer"]
+offset_right = 211.0
+offset_bottom = 46.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_psq2p")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="context" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
+text = "Context sdfsf gdeg sdsfdf gfdf"
+autowrap_mode = 2
