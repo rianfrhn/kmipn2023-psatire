@@ -8,10 +8,14 @@ layer = 2
 script = ExtResource("1_c6ro2")
 
 [node name="Panel" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(50, 50)
-offset_left = 1370.0
-offset_right = 2616.0
-offset_bottom = 652.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 1
@@ -20,7 +24,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_xns26")

@@ -21,6 +21,7 @@ func _ready():
 	Game.hand_changed.connect(update_hand)
 	Game.player_object = self
 	Game.speed_changed.connect(change_speed)
+	update_target_location(global_position)
 func change_speed():
 	speed = 2.0 * Game.speed
 

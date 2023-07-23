@@ -98,7 +98,8 @@ func remove_request(fixable: FixableResource):
 ##########################
 #########################
 # READY TABLE
-var on_ready : Array[FixableResource] = []
+var ready_capacity = 4
+@export var on_ready : Array[FixableResource] = []
 signal ready_added()
 signal ready_removed()
 signal ready_opened()
@@ -209,6 +210,7 @@ func get_new_component_by_id(id: int, is_broken : bool):
 ############################
 #################################
 # QUEUE TABLE
+var queue_capacity = 4
 var on_queue : Array[FixableResource] = []
 signal queue_opened()
 signal queue_added()
@@ -374,17 +376,19 @@ func on_fixable_done(fixable : FixableResource):
 	var setted_price = fixable.price
 	var profit_percentage = (1.0 * setted_price - base_price)/base_price
 	
-	if profit_percentage <=0.2:
-		rating += 0.2
-	elif profit_percentage >=0.4:
+	if profit_percentage <=0.3:
+		rating += 0.1
+	elif profit_percentage <=0.6:
+		rating += 0.05
+	elif profit_percentage >=1.0:
 		rating -= 0.4
 	
 	if broken_value ==0:
-		rating += 0.2
+		rating += 0.025
 	if broken_value <=1:
 		add_money(setted_price)
 	if broken_value == 3:
-		rating -=0.3
+		rating -=0.2
 	after_rating = rating
 	
 
@@ -407,14 +411,14 @@ func remove_fromall_stations(fixable : FixableResource):
 ####################
 # Generate new Week
 var customer_median = 7
-var customer_randomness = 0
+var customer_randomness = 1
 var day_dictionary = {
 	1:0, 2:0, 3:0, 4:0, 5:0
 }
 func generate_week():
-	customer_median = 6 + int(rating * 2)
+	customer_median = 3 + int(rating * 2.5)
 	var cust_random = randi_range(-customer_randomness, customer_randomness)
-	var customer_count = customer_median + cust_random
+	var customer_count = int(customer_median + cust_random)
 	
 	# WEEKLY STATS
 	previous_money = money
@@ -428,8 +432,8 @@ func generate_week():
 	customer_denied = 0
 	num_customer_served = 0
 	var cust_diff = 0
-	if week == 1: cust_diff = 0
-	elif week == 2: cust_diff = 1
+	if week == 2: cust_diff = 0
+	elif week == 3: cust_diff = 1
 	else: cust_diff= 2
 	print("WEEK "+str(week))
 	if on_customer_served.size() == 0:
@@ -477,9 +481,34 @@ func initialgame():
 	change_game_state(STATE.PAUSED)
 	open_menu_path("res://Scenes/User Interface/phone.tscn")
 	start_tutorial()
-		
+	rating = 1.0
+	previous_money = 0
+	after_money = 0
+	money_spent = 0
+	modal = 0
+	profit = 0
+	previous_rating = 0
+	after_rating = 0
+	customer_satisfied = 0
+	customer_denied = 0
+	num_customer_served = 0
+	
+	on_customer_week_queue= []
+	on_customer_served = []
+	on_queue = []
+	on_operation = null
+	on_ready = []
+	on_storage = {
+	0: 0,
+	1: 3,
+	2: 3}
+	on_hand = null
+	
+	
+func savegame():
+	var saveDict = {
+		}
 
-# Called when the node enters the scene tree for the first time.
 
 func _ready():
 	# DEBUG
@@ -496,6 +525,9 @@ func _ready():
 	add_storage(ComponentResource.TYPE.LCD, 3)
 	add_storage(ComponentResource.TYPE.BATERAI, 3)
 	
+	
+
+
 signal speed_changed()
 var speed := 1
 func set_speed(spd : int):
