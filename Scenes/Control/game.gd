@@ -630,38 +630,38 @@ func get_full_date_string() -> String:
 	return str(date)+ " " + get_month_string()
 
 func start_tutorial():
-	await add_tutorial_text("Halo dan selamat datang di permainan Servis Bang!")
+	await add_tutorial_text("Halo dan selamat datang di permainan [b][color=#ff6722]Servis Bang![/color][/b]")
 	await add_tutorial_text("Tujuan anda pada permainan ini adalah untuk mendapatkan uang\nSebanyak-banyaknya!")
-	await add_tutorial_text("Pertama, silahkan beli barang yang tersedia di FarrozMart!\n\nTip: Ingat-ingat harga barang yang anda beli!")
+	await add_tutorial_text("Pertama, silahkan beli barang yang tersedia di [color=#ff6722]FarrozMart![/color]\n\nTip: Ingat-ingat harga barang yang anda beli!")
 	await money_changed
-	await add_tutorial_text("Setelah kamu selesai, klik lanjut untuk memulaikan permainan!")
+	await add_tutorial_text("Setelah kamu selesai, klik [b]Lanjut[/b] untuk memulaikan permainan!")
 	await week_started
 	await add_tutorial_text("Saat memulai permainan, perhatikan bar yang ada di atas!")
-	await add_tutorial_text("Terdapat informasi waktu, hari, dan jumlah uang yang anda miliki")
+	await add_tutorial_text("Terdapat informasi [b]waktu, hari, dan jumlah uang[/b] yang anda miliki")
 	await add_tutorial_text("Pada hari-hari kerja, akan ada pelanggan yang datang untuk meminta servis")
 	var cust = create_new_customer(-2, 1, 8)
 	add_customer_week_queue(cust, 1, 8)
 	await register_added
 	await add_tutorial_text("Lihat! ada pelanggan baru!")
 	change_game_state(STATE.PAUSED)
-	await add_tutorial_text("Pergi ke meja konter dengan klik kiri\nSaat sudah di konter, klik kanan untuk membuka menu!")
+	await add_tutorial_text("Pergi ke [color=#3991e6]Meja konter[/color] dengan [b]klik kiri[/b]. \nSaat sudah di konter, klik [b]kanan[/b] untuk membuka menu!")
 	await register_opened
 	add_time_min(20)
-	await add_tutorial_text("Di menu ini anda lihat kendala yang di alami pelanggan\nHarga dapat di set sesuai dengan komponen yang besar kemungkinan di gunakan\n\nHint: Pelanggan tidak memiliki layar, maka anda harus memasang lcd!\nKarena harga lcd adalah Rp100000, Set harga sekitar Rp150000 untuk mendapatkan profit!")
+	await add_tutorial_text("Di menu ini anda lihat kendala yang di alami pelanggan\nHarga dapat di set sesuai dengan komponen yang besar kemungkinan di gunakan\n\n[b]Hint: Pelanggan tidak memiliki layar, maka anda harus memasang lcd!\nKarena harga lcd adalah Rp100000, Set harga sekitar Rp150000 untuk mendapatkan profit![/b]")
 	await hand_changed
 	add_time_min(20)
-	await add_tutorial_text("Klik meja inspeksi yang ada pada bagian kiri.\nSaat sudah disana, klik kanan untuk menaruh smartphone lalu klik kanan lagi untuk membuka menu")
+	await add_tutorial_text("Klik [color=#f8f03e]Meja inspeksi[/color] yang ada pada bagian kiri.\nSaat sudah disana, klik [b]kanan[/b] untuk menaruh smartphone lalu klik kanan lagi untuk membuka menu")
 	await queue_added
 	await queue_opened
 	add_time_min(20)
-	await add_tutorial_text("Kamu dapat melihat komponen yang ada di dalam smartphone\nDisini, terdapat slot kosong untuk memasang LCD")
-	await add_tutorial_text("Ambil perangkat dan bawa ke meja operasional yang ada pada tengah ruangan")
+	await add_tutorial_text("Kamu dapat melihat komponen yang ada di dalam smartphone\nDisini, [b]terdapat slot kosong untuk memasang LCD[/b]")
+	await add_tutorial_text("Ambil perangkat dan bawa ke [color=#ff6722]meja operasional[/color] yang ada pada tengah ruangan")
 	await operation_opened
 	add_time_min(20)
 	await add_tutorial_text("Slot kosong pada perangkat akan kami pasang LCD, klik + untuk memasang LCD\nAkan ada puzzle saat memasang LCD! Perhatikan baik-baik cara kerja puzzle!")
 	await component_added
 	add_time_min(20)
-	await add_tutorial_text("Jika anda sudah selesai, bawa perangkat ke meja siap yang ada pada kanan bawah")
+	await add_tutorial_text("Jika anda sudah selesai, bawa perangkat ke [color=#5fca23]meja siap[/color] yang ada pada kanan bawah")
 	await ready_added
 	var cust2 = create_new_customer(-2, 1, 8)
 	add_customer_week_queue(cust2, 1, 8)

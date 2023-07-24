@@ -8,6 +8,12 @@ var item_place
 @export var items : Array[FixableResource]
 @export var items_offset : Vector3
 @export var capacity : int
+
+var outline : MeshInstance3D
+@onready var prompt_image: Control = load("res://Scenes/User Interface/prompt.tscn").instantiate()
+@onready var context_label: Label = prompt_image.get_node("context")
+@onready var table_name: Label = Label.new()
+
 # Called when the node enters the scene tree for the first time.
 func initial(items_place):
 	item_place = items_place
@@ -21,11 +27,15 @@ func set_trigger(trigger : Area3D):
 
 func _on_body_entered(body):
 	if(body is Player):
+		if Game.day != 0:
+			add_child(prompt_image)
 		waiting_prompt = true
 		body.await_prompt()
 
 func _on_body_exited(body):
 	if(body is Player):
+		if Game.day != 0:
+			remove_child(prompt_image)
 		body.leave_prompt()
 		waiting_prompt = false
 
@@ -48,3 +58,18 @@ func update_items():
 
 func set_items(itemarray : Array[FixableResource]):
 	items = itemarray
+
+
+func hide_outline():
+	if Game.day != 0:
+		outline.hide()
+		remove_child(table_name)
+
+func show_outline():
+	if Game.day != 0:
+		set_label_position()
+		add_child(table_name)
+		outline.show()
+
+func set_label_position():
+	pass
