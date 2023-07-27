@@ -15,6 +15,7 @@ func _ready():
 	set_trigger(trigger)
 	Game.ready_added.connect(update_items)
 	Game.ready_removed.connect(update_items)
+	get_viewport().size_changed.connect(resolution_changed)
 	
 	mouse_entered.connect(show_outline)
 	mouse_exited.connect(hide_outline)
@@ -44,7 +45,11 @@ func _process(delta):
 
 func ready_enter(body):
 	if body is Player:
-		prompt_image.global_position = ready_position
+		prompt_image.position = ready_position
 
 func set_label_position():
-	table_name.global_position = ready_position - Vector2(-50, 50)
+	table_name.position = ready_position - Vector2(-50, 50)
+
+func resolution_changed():
+	ready_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(0, 40)
+	change_position(ready_position, Vector2.ZERO, Vector2(-50, 50))

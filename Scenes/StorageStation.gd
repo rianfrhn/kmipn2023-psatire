@@ -14,6 +14,8 @@ func _ready():
 	
 	mouse_entered.connect(show_outline)
 	mouse_exited.connect(hide_outline)
+	get_viewport().size_changed.connect(resolution_changed)
+	
 	context_label.text = "Lihat Persediaan"
 	storage_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(30, 0)
 
@@ -25,7 +27,11 @@ func _unhandled_input(event):
 		
 func storage_enter(body):
 	if body is Player:
-		prompt_image.global_position = storage_position
+		prompt_image.position = storage_position
 
 func set_label_position():
-	table_name.global_position = storage_position + Vector2(20, 0)
+	table_name.position = storage_position + Vector2(20, 0)
+
+func resolution_changed():
+	storage_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(30, 0)
+	change_position(storage_position, Vector2.ZERO, Vector2(-20, 0))

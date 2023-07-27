@@ -15,13 +15,14 @@ func _ready():
 	Game.register_added.connect(request_coming)
 	Game.customer_served.connect(on_customer_left)
 	Game.customer_left.connect(on_customer_left)
+	get_viewport().size_changed.connect(resolution_changed)
 	
 	trigger.body_entered.connect(register_entered)
 	mouse_entered.connect(show_outline)
 	mouse_exited.connect(hide_outline)
 	notice.texture = notice_image
 	register_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
-	notice.global_position = register_position - Vector2(120, 130)
+	notice.position = register_position - Vector2(120, 130)
 	context_label.text = "Ambil order"
 
 func _unhandled_input(event):
@@ -38,7 +39,12 @@ func on_customer_left(customer: CustomerResource):
 	remove_child(notice)
 
 func register_entered(body):
-	prompt_image.global_position = register_position - Vector2(80, 60)
+	prompt_image.position = register_position - Vector2(80, 60)
 
 func set_label_position():
-	table_name.global_position = register_position - Vector2(0, 80)
+	table_name.position = register_position - Vector2(0, 90)
+
+func resolution_changed():
+	register_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+	notice.global_position = register_position - Vector2(120, 130)
+	change_position(register_position, Vector2(80, 60), Vector2(0, 90))

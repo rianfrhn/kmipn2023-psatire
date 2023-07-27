@@ -51,13 +51,13 @@ func _unhandled_input(event):
 			opened_menu.queue_free()
 			menu_opened = false
 			
-	if Input.is_action_pressed("developer_key_1"):
-		Game.add_day(1)
-		
-	if Input.is_action_pressed("developer_key_2"):
-		Game.open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
-		Game.add_money(220000)
-		pass
+#	if Input.is_action_pressed("developer_key_1"):
+#		Game.add_day(1)
+#
+#	if Input.is_action_pressed("developer_key_2"):
+#		Game.open_menu_path("res://Scenes/User Interface/WeeklyReview.tscn")
+#		Game.add_money(220000)
+#		pass
 
 func change_move_state(state):
 	match state:
