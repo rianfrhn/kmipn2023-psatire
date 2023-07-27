@@ -15,12 +15,13 @@ func _ready():
 	Game.operation_added.connect(update_table)
 	Game.operation_removed.connect(update_table)
 	Game.operation_updated.connect(update_table)
+	get_viewport().size_changed.connect(resolution_changed)
 	
 	mouse_entered.connect(show_outline)
 	mouse_exited.connect(hide_outline)
 	trigger.body_entered.connect(operating_entered)
 	context_label.text = "Perbaiki barang"
-	operating_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin) - Vector2(80, 80)
+	operating_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin) - Vector2(10, 80)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_interact"):
@@ -55,4 +56,8 @@ func operating_entered(body):
 		prompt_image.global_position = operating_position
 
 func set_label_position():
-	table_name.global_position = operating_position - Vector2(-80, 40)
+	table_name.global_position = operating_position - Vector2(-70, 40)
+
+func resolution_changed():
+	operating_position = get_viewport().get_camera_3d().unproject_position(global_transform.origin) - Vector2(10, 80)
+	change_position(operating_position, Vector2.ZERO, Vector2(-70, 40))

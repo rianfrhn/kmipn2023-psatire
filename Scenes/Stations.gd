@@ -14,6 +14,9 @@ var outline : MeshInstance3D
 @onready var context_label: Label = prompt_image.get_node("context")
 @onready var table_name: Label = Label.new()
 
+#@onready var screen_width = get_viewport().get_visible_rect().size.x
+#@onready var screen_height = get_viewport().get_visible_rect().size.y
+
 # Called when the node enters the scene tree for the first time.
 func initial(items_place):
 	item_place = items_place
@@ -73,3 +76,7 @@ func show_outline():
 
 func set_label_position():
 	pass
+	
+func change_position(table_position: Vector2, promp_offset: Vector2 , name_offset: Vector2):
+	prompt_image.global_position = table_position - promp_offset
+	table_name.global_position = table_position - name_offset

@@ -14,12 +14,13 @@ func _ready():
 	set_trigger(trigger)
 	Game.queue_added.connect(update_items)
 	Game.queue_removed.connect(update_items)
+	get_viewport().size_changed.connect(resolution_changed)
 	
 	mouse_entered.connect(show_outline)
 	mouse_exited.connect(hide_outline)
 	trigger.body_entered.connect(queue_entered)
 	context_label.text = "Ambil/taruh barang ke antrian"
-	queue_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(50, 60)
+	queue_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(50, 50)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("game_interact"):
@@ -45,4 +46,8 @@ func queue_entered(body):
 	if body is Player:
 		prompt_image.global_position = queue_position
 func set_label_position():
-	table_name.global_position = queue_position - Vector2(-20, 60)
+	table_name.global_position = queue_position - Vector2(-20, 80)
+
+func resolution_changed():
+	queue_position = get_viewport().get_camera_3d().unproject_position(global_position) - Vector2(50, 50)
+	change_position(queue_position, Vector2.ZERO, Vector2(-20, 80))
