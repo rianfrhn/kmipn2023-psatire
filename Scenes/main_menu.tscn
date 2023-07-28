@@ -291,15 +291,20 @@ size_flags_stretch_ratio = 0.5
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Main"
+text = " Mulai "
 
 [node name="ButtonSoundEffect" parent="Control/VBoxContainer/Button" instance=ExtResource("11_quwgw")]
 hover_sound_effect = true
 
+[node name="Control4" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
 [node name="Button2" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Load Save"
+text = " Keluar "
 
 [node name="ButtonSoundEffect" parent="Control/VBoxContainer/Button2" instance=ExtResource("11_quwgw")]
 hover_sound_effect = true
