@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c8qweb4x71xav"]
+[gd_scene load_steps=60 format=3 uid="uid://c8qweb4x71xav"]
 
 [ext_resource type="Script" path="res://Scenes/QueueStation.gd" id="1_46mm5"]
 [ext_resource type="Script" path="res://Scenes/ReadyStation.gd" id="1_bnus8"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bnmoe1r1qd5ru" path="res://Assets/User Interface/mouse_move.png" id="23_lstmh"]
 [ext_resource type="PackedScene" uid="uid://s0iryu6p83e7" path="res://Scenes/User Interface/FFButton.tscn" id="23_xn35c"]
 [ext_resource type="Texture2D" uid="uid://bo570edp4cwlm" path="res://Assets/User Interface/mouse_action.png" id="24_1ag8d"]
+[ext_resource type="Texture2D" uid="uid://cvottggbihx0e" path="res://Assets/User Interface/pause_button.png" id="25_xfrbc"]
 [ext_resource type="PackedScene" uid="uid://dqh11224xcabb" path="res://Scenes/3d models/table_fan.tscn" id="31_d5jvg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ry53y"]
@@ -471,6 +472,20 @@ grow_vertical = 2
 script = ExtResource("21_ws7o5")
 
 [node name="FFButton" parent="." instance=ExtResource("23_xn35c")]
+
+[node name="pause_btn" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.086
+anchor_right = 0.069
+anchor_bottom = 0.154
+offset_left = 0.503998
+offset_top = 0.271999
+offset_right = -0.488007
+offset_bottom = 0.207993
+texture_normal = ExtResource("25_xfrbc")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="table_fan" parent="." instance=ExtResource("31_d5jvg")]
 transform = Transform3D(-0.0964181, 0, -0.114907, 0, 0.15, 0, 0.114907, 0, -0.0964181, -0.572664, 1.52418, 0.203177)

@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://cau2n6h1xmjjw"]
+
+[ext_resource type="Theme" uid="uid://bnl4pkl103ced" path="res://Themes/btn_continue.tres" id="1_xp8ek"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pdwd"]
+bg_color = Color(0.65098, 0.184314, 0.160784, 1)
+
+[node name="PauseMenu" type="ColorRect"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.168627)
+
+[node name="btn_continue" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.392
+anchor_top = 0.528
+anchor_right = 0.636
+anchor_bottom = 0.597
+offset_left = 2.41599
+offset_top = -2.14401
+offset_right = 2.32794
+offset_bottom = -1.85599
+theme = ExtResource("1_xp8ek")
+text = "LANJUT"
+
+[node name="btn_exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.66
+anchor_right = 0.644
+anchor_bottom = 0.73
+offset_left = 0.199982
+offset_top = 0.319946
+offset_right = 0.111938
+offset_bottom = -0.0400391
+theme_override_styles/normal = SubResource("StyleBoxFlat_6pdwd")
+text = "KEMBALI KE MENU AWAL"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.401
+anchor_top = 0.393
+anchor_right = 0.598
+anchor_bottom = 0.45
+offset_left = 37.048
+offset_top = 5.336
+offset_right = -37.8961
+offset_bottom = -5.60001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "PERMAINAN DIJEDA"

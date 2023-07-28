@@ -1,7 +1,7 @@
 extends Node3D
 @onready var ply_anim = $Player/Albob/AnimationPlayer
 @onready var playbtn = $Control/VBoxContainer/Button
-@onready var loadbtn = $Control/VBoxContainer/Button2
+@onready var exitbtn = $Control/VBoxContainer/Button2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +9,7 @@ func _ready():
 	playbtn.mouse_entered.connect(on_play_hover)
 	playbtn.mouse_exited.connect(set_idle)
 	playbtn.pressed.connect(start_newgame)
+	exitbtn.pressed.connect(exit_game)
 	MusicHandler.play_song("res://Assets/Songs/Istirahat bang.ogg")
 	
 func on_play_hover():
@@ -25,7 +26,7 @@ func start_newgame():
 	Game.month = 1
 	Game.money = 1000000
 	MusicHandler.play_song("")
-	SceneTransition.change_scene_path("res://Scenes/main_scene.tscn")
+	SceneTransition.change_scene_path("res://Scenes/Cutscene/Cutscene.tscn")
 	
 func load_game():
 	MusicHandler.play_song("")
